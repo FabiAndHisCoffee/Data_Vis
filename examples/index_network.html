@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<html lang="en">
+  <head>
+    <script type="text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/d3-request.v1.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <style>
+      svg rect {
+        fill: gray;
+      }
+
+      svg text {
+        fill: grey;
+        font: 12px sans-serif;
+        text-anchor: end;
+      }
+
+      .links line {
+        stroke: #888;
+        stroke-opacity: 0.3;
+      }
+
+      .nodes circle {
+        stroke: #000;
+        stroke-width: 1px;
+      }
+
+      text {
+        font-family: sans-serif;
+        font-size: 10px;
+      }
+      h1 {
+        font-family: Arial;
+        font-weight: 100;
+      }
+    </style>
+    <h1>Researchers with name containing 'Professorin'</h1>
+    <svg width="1600" height="900"></svg>
+    <a />
+    <script>
+      var svg = d3.select("svg"),
+        width = +svg.attr("width");
+      height = +svg.attr("height");
+      svg.attr("viewBox", [0, 0, width, height]);
+      var simulation = d3
+        .forceSimulation()
+        .force(
+          "link",
+          d3
+            .forceLink()
+            .id(function(d) {
+              return d.id;
+            })
+            .distance(0)
+            .strength(1)
+        )
+        .force(
+          "charge",
+          d3
+            .forceManyBody()
+            .strength(-40)
+            .theta(0.5)
+        )
+        .force("x", d3.forceX(width / 2).strength(0.2))
+        .force("y", d3.forceY(height / 2).strength(0.3))
+        .force("center", d3.forceCenter(width / 2, height / 2));
+
+      d3.json("dataDump.json", function(error, data) {
+        if (error) throw error;
+        // const filteredData = data
+        //   .map(project =>
+        //     Object.values(project)[2]
+        //       .replace(/[\[\]']+/g, "")
+        //       .replace(/\, Ph\.D\.+/g, "")
+        //       .split(",")
+        //   )
+        //   .filter(d => d.length > 2);
+        //
+        // const people = [...new Set(filteredData.flat())];
+        // nodes = people.map(
+        //   d =>
+        //     (d = {
+        //       id: d,
+        //       group: filteredData.filter(p => p.includes(d)).length
+        //     })
+        // );
+        // for (project in filteredData) {
+        //   for (var i = 0; i < filteredData[project].length; i++) {
+        //     for (var j = 1; j < filteredData[project].length; j++) {
+        //       if (i != j)
+        //         links.push({
+        //           source: filteredData[project][j],
+        //           target: filteredData[project][i],
+        //           value: 1
+        //         });
+        //     }
+        //   }
+        // }
+        //
+        // links = links.filter(
+        //   link =>
+        //     filteredData.filter(
+        //       p => p.includes(link.source) || p.includes(link.target)
+        //     ).length > 2
+        // );
+        //
+        // nodes = nodes.filter(node =>
+        //   links.find(link => link.source === node.id || link.target === node.id)
+        // );
+
+        var nodes = data.nodes.filter(node => node.id.includes("Professorin"));
+        // filter by minimum number of projects
+        //nodes = data.nodes.filter(node => node.group > 4);
+
+        console.log(nodes.length);
+
+        var links = data.links.filter(link =>
+          nodes.find(node => node.id === link.source)
+        );
+        links = links.filter(link =>
+          nodes.find(node => node.id === link.target)
+        );
+
+        var color = d3
+          .scaleLinear()
+          .domain(d3.extent(nodes.map(n => n.group).flat()))
+          .range(["white", "red"]);
+        console.log();
+
+        var link = svg
+          .append("g")
+          .attr("class", "links")
+          .selectAll("line")
+          .data(links)
+          .enter()
+          .append("line")
+          .attr("stroke-width", function(d) {
+            return Math.sqrt(d.value);
+          });
+
+        var node = svg
+          .append("g")
+          .attr("class", "nodes")
+          .selectAll("g")
+          .data(nodes)
+          .enter()
+          .append("g");
+
+        var circles = node
+          .append("circle")
+          .attr("r", 5)
+          .attr("fill", d => color(d.group))
+          .call(
+            d3
+              .drag()
+              .on("start", dragstarted)
+              .on("drag", dragged)
+              .on("end", dragended)
+          );
+
+        node.append("title").text(function(d) {
+          return d.id;
+        });
+
+        simulation.nodes(nodes).on("tick", ticked);
+
+        simulation.force("link").links(links);
+
+        function ticked() {
+          link
+            .attr("x1", function(d) {
+              return d.source.x;
+            })
+            .attr("y1", function(d) {
+              return d.source.y;
+            })
+            .attr("x2", function(d) {
+              return d.target.x;
+            })
+            .attr("y2", function(d) {
+              return d.target.y;
+            });
+
+          node.attr("transform", function(d) {
+            return "translate(" + d.x + "," + d.y + ")";
+          });
+        }
+      });
+
+      function dragstarted(d) {
+        if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+        d.fx = d.x;
+        d.fy = d.y;
+      }
+
+      function dragged(d) {
+        d.fx = d3.event.x;
+        d.fy = d3.event.y;
+      }
+
+      function dragended(d) {
+        if (!d3.event.active) simulation.alphaTarget(0);
+        d.fx = null;
+        d.fy = null;
+      }
+    </script>
+  </head>
+</html>

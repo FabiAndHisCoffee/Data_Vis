@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Helvetica Neue", sans-serif;
+        }
+        .amount {
+            fill: #fff;
+            text-anchor: middle;
+        }
+        .x.axis .domain, .y.axis .domain {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://unpkg.com/d3-marcon@2.0.2/build/d3-marcon.min.js"></script>
+<script>
+    let duration = 1500;
+
+    var parseTime = d3.timeParse("%Y%m%d");
+    var formatTime = d3.timeFormat("%d-%b-%y");
+    var IABLabels;
+
+    var setup = d3.marcon()
+        .top(20)
+        .bottom(150)
+        .left(100)
+        .right(30)
+        .width(1200)
+        .height(700);
+
+    setup.render();
+
+    var width = setup.innerWidth(), height = setup.innerHeight(), svg = setup.svg();
+
+    var x = d3.scaleBand()
+        .rangeRound([0, width])
+        .padding(.2);
+    var y = d3.scaleLinear()  //d3.scaleSymlog()
+        .range([height, 0]);
+    var x_timeLine = d3.scaleTime()
+        .range([0, width]);
+
+    var x_axis = d3.axisBottom(x);
+    var y_axis = d3.axisLeft(y);
+
+    const line = d3.line()
+        .x(d => d.x)
+        .y(d => d.y);
+
+    d3.csv("d3_data.csv").then(function(d3_data) {
+        // Prepare our gepris data
+
+
+
+        var da;
+        d3_data = d3_data.slice(0,10); // take only the first 6 elemnts
+        var data = [];
+        for (da of d3_data) {
+            var years = Object.keys(da);
+            years.shift(); //delete subject_area is the first item
+            years.shift(); //delete far off year
+
+
+            var count = [];
+            var year;
+
+            for (year of years) {
+                count = da[year];
+                var year_str = parseFloat(year).toFixed(0);
+                year_str = year_str.concat("0101");
+                var current_d = {"label": da["subject_area"], "week": year_str, "count": da[year]};
+                data.push(current_d)
+            }
+        }
+        data.forEach(function(d) {
+            d.week = formatTime(parseTime(d.week));
+            d.count = +d.count;
+        });
+
+        var groups = d3.nest()
+            .key(function(d) { return d.week; })
+            .entries(data);
+
+        // Scale the range of the data
+        let labels = data.map(function(d) { return d.label });
+        labels.sort();
+        x.domain(labels);
+        y.domain([0, d3.max(data, function(d) { return d.count; })]);
+
+        svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(x_axis)
+            .selectAll("text")
+            .style("text-anchor", "end")
+            .attr("dx", "-.8em")
+            .attr("dy", ".15em")
+            .attr("transform", "rotate(-65)");
+
+        svg.append("g")
+            .attr("class", "y axis")
+            .call(y_axis);
+
+        var possibleWeeks=Array.from(new Set(data.map(function(d) { return d.week })))
+        possibleWeeks.forEach(function(part, index, theArray) {
+            this[index] = d3.timeParse("%d-%b-%y")(this[index]);
+        },possibleWeeks);
+        x_timeLine.domain(d3.extent(possibleWeeks));
+
+        svg.selectAll(".dot")
+            .data(possibleWeeks)
+            .enter()
+            .append("circle")
+            .attr("class", "dot")
+            .attr("id", function(d){ return "dot"+d3.timeFormat("%d-%b-%y")(d);})
+            .attr("cx", function(d) { return x_timeLine(d) } )
+            .attr("cy", function(d) { return  height+setup.bottom()/2} )
+            .attr("r", 5)
+            .attr("fill", "lightGray");
+
+        svg.selectAll(".weekText")
+            .data(possibleWeeks)
+            .enter()
+            .append("text")
+            .attr("class", "weekText")
+            .attr("id", function(d){ return "text"+d3.timeFormat("%d-%b-%y")(d);})
+            .attr("dx", "-2em")
+            .attr("dy", "1.5em")
+            .attr("text-anchor", "middle")
+            .style("font-size", "10px")
+            .attr("transform", function(d){var y_trans=(height+5+setup.bottom()/2); return "translate("+x_timeLine(d)+","+y_trans+")"+"rotate(-30)";})
+            .text(function(d){ return d3.timeFormat("%d %b%y")(d);})
+            .attr("fill", "lightGray");;
+
+        for (var i = 1; i < possibleWeeks.length; i++) {
+            svg.append("path")
+                .datum(possibleWeeks.slice(i-1,i+1))
+                .attr("class", "timeline")
+                .attr("id", function(d){ return "line"+d3.timeFormat("%d-%b-%y")(d[1]);})
+                .attr("fill", "none")
+                .attr("stroke", "lightGray")
+                .attr("stroke-width", 1)
+                .attr("d", d3.line()
+                    .x(function(d) { return x_timeLine(d) })
+                    .y(function(d) { return height+setup.bottom()/2 })
+                );
+        }
+
+        var maxBars= copy(groups[0].values),
+            minBars= copy(groups[0].values);
+
+        redraw(groups[0], maxBars, minBars);
+        (function callRedraw(i){
+            setTimeout(()=>{
+                for (var j = 0; j < groups[i].values.length; j++) {
+                    if (groups[i].values[j].count<minBars[j].count)
+                        minBars[j].count=groups[i].values[j].count
+
+                    if (groups[i].values[j].count>maxBars[j].count) {
+                        maxBars[j].count=groups[i].values[j].count
+                    }
+                }
+                redraw(groups[i], maxBars, minBars);
+                i++;
+                if(i<groups.length)
+                    callRedraw(i);
+            }, duration)
+        })(1);
+
+    });
+
+    function redraw(data, maxLimits, minLimits){
+        var weekDot = svg.select("#dot"+data.key)
+            .attr("fill", "black");
+        var weekline = svg.select("#line"+data.key)
+            .attr("stroke", "black")
+            .attr("stroke-width", 1.5);
+        var weekText = svg.select("#text"+data.key)
+            .attr("fill", "black");
+
+        // join
+        var bar = svg.selectAll(".bar")
+            .data(data.values);
+
+        var barLineCoords = [],
+            maxLimitsData = [],
+            minLimitsData = [];
+        for (const val of data.values){
+            barLineCoords.push([{'x':x(val['label']), 'y':y(val['count'])}, {'x':x(val['label'])+x.bandwidth(), 'y':y(val['count'])}])
+        }
+        for (const val of Object.keys(maxLimits)){
+            maxLimitsData.push([
+                {'x':x(maxLimits[val]['label']), 'y':y(maxLimits[val]['count'])},
+                {'x':x(maxLimits[val]['label'])+x.bandwidth(), 'y':y(maxLimits[val]['count'])}
+            ])
+        }
+        for (const val of Object.keys(minLimits)){
+            minLimitsData.push([
+                {'x':x(minLimits[val]['label']), 'y':y(minLimits[val]['count'])},
+                {'x':x(minLimits[val]['label'])+x.bandwidth(), 'y':y(minLimits[val]['count'])}
+            ])
+        }
+
+        // update
+        bar
+            .transition()
+            .duration(duration/2)
+            .attr("y", function(d){ return y(d['count']); })
+            .attr("height", function(d){ return height - y(d['count']); });
+
+        // enter
+        bar.enter().append("rect")
+            .attr("class", "bar")
+            .attr("x", function(d){ return x(d['label']); })
+            .attr("y", function(d){ return y(d['count']); })
+            .attr("width", x.bandwidth())
+            .attr("height", function(d){ return height - y(d['count']); })
+            .attr("fill", 'lightgray');
+
+        // generate line paths for max and min bar limits
+        const maxBarLimits = svg.selectAll(".maxBarLimit")
+            .data(maxLimitsData)
+            .attr("class", "maxBarLimit");
+
+        maxBarLimits.exit()
+            .remove();
+
+        maxBarLimits.enter()
+            .append("path")
+            .attr("class", "maxBarLimit")
+            .attr("d", line)
+            .attr("stroke", "green")
+            .merge(maxBarLimits)
+            .transition()
+            .delay(duration*2/3)
+            .duration(duration/3)
+            .attr("d", line)
+            .attr("stroke", "green");
+
+        const minBarLimits = svg.selectAll(".minBarLimit")
+            .data(minLimitsData)
+            .attr("class", "minBarLimit");
+
+        minBarLimits.exit()
+            .remove();
+
+        minBarLimits.enter()
+            .append("path")
+            .attr("class", "minBarLimit")
+            .attr("d", line)
+            .attr("stroke", "red")
+            .merge(minBarLimits)
+            .transition()
+            .delay(duration*2/3)
+            .duration(duration/3)
+            .attr("d", line)
+            .attr("stroke", "red");
+    }
+
+    function copy(o) {
+        var output, v, key;
+        output = Array.isArray(o) ? [] : {};
+        for (key in o) {
+            v = o[key];
+            output[key] = (typeof v === "object") ? copy(v) : v;
+        }
+        return output;
+    }
+
+</script>
+</body>
+</html>
