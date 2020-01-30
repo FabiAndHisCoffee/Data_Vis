@@ -1,0 +1,428 @@
+name,date,value,category 
+Berlin,1991-01-01,17,1
+Berlin,1992-01-01,16,1
+Berlin,1993-01-01,35,1
+Berlin,1994-01-01,47,1
+Berlin,1995-01-01,26,1
+Berlin,1996-01-01,30,1
+Berlin,1997-01-01,44,1
+Berlin,1998-01-01,70,1
+Berlin,1999-01-01,70,1
+Berlin,2000-01-01,49,1
+Berlin,2001-01-01,38,1
+Berlin,2002-01-01,36,1
+Berlin,2003-01-01,36,1
+Berlin,2004-01-01,21,1
+Berlin,2005-01-01,37,1
+Berlin,2006-01-01,62,1
+Berlin,2007-01-01,42,1
+Berlin,2008-01-01,79,1
+Berlin,2009-01-01,39,1
+Berlin,2010-01-01,64,1
+Berlin,2011-01-01,61,1
+Berlin,2012-01-01,123,1
+Berlin,2013-01-01,56,1
+Berlin,2014-01-01,46,1
+Berlin,2015-01-01,46,1
+Berlin,2016-01-01,57,1
+Berlin,2017-01-01,24,1
+Berlin,2018-01-01,61,1
+Hamburg,1994-01-01,14,1
+Hamburg,1995-01-01,1,1
+Hamburg,1996-01-01,2,1
+Hamburg,1997-01-01,72,1
+Hamburg,1998-01-01,13,1
+Hamburg,1999-01-01,31,1
+Hamburg,2000-01-01,27,1
+Hamburg,2001-01-01,6,1
+Hamburg,2002-01-01,17,1
+Hamburg,2003-01-01,15,1
+Hamburg,2004-01-01,9,1
+Hamburg,2005-01-01,10,1
+Hamburg,2006-01-01,45,1
+Hamburg,2007-01-01,17,1
+Hamburg,2008-01-01,15,1
+Hamburg,2009-01-01,3,1
+Hamburg,2010-01-01,35,1
+Hamburg,2011-01-01,73,1
+Hamburg,2012-01-01,28,1
+Hamburg,2013-01-01,4,1
+Hamburg,2014-01-01,24,1
+Hamburg,2015-01-01,20,1
+Hamburg,2016-01-01,61,1
+Hamburg,2017-01-01,8,1
+Hamburg,2018-01-01,6,1
+Baden-Württemberg,1988-01-01,1,1
+Baden-Württemberg,1990-01-01,33,1
+Baden-Württemberg,1991-01-01,14,1
+Baden-Württemberg,1992-01-01,16,1
+Baden-Württemberg,1993-01-01,26,1
+Baden-Württemberg,1994-01-01,78,1
+Baden-Württemberg,1995-01-01,28,1
+Baden-Württemberg,1996-01-01,90,1
+Baden-Württemberg,1997-01-01,140,1
+Baden-Württemberg,1998-01-01,140,1
+Baden-Württemberg,1999-01-01,145,1
+Baden-Württemberg,2000-01-01,177,1
+Baden-Württemberg,2001-01-01,109,1
+Baden-Württemberg,2002-01-01,118,1
+Baden-Württemberg,2003-01-01,126,1
+Baden-Württemberg,2004-01-01,87,1
+Baden-Württemberg,2005-01-01,138,1
+Baden-Württemberg,2006-01-01,142,1
+Baden-Württemberg,2007-01-01,143,1
+Baden-Württemberg,2008-01-01,122,1
+Baden-Württemberg,2009-01-01,160,1
+Baden-Württemberg,2010-01-01,173,1
+Baden-Württemberg,2011-01-01,147,1
+Baden-Württemberg,2012-01-01,121,1
+Baden-Württemberg,2013-01-01,94,1
+Baden-Württemberg,2014-01-01,151,1
+Baden-Württemberg,2015-01-01,181,1
+Baden-Württemberg,2016-01-01,132,1
+Baden-Württemberg,2017-01-01,166,1
+Baden-Württemberg,2018-01-01,52,1
+Brandenburg,1988-01-01,12,1
+Brandenburg,1989-01-01,1,1
+Brandenburg,1990-01-01,1,1
+Brandenburg,1991-01-01,4,1
+Brandenburg,1992-01-01,3,1
+Brandenburg,1993-01-01,15,1
+Brandenburg,1994-01-01,8,1
+Brandenburg,1995-01-01,2,1
+Brandenburg,1996-01-01,5,1
+Brandenburg,1997-01-01,54,1
+Brandenburg,1998-01-01,6,1
+Brandenburg,1999-01-01,18,1
+Brandenburg,2000-01-01,12,1
+Brandenburg,2001-01-01,35,1
+Brandenburg,2002-01-01,6,1
+Brandenburg,2003-01-01,40,1
+Brandenburg,2004-01-01,27,1
+Brandenburg,2005-01-01,23,1
+Brandenburg,2006-01-01,13,1
+Brandenburg,2007-01-01,66,1
+Brandenburg,2008-01-01,35,1
+Brandenburg,2009-01-01,39,1
+Brandenburg,2010-01-01,41,1
+Brandenburg,2011-01-01,42,1
+Brandenburg,2012-01-01,20,1
+Brandenburg,2013-01-01,46,1
+Brandenburg,2014-01-01,20,1
+Brandenburg,2015-01-01,49,1
+Brandenburg,2016-01-01,40,1
+Brandenburg,2017-01-01,66,1
+Brandenburg,2018-01-01,8,1
+Freie Hansestadt Bremen,1988-01-01,11,1
+Freie Hansestadt Bremen,1989-01-01,2,1
+Freie Hansestadt Bremen,1991-01-01,1,1
+Freie Hansestadt Bremen,1992-01-01,1,1
+Freie Hansestadt Bremen,1993-01-01,1,1
+Freie Hansestadt Bremen,1994-01-01,19,1
+Freie Hansestadt Bremen,1995-01-01,2,1
+Freie Hansestadt Bremen,1998-01-01,7,1
+Freie Hansestadt Bremen,1999-01-01,1,1
+Freie Hansestadt Bremen,2000-01-01,2,1
+Freie Hansestadt Bremen,2001-01-01,43,1
+Freie Hansestadt Bremen,2002-01-01,1,1
+Freie Hansestadt Bremen,2003-01-01,30,1
+Freie Hansestadt Bremen,2004-01-01,24,1
+Freie Hansestadt Bremen,2005-01-01,4,1
+Freie Hansestadt Bremen,2006-01-01,3,1
+Freie Hansestadt Bremen,2007-01-01,39,1
+Freie Hansestadt Bremen,2008-01-01,30,1
+Freie Hansestadt Bremen,2009-01-01,17,1
+Freie Hansestadt Bremen,2010-01-01,7,1
+Freie Hansestadt Bremen,2011-01-01,16,1
+Freie Hansestadt Bremen,2012-01-01,4,1
+Freie Hansestadt Bremen,2013-01-01,14,1
+Freie Hansestadt Bremen,2014-01-01,23,1
+Freie Hansestadt Bremen,2015-01-01,6,1
+Freie Hansestadt Bremen,2016-01-01,28,1
+Freie Hansestadt Bremen,2017-01-01,29,1
+Freie Hansestadt Bremen,2018-01-01,23,1
+Freistaat Bayern,1987-01-01,1,1
+Freistaat Bayern,1989-01-01,15,1
+Freistaat Bayern,1991-01-01,29,1
+Freistaat Bayern,1992-01-01,26,1
+Freistaat Bayern,1993-01-01,25,1
+Freistaat Bayern,1994-01-01,27,1
+Freistaat Bayern,1995-01-01,91,1
+Freistaat Bayern,1996-01-01,92,1
+Freistaat Bayern,1997-01-01,96,1
+Freistaat Bayern,1998-01-01,129,1
+Freistaat Bayern,1999-01-01,121,1
+Freistaat Bayern,2000-01-01,175,1
+Freistaat Bayern,2001-01-01,207,1
+Freistaat Bayern,2002-01-01,57,1
+Freistaat Bayern,2003-01-01,123,1
+Freistaat Bayern,2004-01-01,132,1
+Freistaat Bayern,2005-01-01,96,1
+Freistaat Bayern,2006-01-01,124,1
+Freistaat Bayern,2007-01-01,126,1
+Freistaat Bayern,2008-01-01,184,1
+Freistaat Bayern,2009-01-01,172,1
+Freistaat Bayern,2010-01-01,171,1
+Freistaat Bayern,2011-01-01,128,1
+Freistaat Bayern,2012-01-01,164,1
+Freistaat Bayern,2013-01-01,184,1
+Freistaat Bayern,2014-01-01,146,1
+Freistaat Bayern,2015-01-01,138,1
+Freistaat Bayern,2016-01-01,105,1
+Freistaat Bayern,2017-01-01,122,1
+Freistaat Bayern,2018-01-01,41,1
+Freistaat Sachsen,1992-01-01,11,1
+Freistaat Sachsen,1994-01-01,17,1
+Freistaat Sachsen,1995-01-01,50,1
+Freistaat Sachsen,1996-01-01,51,1
+Freistaat Sachsen,1997-01-01,53,1
+Freistaat Sachsen,1998-01-01,21,1
+Freistaat Sachsen,1999-01-01,51,1
+Freistaat Sachsen,2000-01-01,40,1
+Freistaat Sachsen,2001-01-01,14,1
+Freistaat Sachsen,2002-01-01,52,1
+Freistaat Sachsen,2003-01-01,12,1
+Freistaat Sachsen,2004-01-01,31,1
+Freistaat Sachsen,2005-01-01,34,1
+Freistaat Sachsen,2006-01-01,60,1
+Freistaat Sachsen,2007-01-01,38,1
+Freistaat Sachsen,2008-01-01,91,1
+Freistaat Sachsen,2009-01-01,94,1
+Freistaat Sachsen,2010-01-01,40,1
+Freistaat Sachsen,2011-01-01,80,1
+Freistaat Sachsen,2012-01-01,46,1
+Freistaat Sachsen,2013-01-01,69,1
+Freistaat Sachsen,2014-01-01,37,1
+Freistaat Sachsen,2015-01-01,43,1
+Freistaat Sachsen,2016-01-01,80,1
+Freistaat Sachsen,2017-01-01,80,1
+Freistaat Sachsen,2018-01-01,16,1
+Freistaat Thüringen,1992-01-01,1,1
+Freistaat Thüringen,1993-01-01,14,1
+Freistaat Thüringen,1994-01-01,2,1
+Freistaat Thüringen,1995-01-01,1,1
+Freistaat Thüringen,1996-01-01,5,1
+Freistaat Thüringen,1997-01-01,16,1
+Freistaat Thüringen,1998-01-01,15,1
+Freistaat Thüringen,1999-01-01,18,1
+Freistaat Thüringen,2000-01-01,6,1
+Freistaat Thüringen,2001-01-01,18,1
+Freistaat Thüringen,2002-01-01,35,1
+Freistaat Thüringen,2003-01-01,23,1
+Freistaat Thüringen,2004-01-01,11,1
+Freistaat Thüringen,2005-01-01,16,1
+Freistaat Thüringen,2006-01-01,15,1
+Freistaat Thüringen,2007-01-01,23,1
+Freistaat Thüringen,2008-01-01,14,1
+Freistaat Thüringen,2009-01-01,16,1
+Freistaat Thüringen,2010-01-01,10,1
+Freistaat Thüringen,2011-01-01,12,1
+Freistaat Thüringen,2012-01-01,9,1
+Freistaat Thüringen,2013-01-01,39,1
+Freistaat Thüringen,2014-01-01,27,1
+Freistaat Thüringen,2015-01-01,28,1
+Freistaat Thüringen,2016-01-01,4,1
+Freistaat Thüringen,2017-01-01,34,1
+Freistaat Thüringen,2018-01-01,4,1
+Hessen,1988-01-01,12,1
+Hessen,1991-01-01,13,1
+Hessen,1994-01-01,36,1
+Hessen,1995-01-01,1,1
+Hessen,1996-01-01,48,1
+Hessen,1997-01-01,116,1
+Hessen,1998-01-01,18,1
+Hessen,1999-01-01,17,1
+Hessen,2000-01-01,48,1
+Hessen,2001-01-01,28,1
+Hessen,2002-01-01,8,1
+Hessen,2003-01-01,77,1
+Hessen,2004-01-01,13,1
+Hessen,2005-01-01,53,1
+Hessen,2006-01-01,54,1
+Hessen,2007-01-01,35,1
+Hessen,2008-01-01,24,1
+Hessen,2009-01-01,49,1
+Hessen,2010-01-01,63,1
+Hessen,2011-01-01,25,1
+Hessen,2012-01-01,35,1
+Hessen,2013-01-01,97,1
+Hessen,2014-01-01,82,1
+Hessen,2015-01-01,36,1
+Hessen,2016-01-01,78,1
+Hessen,2017-01-01,45,1
+Hessen,2018-01-01,31,1
+Mecklenburg-Vorpommern,1993-01-01,1,1
+Mecklenburg-Vorpommern,1995-01-01,1,1
+Mecklenburg-Vorpommern,1997-01-01,1,1
+Mecklenburg-Vorpommern,1998-01-01,1,1
+Mecklenburg-Vorpommern,1999-01-01,1,1
+Mecklenburg-Vorpommern,2005-01-01,17,1
+Mecklenburg-Vorpommern,2006-01-01,3,1
+Mecklenburg-Vorpommern,2007-01-01,5,1
+Mecklenburg-Vorpommern,2008-01-01,11,1
+Mecklenburg-Vorpommern,2009-01-01,12,1
+Mecklenburg-Vorpommern,2010-01-01,13,1
+Mecklenburg-Vorpommern,2011-01-01,11,1
+Mecklenburg-Vorpommern,2012-01-01,5,1
+Mecklenburg-Vorpommern,2013-01-01,10,1
+Mecklenburg-Vorpommern,2014-01-01,8,1
+Mecklenburg-Vorpommern,2015-01-01,6,1
+Mecklenburg-Vorpommern,2016-01-01,5,1
+Mecklenburg-Vorpommern,2017-01-01,24,1
+Niedersachsen,1992-01-01,17,1
+Niedersachsen,1993-01-01,30,1
+Niedersachsen,1994-01-01,46,1
+Niedersachsen,1995-01-01,50,1
+Niedersachsen,1996-01-01,59,1
+Niedersachsen,1997-01-01,80,1
+Niedersachsen,1998-01-01,50,1
+Niedersachsen,1999-01-01,58,1
+Niedersachsen,2000-01-01,84,1
+Niedersachsen,2001-01-01,70,1
+Niedersachsen,2002-01-01,96,1
+Niedersachsen,2003-01-01,40,1
+Niedersachsen,2004-01-01,47,1
+Niedersachsen,2005-01-01,66,1
+Niedersachsen,2006-01-01,54,1
+Niedersachsen,2007-01-01,128,1
+Niedersachsen,2008-01-01,67,1
+Niedersachsen,2009-01-01,130,1
+Niedersachsen,2010-01-01,133,1
+Niedersachsen,2011-01-01,161,1
+Niedersachsen,2012-01-01,114,1
+Niedersachsen,2013-01-01,113,1
+Niedersachsen,2014-01-01,71,1
+Niedersachsen,2015-01-01,93,1
+Niedersachsen,2016-01-01,98,1
+Niedersachsen,2017-01-01,71,1
+Niedersachsen,2018-01-01,33,1
+Nordrhein-Westfalen,1987-01-01,14,1
+Nordrhein-Westfalen,1988-01-01,2,1
+Nordrhein-Westfalen,1989-01-01,20,1
+Nordrhein-Westfalen,1990-01-01,8,1
+Nordrhein-Westfalen,1991-01-01,60,1
+Nordrhein-Westfalen,1992-01-01,4,1
+Nordrhein-Westfalen,1993-01-01,44,1
+Nordrhein-Westfalen,1994-01-01,65,1
+Nordrhein-Westfalen,1995-01-01,66,1
+Nordrhein-Westfalen,1996-01-01,146,1
+Nordrhein-Westfalen,1997-01-01,153,1
+Nordrhein-Westfalen,1998-01-01,144,1
+Nordrhein-Westfalen,1999-01-01,192,1
+Nordrhein-Westfalen,2000-01-01,207,1
+Nordrhein-Westfalen,2001-01-01,168,1
+Nordrhein-Westfalen,2002-01-01,239,1
+Nordrhein-Westfalen,2003-01-01,202,1
+Nordrhein-Westfalen,2004-01-01,129,1
+Nordrhein-Westfalen,2005-01-01,190,1
+Nordrhein-Westfalen,2006-01-01,223,1
+Nordrhein-Westfalen,2007-01-01,197,1
+Nordrhein-Westfalen,2008-01-01,212,1
+Nordrhein-Westfalen,2009-01-01,287,1
+Nordrhein-Westfalen,2010-01-01,229,1
+Nordrhein-Westfalen,2011-01-01,236,1
+Nordrhein-Westfalen,2012-01-01,218,1
+Nordrhein-Westfalen,2013-01-01,215,1
+Nordrhein-Westfalen,2014-01-01,134,1
+Nordrhein-Westfalen,2015-01-01,158,1
+Nordrhein-Westfalen,2016-01-01,253,1
+Nordrhein-Westfalen,2017-01-01,226,1
+Nordrhein-Westfalen,2018-01-01,164,1
+Rheinland-Pfalz,1987-01-01,10,1
+Rheinland-Pfalz,1988-01-01,1,1
+Rheinland-Pfalz,1990-01-01,5,1
+Rheinland-Pfalz,1991-01-01,1,1
+Rheinland-Pfalz,1994-01-01,6,1
+Rheinland-Pfalz,1995-01-01,9,1
+Rheinland-Pfalz,1996-01-01,16,1
+Rheinland-Pfalz,1997-01-01,41,1
+Rheinland-Pfalz,1998-01-01,20,1
+Rheinland-Pfalz,1999-01-01,54,1
+Rheinland-Pfalz,2000-01-01,32,1
+Rheinland-Pfalz,2001-01-01,10,1
+Rheinland-Pfalz,2002-01-01,49,1
+Rheinland-Pfalz,2003-01-01,15,1
+Rheinland-Pfalz,2004-01-01,8,1
+Rheinland-Pfalz,2005-01-01,20,1
+Rheinland-Pfalz,2006-01-01,26,1
+Rheinland-Pfalz,2007-01-01,42,1
+Rheinland-Pfalz,2008-01-01,41,1
+Rheinland-Pfalz,2009-01-01,40,1
+Rheinland-Pfalz,2010-01-01,15,1
+Rheinland-Pfalz,2011-01-01,75,1
+Rheinland-Pfalz,2012-01-01,40,1
+Rheinland-Pfalz,2013-01-01,62,1
+Rheinland-Pfalz,2014-01-01,30,1
+Rheinland-Pfalz,2015-01-01,21,1
+Rheinland-Pfalz,2016-01-01,55,1
+Rheinland-Pfalz,2017-01-01,46,1
+Rheinland-Pfalz,2018-01-01,27,1
+Saarland,1994-01-01,16,1
+Saarland,1996-01-01,33,1
+Saarland,1998-01-01,7,1
+Saarland,1999-01-01,25,1
+Saarland,2000-01-01,4,1
+Saarland,2001-01-01,4,1
+Saarland,2002-01-01,14,1
+Saarland,2004-01-01,3,1
+Saarland,2005-01-01,6,1
+Saarland,2006-01-01,3,1
+Saarland,2007-01-01,9,1
+Saarland,2008-01-01,9,1
+Saarland,2009-01-01,8,1
+Saarland,2010-01-01,10,1
+Saarland,2011-01-01,30,1
+Saarland,2012-01-01,9,1
+Saarland,2013-01-01,25,1
+Saarland,2014-01-01,30,1
+Saarland,2015-01-01,7,1
+Saarland,2016-01-01,18,1
+Saarland,2017-01-01,9,1
+Saarland,2018-01-01,20,1
+Sachsen-Anhalt,1995-01-01,10,1
+Sachsen-Anhalt,1996-01-01,1,1
+Sachsen-Anhalt,1997-01-01,16,1
+Sachsen-Anhalt,1998-01-01,5,1
+Sachsen-Anhalt,1999-01-01,2,1
+Sachsen-Anhalt,2000-01-01,2,1
+Sachsen-Anhalt,2001-01-01,2,1
+Sachsen-Anhalt,2002-01-01,1,1
+Sachsen-Anhalt,2003-01-01,11,1
+Sachsen-Anhalt,2005-01-01,2,1
+Sachsen-Anhalt,2006-01-01,1,1
+Sachsen-Anhalt,2007-01-01,4,1
+Sachsen-Anhalt,2008-01-01,30,1
+Sachsen-Anhalt,2009-01-01,7,1
+Sachsen-Anhalt,2010-01-01,30,1
+Sachsen-Anhalt,2011-01-01,6,1
+Sachsen-Anhalt,2012-01-01,8,1
+Sachsen-Anhalt,2013-01-01,10,1
+Sachsen-Anhalt,2014-01-01,14,1
+Sachsen-Anhalt,2015-01-01,7,1
+Sachsen-Anhalt,2016-01-01,10,1
+Sachsen-Anhalt,2017-01-01,9,1
+Sachsen-Anhalt,2018-01-01,6,1
+Schleswig-Holstein,1993-01-01,17,1
+Schleswig-Holstein,1996-01-01,16,1
+Schleswig-Holstein,1997-01-01,2,1
+Schleswig-Holstein,1998-01-01,19,1
+Schleswig-Holstein,1999-01-01,4,1
+Schleswig-Holstein,2000-01-01,7,1
+Schleswig-Holstein,2001-01-01,28,1
+Schleswig-Holstein,2002-01-01,19,1
+Schleswig-Holstein,2003-01-01,8,1
+Schleswig-Holstein,2004-01-01,3,1
+Schleswig-Holstein,2005-01-01,20,1
+Schleswig-Holstein,2006-01-01,1,1
+Schleswig-Holstein,2007-01-01,31,1
+Schleswig-Holstein,2008-01-01,19,1
+Schleswig-Holstein,2009-01-01,17,1
+Schleswig-Holstein,2010-01-01,50,1
+Schleswig-Holstein,2011-01-01,17,1
+Schleswig-Holstein,2012-01-01,20,1
+Schleswig-Holstein,2013-01-01,5,1
+Schleswig-Holstein,2014-01-01,27,1
+Schleswig-Holstein,2015-01-01,17,1
+Schleswig-Holstein,2016-01-01,60,1
+Schleswig-Holstein,2017-01-01,9,1
+Schleswig-Holstein,2018-01-01,5,1
