@@ -1,7 +1,10 @@
-#Forschungsförderungsdifferenzen im deutschen Föderalismus (working title)
+# Forschungsförderungsdifferenzen im deutschen Föderalismus (working title)
 
 # Overview
-Our goal was to visualize the differences in funding for science projects between the 16 german states
+Our goal was to visualize the differences in funding for science projects between the 16 german states.
+
+This is our final project for the Data Visualization course at Freie Universiät.
+Handed in on 13. February 2020
 
 # Table of contents
 
@@ -9,19 +12,19 @@ Our goal was to visualize the differences in funding for science projects betwee
 # Description
 
 
-#Installation
+# Installation
 -Clone this rep 
 -Go to the folder on your pc
 -click on index.html
 -???
 => Profit
 
-#Manual
+# Manual
 -see the screencast in folder ---to be inserted---
 
-#Contributors
+# Contributors
 -Fabian Rüb (FabiAndHisCoffee)
 -Kevin Kreutz (Parkcross)
 
-#Data copyright
+# Data copyright
 Data derived from original data provided by https://gepris.dfg.de (c) Deutsche Forschungsgemeinschaft
