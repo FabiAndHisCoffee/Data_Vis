@@ -23,7 +23,7 @@ Handed in on 13. February 2020
 -see the screencast in folder ---to be inserted---
 
 # Contributors
--Fabian Rüb (FabiAndHisCoffee)
+-Fabian Rüb (FabiAndHisCoffee)  
 -Kevin Kreutz (Parkcross)
 
 # Data copyright
