@@ -4,7 +4,7 @@ export default function define(runtime, observer) {
   const fileAttachments = new Map([["d3_data.csv",new URL("./files/forschungsmittel_der_laender",import.meta.url)]]);
   main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
   main.variable(observer()).define(["md"], function(md){return(
-md`# Bundesland`
+md`# Forschungsförderungsdifferenzen im deutschen Föderalismus`
 )});
   main.variable("data").define("data", ["d3","FileAttachment"], async function(d3,FileAttachment){return(
 d3.csvParse(await FileAttachment("d3_data.csv").text(), d3.autoType)
@@ -86,8 +86,10 @@ function rank(value) {
 rank(name => datevalues[0][1].get(name))
 )});
 
+
+//k ist Geschwindigkeit der bars (10 war Voreinstellung)
   main.variable("k").define("k", function(){return(
-10
+25
 )});
   main.variable("keyframes").define("keyframes", ["d3","datevalues","k","rank"], function(d3,datevalues,k,rank)
 {
@@ -175,6 +177,7 @@ function labels(svg) {
       .call(g => g.select("tspan").tween("text", d => textTween((prev.get(d) || d).value, d.value))))
 }
 )});
+
   main.variable("textTween").define("textTween", ["d3","formatNumber"], function(d3,formatNumber){return(
 function textTween(a, b) {
   const i = d3.interpolateNumber(a, b);
@@ -210,7 +213,7 @@ function axis(svg) {
   main.variable("ticker").define("ticker", ["barSize","width","margin","n","formatDate","keyframes"], function(barSize,width,margin,n,formatDate,keyframes){return(
 function ticker(svg) {
   const now = svg.append("text")
-      .style("font", `bold ${barSize}px var(--sans-serif)`)
+      .style("font", 'bold 75px arial')
       .style("font-variant-numeric", "tabular-nums")
       .attr("text-anchor", "end")
       .attr("x", width - 6)
