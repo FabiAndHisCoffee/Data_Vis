@@ -5,8 +5,8 @@ export default function define(runtime, observer) {
   main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
   main.variable(observer()).define(["md"], function(md){return(
 md`# Forschungsförderungsdifferenzen im deutschen Föderalismus  
-Number of Projects started each year`
-});
+Number of Projects started each year `
+  )});
   main.variable("data").define("data", ["d3","FileAttachment"], async function(d3,FileAttachment){return(
 d3.csvParse(await FileAttachment("d3_data.csv").text(), d3.autoType)
 )});
@@ -149,7 +149,7 @@ function bars(svg) {
   main.variable("labels").define("labels", ["n","x","prev","y","next","textTween"], function(n,x,prev,y,next,textTween){return(
 function labels(svg) {
   let label = svg.append("g")
-      .style("font", "bold 12px var(--sans-serif)")
+      .style("font", "bold 14px arial")
       .style("font-variant-numeric", "tabular-nums")
       .attr("text-anchor", "end")
     .selectAll("text");
@@ -232,6 +232,7 @@ function ticker(svg) {
 d3.utcFormat("%Y")
 )});
 
+// https://github.com/d3/d3-scale-chromatic/blob/master/README.md for different colors
   main.variable("color").define("color", ["d3","data"], function(d3,data)
 {
   const scale = d3.scaleOrdinal(d3.schemeTableau10);
