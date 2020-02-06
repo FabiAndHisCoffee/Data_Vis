@@ -85,9 +85,9 @@ function rank(value) {
   main.variable().define(["rank","datevalues"], function(rank,datevalues){return(
 rank(name => datevalues[0][1].get(name))
 )});
-
+//speed of bars
   main.variable("k").define("k", function(){return(
-10
+25
 )});
   main.variable("keyframes").define("keyframes", ["d3","datevalues","k","rank"], function(d3,datevalues,k,rank)
 {
@@ -143,10 +143,12 @@ function bars(svg) {
       .attr("width", d => x(d.value) - x(0)));
 }
 )});
+
+//Bundesland in barchart
   main.variable("labels").define("labels", ["n","x","prev","y","next","textTween"], function(n,x,prev,y,next,textTween){return(
 function labels(svg) {
   let label = svg.append("g")
-      .style("font", "bold 12px var(--sans-serif)")
+      .style("font", "bold 14px arial")
       .style("font-variant-numeric", "tabular-nums")
       .attr("text-anchor", "end")
     .selectAll("text");
@@ -206,11 +208,11 @@ function axis(svg) {
   };
 }
 )});
-
+//date of year in bottom right
   main.variable("ticker").define("ticker", ["barSize","width","margin","n","formatDate","keyframes"], function(barSize,width,margin,n,formatDate,keyframes){return(
 function ticker(svg) {
   const now = svg.append("text")
-      .style("font", `bold ${barSize}px var(--sans-serif)`)
+      .style("font", `bold 50px arial`)
       .style("font-variant-numeric", "tabular-nums")
       .attr("text-anchor", "end")
       .attr("x", width - 6)
