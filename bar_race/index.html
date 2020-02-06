@@ -1,14 +1,209 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<title>Bar Chart Race, Explained</title>
-<link rel="stylesheet" type="text/css" href="./inspector.css">
+<head>
+  <meta charset="utf-8" />
+  <title>Bar Chart Race, Explained</title>
+  <link rel="stylesheet" type="text/css" href="./inspector.css" />
+  <link rel="stylesheet" type="text/css" href="./Ffdff.css" />
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+  />
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous"
+  />
+  <script
+    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"
+  ></script>
+</head>
+
 <body>
-<script type="module">
+  <div class="row">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-2 headlink">
+      <a
+        href="../bar_race/index.html"
+        class="col-xs-2 purple headlink"
+        style="text-decoration-line: underline"
+      >
+        Graphs
+      </a>
+    </div>
+    <div class="col-lg-2" style="text-align: center; margin-top: 20px;">
+      <h1>
+        DataVis
+      </h1>
+    </div>
+    <div class="col-lg-2 headlink">
+      <a href="../project_team/summary.html" class="col-xs-2 purple headlink">
+        Project
+      </a>
+    </div>
+    <div class="col-lg-3"></div>
+  </div>
+  <div class="row">
+    <div class="col-lg-10 textbox">
+      <h3>
+        Racing-Bars:
+      </h3>
+      <p>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+        eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
+        amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+        nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+        sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+        rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+        ipsum dolor sit amet.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+      <script type="module">
+        import define from "./racing_bars.js";
+        import { Runtime, Library, Inspector } from "./runtime.js";
 
-import define from "./racing_bars.js";
-import {Runtime, Library, Inspector} from "./runtime.js";
+        const runtime = new Runtime();
+        const main = runtime.module(define, Inspector.into(document.body));
+      </script>
+    </div>
+    <div class="row">
+      <div class="col-lg-10 textbox">
+        <h3>
+          Racing-Bars:
+        </h3>
+        <p>
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+          sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+          rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+          ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+          sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+          et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+          takimata sanctus est Lorem ipsum dolor sit amet.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-1"></div>
+      <div class="col-lg-10">
+        <div id="myDiv" style="width: 500px; height: inherit;"></div>
+        <script>
+          Plotly.d3.csv("./files/ffddf_data.csv", function(err, rows) {
+            function unpack(rows, key) {
+              return rows.map(function(row) {
+                return row[key];
+              });
+            }
 
-const runtime = new Runtime();
-const main = runtime.module(define, Inspector.into(document.body));
+            var data = [
+              {
+                type: "scattermapbox",
+                text: unpack(rows, "NumberOfProjects"),
+                lon: unpack(rows, "lon"),
+                lat: unpack(rows, "lat"),
+                marker: { color: "fuchsia", size: "NumberOfProjects" }
+              }
+            ];
 
-</script>
+            var layout = {
+              dragmode: "zoom",
+              mapbox: {
+                style: "open-street-map",
+                center: { lat: 52, lon: 12.3 },
+                zoom: 4
+              },
+              margin: { r: 0, t: 0, b: 0, l: 0 }
+            };
+
+            Plotly.newPlot("myDiv", data, layout);
+          });
+        </script>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-1"></div>
+      <div class="col-lg-10">
+        <div id="choromap" style="width: 500px; height: inherit;"></div>
+        <script>
+          var data = [
+            {
+              type: "choroplethmapbox",
+              locations: [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15"
+              ],
+              z: [
+                24698,
+                18040,
+                4573,
+                1148,
+                898,
+                2478,
+                32325,
+                765,
+                8983,
+                13418,
+                3353,
+                2168,
+                863,
+                3234,
+                1355,
+                1256
+              ],
+              geojson: "./files/bundeslaender.geojson"
+            }
+          ];
+
+          var layout = {
+            dragmode: "zoom",
+            mapbox: {
+              style: "open-street-map",
+              center: { lat: 52, lon: 12.3 },
+              zoom: 4
+            },
+            margin: { r: 0, t: 0, b: 0, l: 0 }
+          };
+
+          var config = { mapboxAccessToken: "your access token" };
+
+          Plotly.newPlot("choromap", data, layout, config);
+        </script>
+      </div>
+    </div>
+  </div>
+</body>

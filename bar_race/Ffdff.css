@@ -1,0 +1,22 @@
+.purple:hover {
+    color: #99004d;
+  }
+
+  .topleiste {
+    margin-top: 50px;
+  }
+
+  .headlink {
+    color: #312c3a;
+    margin-top: 30px;
+    font-size: 21px;
+    text-align: center;
+    
+}
+
+.textbox{
+    font-size: 14px;
+    text-align: left;
+    margin-left: 30px;
+    margin-top: 50px;
+}
