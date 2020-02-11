@@ -47,9 +47,7 @@
       .defer(d3.json, "bundeslaender.geojson")
       .defer(d3.csv, "Gelder_Bundesland.csv", function(d) { data.set(d.id, +d.pop); })
       .await(ready);
-    
 
-    
 function ready(error, topo) {
 
   let mouseOver = function(d) {
@@ -62,8 +60,7 @@ function ready(error, topo) {
       .duration(200)
       .style("opacity", 1)
       .style("stroke", "black")
-  }
-
+};
   let mouseLeave = function(d) {
     d3.selectAll(".name")
       .transition()
