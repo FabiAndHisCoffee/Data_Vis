@@ -85,125 +85,220 @@
       <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-5">
-          <div id="myDiv" style="width: 500px; height: inherit;"></div>
-          <script>
-            Plotly.d3.csv("./files/ffddf_data.csv", function(err, rows) {
-              function unpack(rows, key) {
-                return rows.map(function(row) {
-                  return row[key];
-                });
-              }
-  
-              var data = [
-                {
-                  type: "scattermapbox",
-                  text: unpack(rows, "NumberOfProjects"),
-                  lon: unpack(rows, "lon"),
-                  lat: unpack(rows, "lat"),
-                  marker: { color: "fuchsia", size: "NumberOfProjects" }
-                }
-              ];
-  
-              var layout = {
-                dragmode: "zoom",
-                mapbox: {
-                  style: "open-street-map",
-                  center: { lat: 52, lon: 12.3 },
-                  zoom: 4
-                },
-                margin: { r: 0, t: 0, b: 0, l: 0 }
-              };
-  
-              Plotly.newPlot("myDiv", data, layout);
-            });
-          </script>
-        </div>
-        <div class="col-lg-1"></div>
-        <div class="col-lg-5">
-          <svg id="my_dataviz" width="475" height="500"></svg>
+          <!-- Create an element where the map will take place -->
+          <svg id="map_dots" width="475" height="500"></svg>
+
           <script>
 
               // The svg
-              var svg = d3.select("#my_dataviz"),
-                width = +svg.attr("width"),
-                height = +svg.attr("height");
+              var svg = d3.select("#map_dots"),
+                  width = +svg.attr("width"),
+                  height = +svg.attr("height");
               
               // Map and projection
-              var path = d3.geoPath();
               var projection = d3.geoMercator()
-                .scale(1500)
-                .center([9,50])
-                .translate([width / 2, height / 2]);
-              
-              // Data and color scale
-              var data = d3.map();
-              var colorScale = d3.scaleThreshold()
-                .domain([1000,4000,5000,10000,15000,20000,25000,30000])
-                .range(d3.schemeBlues[7]);
-              
-              // Legend for colorScale:
-              var legend = d3.legendColor()
-                .title("Hello")
-                .labelFormat(d3.format(""))
-                .labels(d3.legendHelpers.thresholdLabels) 
-                .scale(colorScale)
+                  .center([9, 50])                // GPS of location to zoom on
+                  .scale(4000)                       // This is like the zoom
+                  .translate([ width/2, height/2 ])
+
+                    d3.queue()
+                      .defer(d3.json, "./files/bundeslaender.geojson")  // World shape
+                      .defer(d3.csv, "./files/ffddf_data.csv") // Position of circles
+                      .await(ready);
 
 
-              // Load external data and boot
-              d3.queue()
-                .defer(d3.json, "../Map_Test/bundeslaender.geojson")
-                .defer(d3.csv, "../Map_Test/Gelder_Bundesland.csv", function(d) { data.set(d.id, +d.pop); })
-                .await(ready);
-              
 
-              
-                function ready(error, topo) {
 
-                  let mouseOver = function(d) {
-                    d3.selectAll(".name")
-                      .transition()
-                      .duration(200)
-                      .style("opacity", .5)
-                    d3.select(this)
-                      .transition()
-                      .duration(200)
-                      .style("opacity", 1)
-                      .style("stroke", "black")
-                  }
+    
+            function ready(error, dataGeo, data) {
 
-                  let mouseLeave = function(d) {
-                    d3.selectAll(".name")
-                      .transition()
-                      .duration(200)
-                      .style("opacity", .8)
-                    d3.select(this)
-                      .transition()
-                      .duration(200)
-                      .style("stroke", "transparent")
-                  }
-                      // Draw the map
-                      svg.append("g")
-                        .selectAll("path")
-                        .data(topo.features)
-                        .enter()
-                        .call(legend)
-                        .append("path")
-                          // draw each country
-                          .attr("d", d3.geoPath()
-                            .projection(projection)
-                          )
-                          // set the color of each country
-                          .attr("fill", function (d) {
-                            d.total = data.get(d.id) || 0;
-                            return colorScale(d.total);
-                          })
-                      .style("stroke", "transparent")
-                      .attr("class", function(d){ return "Country" } )
-                      .style("opacity", .8)
-                      .on("mouseover", mouseOver )
-                      .on("mouseleave", mouseLeave )
-                      }
-            </script>
+            // Create a color scale
+            var allContinent = d3.map(data, function(d){return(d.name)}).keys()
+            var color = d3.scaleOrdinal()
+              .domain(allContinent)
+              .range(d3.schemePaired);
+
+            // Add a scale for bubble size  
+            var valueExtent = d3.extent(data, function(d) { return +d.NumberOfProjects; })
+            var size = d3.scaleSqrt()
+              .domain(valueExtent)  // What's in the data
+              .range([ 5, 5])  // Size in pixel
+
+            // Draw the map
+            svg.append("g")
+                .selectAll("path")
+                .data(dataGeo.features)
+                .enter()
+                .append("path")
+                  .attr("fill", "#b8b8b8")
+                  .attr("d", d3.geoPath()
+                      .projection(projection)
+                  )
+                .style("stroke", "none")
+                .style("opacity", .3)
+
+            // Add circles:
+            svg
+              .selectAll("myCircles")
+              .data(data.sort(function(a,b) { return +b.n - +a.n }).filter(function(d,i){ return i<1000 }))
+              .enter()
+              .append("circle")
+                .attr("cx", function(d){ return projection([+d.lon, +d.lat])[0] })
+                .attr("cy", function(d){ return projection([+d.lon, +d.lat])[1] })
+                .attr("r", function(d){ return size(+d.NumberOfProjects) })
+                .style("fill", function(d){ return color(d.name) })
+                .attr("stroke", function(d){ if(d.NumberOfProjects>2000){return "black"}else{return "none"}  })
+                .attr("stroke-width", 1)
+                .attr("fill-opacity", .4)
+
+
+
+            // Add title and explanation
+            svg
+              .append("text")
+                .attr("text-anchor", "end")
+                .style("fill", "black")
+                .attr("x", width - 10)
+                .attr("y", height - 30)
+                .attr("width", 90)
+                .html("DATA")
+                .style("font-size", 14)
+
+
+            // --------------- //
+            // ADD LEGEND //
+            // --------------- //
+
+            // Add legend: circles
+            var valuesToShow = [10,100,1000]
+            var xCircle = 40
+            var xLabel = 90
+            svg
+              .selectAll("legend")
+              .data(valuesToShow)
+              .enter()
+              .append("circle")
+                .attr("cx", xCircle)
+                .attr("cy", function(d){ return height - size(d) } )
+                .attr("r", function(d){ return size(d) })
+                .style("fill", "none")
+                .attr("stroke", "black")
+
+            // Add legend: segments
+            svg
+              .selectAll("legend")
+              .data(valuesToShow)
+              .enter()
+              .append("line")
+                .attr('x1', function(d){ return xCircle + size(d) } )
+                .attr('x2', xLabel)
+                .attr('y1', function(d){ return height - size(d) } )
+                .attr('y2', function(d){ return height - size(d) } )
+                .attr('stroke', 'black')
+                .style('stroke-dasharray', ('2,2'))
+
+            // Add legend: labels
+            svg
+              .selectAll("legend")
+              .data(valuesToShow)
+              .enter()
+              .append("text")
+                .attr('x', xLabel)
+                .attr('y', function(d){ return height - size(d) } )
+                .text( function(d){ return d } )
+                .style("font-size", 10)
+                .attr('alignment-baseline', 'middle')
+            }
+          </script>
+        </div>
+        
+        <div class="col-lg-1"></div>
+        <div class="col-lg-5">
+          <!--TODO: DIE ZWEITE MAP ÜBERLAGERT DIE ERSTE-->
+          <svg id="my_dataviz" width="475" height="500"></svg>
+          <script>
+
+            // The svg
+            var svg = d3.select("#my_dataviz"),
+              width = +svg.attr("width"),
+              height = +svg.attr("height");
+            
+            // Map and projection
+            var path = d3.geoPath();
+            var projection = d3.geoMercator()
+              .scale(1500)
+              .center([9,50])
+              .translate([width / 2, height / 2]);
+            
+            // Data and color scale
+            var data = d3.map();
+            var colorScale = d3.scaleThreshold()
+              .domain([1000,4000,5000,10000,15000,20000,25000,30000])
+              .range(d3.schemeBlues[7]);
+            
+            // Legend for colorScale:
+            var legend = d3.legendColor()
+              .title("Hello")
+              .labelFormat(d3.format(""))
+              .labels(d3.legendHelpers.thresholdLabels) 
+              .scale(colorScale)
+
+
+            // Load external data and boot
+            d3.queue()
+              .defer(d3.json, "../Map_Test/bundeslaender.geojson")
+              .defer(d3.csv, "../Map_Test/Gelder_Bundesland.csv", function(d) { data.set(d.id, +d.pop); })
+              .await(ready);
+            
+
+            
+              function ready(error, topo) {
+
+                let mouseOver = function(d) {
+                  d3.selectAll(".name")
+                    .transition()
+                    .duration(200)
+                    .style("opacity", .5)
+                  d3.select(this)
+                    .transition()
+                    .duration(200)
+                    .style("opacity", 1)
+                    .style("stroke", "black")
+                }
+
+                let mouseLeave = function(d) {
+                  d3.selectAll(".name")
+                    .transition()
+                    .duration(200)
+                    .style("opacity", .8)
+                  d3.select(this)
+                    .transition()
+                    .duration(200)
+                    .style("stroke", "transparent")
+                }
+                    // Draw the map
+                    svg.append("g")
+                      .selectAll("path")
+                      .data(topo.features)
+                      .enter()
+                      .call(legend)
+                      .append("path")
+                        // draw each country
+                        .attr("d", d3.geoPath()
+                          .projection(projection)
+                        )
+                        // set the color of each country
+                        .attr("fill", function (d) {
+                          d.total = data.get(d.id) || 0;
+                          return colorScale(d.total);
+                        })
+                    .style("stroke", "transparent")
+                    .attr("class", function(d){ return "Country" } )
+                    .style("opacity", .8)
+                    .on("mouseover", mouseOver )
+                    .on("mouseleave", mouseLeave )
+                    }
+          </script>
         </div>
       </div>
   
