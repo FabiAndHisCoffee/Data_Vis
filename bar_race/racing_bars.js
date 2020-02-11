@@ -4,14 +4,12 @@ export default function define(runtime, observer) {
   const fileAttachments = new Map([["d3_data.csv",new URL("./files/forschungsmittel_der_laender",import.meta.url)]]);
   main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
   main.variable(observer()).define(["md"], function(md){return(
-<<<<<<< HEAD
-md`## Bundesland`
-)});
-=======
+
+
 md`# Forschungsförderungsdifferenzen im deutschen Föderalismus  
 Number of Projects started each year `
   )});
->>>>>>> 798968adb912115c05ddbc92c6084928511ed349
+
   main.variable("data").define("data", ["d3","FileAttachment"], async function(d3,FileAttachment){return(
 d3.csvParse(await FileAttachment("d3_data.csv").text(), d3.autoType)
 )});
@@ -91,13 +89,11 @@ function rank(value) {
   main.variable().define(["rank","datevalues"], function(rank,datevalues){return(
 rank(name => datevalues[0][1].get(name))
 )});
-<<<<<<< HEAD
-//speed of bars
-=======
+
 
 
 //k ist Geschwindigkeit der bars (10 war Voreinstellung)
->>>>>>> 798968adb912115c05ddbc92c6084928511ed349
+
   main.variable("k").define("k", function(){return(
 25
 )});
@@ -221,20 +217,13 @@ function axis(svg) {
   };
 }
 )});
-<<<<<<< HEAD
-//date of year in bottom right
-  main.variable("ticker").define("ticker", ["barSize","width","margin","n","formatDate","keyframes"], function(barSize,width,margin,n,formatDate,keyframes){return(
-function ticker(svg) {
-  const now = svg.append("text")
-      .style("font", `bold 50px arial`)
-=======
+
 
 //right bottom yearly ticker
   main.variable("ticker").define("ticker", ["barSize","width","margin","n","formatDate","keyframes"], function(barSize,width,margin,n,formatDate,keyframes){return(
 function ticker(svg) {
   const now = svg.append("text")
       .style("font", 'bold 75px arial')
->>>>>>> 798968adb912115c05ddbc92c6084928511ed349
       .style("font-variant-numeric", "tabular-nums")
       .attr("text-anchor", "end")
       .attr("x", width - 6)
