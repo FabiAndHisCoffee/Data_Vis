@@ -10,14 +10,13 @@
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
 <script src="https://d3-legend.susielu.com/d3-legend.min.js"></script>
-<script src="colorbrewer.min.js"></script>
 
 <!-- Create an element where the map will take place -->
 <svg id="my_dataviz" width="400" height="500"></svg>
 <script>
 
     // The svg
-    var svg = d3.select("svg"),
+    var svg = d3.select("#my_dataviz"),
       width = +svg.attr("width"),
       height = +svg.attr("height");
     

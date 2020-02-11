@@ -5,6 +5,10 @@
   <link rel="stylesheet" type="text/css" href="./inspector.css" />
   <link rel="stylesheet" type="text/css" href="./Ffdff.css" />
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://d3js.org/d3.v4.js"></script>
+  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+  <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+  <script src="https://d3-legend.susielu.com/d3-legend.min.js"></script>
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
@@ -30,7 +34,7 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"
   ></script>
-  <script src="https://d3js.org/d3.v5.js"></script>
+  
 </head>
 
 <body>
@@ -63,7 +67,7 @@
         <div class="col-lg-1"></div>
         <div class="col-lg-10 textbox">
           <h3>
-            Racing-Bars:
+            Maps:
           </h3>
           <p>
             Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
@@ -116,65 +120,90 @@
         </div>
         <div class="col-lg-1"></div>
         <div class="col-lg-5">
-          <div id="choromap" style="width: 500px; height: inherit;"></div>
+          <svg id="my_dataviz" width="475" height="500"></svg>
           <script>
-            var data = [
-              {
-                type: "choroplethmapbox",
-                locations: [
-                  "0",
-                  "1",
-                  "2",
-                  "3",
-                  "4",
-                  "5",
-                  "6",
-                  "7",
-                  "8",
-                  "9",
-                  "10",
-                  "11",
-                  "12",
-                  "13",
-                  "14",
-                  "15"
-                ],
-                z: [
-                  24698,
-                  18040,
-                  4573,
-                  1148,
-                  898,
-                  2478,
-                  32325,
-                  765,
-                  8983,
-                  13418,
-                  3353,
-                  2168,
-                  863,
-                  3234,
-                  1355,
-                  1256
-                ],
-                geojson: "./files/bundeslaender.geojson"
-              }
-            ];
-  
-            var layout = {
-              dragmode: "zoom",
-              mapbox: {
-                style: "open-street-map",
-                center: { lat: 52, lon: 12.3 },
-                zoom: 4
-              },
-              margin: { r: 0, t: 0, b: 0, l: 0 }
-            };
-  
-            var config = { mapboxAccessToken: "your access token" };
-  
-            Plotly.newPlot("choromap", data, layout, config);
-          </script>
+
+              // The svg
+              var svg = d3.select("#my_dataviz"),
+                width = +svg.attr("width"),
+                height = +svg.attr("height");
+              
+              // Map and projection
+              var path = d3.geoPath();
+              var projection = d3.geoMercator()
+                .scale(1500)
+                .center([9,50])
+                .translate([width / 2, height / 2]);
+              
+              // Data and color scale
+              var data = d3.map();
+              var colorScale = d3.scaleThreshold()
+                .domain([1000,4000,5000,10000,15000,20000,25000,30000])
+                .range(d3.schemeBlues[7]);
+              
+              // Legend for colorScale:
+              var legend = d3.legendColor()
+                .title("Hello")
+                .labelFormat(d3.format(""))
+                .labels(d3.legendHelpers.thresholdLabels) 
+                .scale(colorScale)
+
+
+              // Load external data and boot
+              d3.queue()
+                .defer(d3.json, "../Map_Test/bundeslaender.geojson")
+                .defer(d3.csv, "../Map_Test/Gelder_Bundesland.csv", function(d) { data.set(d.id, +d.pop); })
+                .await(ready);
+              
+
+              
+                function ready(error, topo) {
+
+                  let mouseOver = function(d) {
+                    d3.selectAll(".name")
+                      .transition()
+                      .duration(200)
+                      .style("opacity", .5)
+                    d3.select(this)
+                      .transition()
+                      .duration(200)
+                      .style("opacity", 1)
+                      .style("stroke", "black")
+                  }
+
+                  let mouseLeave = function(d) {
+                    d3.selectAll(".name")
+                      .transition()
+                      .duration(200)
+                      .style("opacity", .8)
+                    d3.select(this)
+                      .transition()
+                      .duration(200)
+                      .style("stroke", "transparent")
+                  }
+                      // Draw the map
+                      svg.append("g")
+                        .selectAll("path")
+                        .data(topo.features)
+                        .enter()
+                        .call(legend)
+                        .append("path")
+                          // draw each country
+                          .attr("d", d3.geoPath()
+                            .projection(projection)
+                          )
+                          // set the color of each country
+                          .attr("fill", function (d) {
+                            d.total = data.get(d.id) || 0;
+                            return colorScale(d.total);
+                          })
+                      .style("stroke", "transparent")
+                      .attr("class", function(d){ return "Country" } )
+                      .style("opacity", .8)
+                      .on("mouseover", mouseOver )
+                      .on("mouseleave", mouseLeave )
+                      }
+            </script>
         </div>
       </div>
   
@@ -200,6 +229,7 @@
       <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-10">
+          <svg id="test" width="475" height="500"></svg>
           <script type="module">
             import define from "./racing_bars.js";
             import { Runtime, Library, Inspector } from "./runtime.js";
@@ -212,271 +242,7 @@
 
       <div class="row">
         <div class="col-lg-12">
-          <script>
-            // Feel free to change or delete any of the code you see in this editor!
-            var svg = d3.select("body").append("svg")
-              .attr("width", 960)
-              .attr("height", 600);
-            
-            
-            
-            var tickDuration = 1;
-            
-            var top_n = 16;
-            var height = 600;
-            var width = 960;
-            
-            const margin = {
-              top: 80,
-              right: 0,
-              bottom: 5,
-              left: 0
-            };
           
-            let barPadding = (height-(margin.bottom+margin.top))/(top_n*5);
-              
-            let title = svg.append('text')
-             .attr('class', 'title')
-             .attr('y', 24)
-             .html('Projects of each county');
-          
-            let subTitle = svg.append("text")
-             .attr("class", "subTitle")
-             .attr("y", 55)
-             .html("#Projects");
-           
-            let caption = svg.append('text')
-             .attr('class', 'caption')
-             .attr('x', width)
-             .attr('y', height-5)
-             .style('text-anchor', 'start');
-        
-             let year = 1988;
-            
-          d3.csv('./files/tmp.csv').then(function(data) {
-            //if (error) throw error;
-              
-              console.log(data);
-              
-               data.forEach(d => {
-                d.value = +d.value,
-                d.lastValue = +d.lastValue,
-                d.value = isNaN(d.value) ? 0 : d.value,
-                d.year = +d.year,
-                d.colour = d3.hsl(Math.random()*360,0.75,0.75)
-              });
-        
-             
-            
-             let yearSlice = data.filter(d => d.year == year && !isNaN(d.value))
-              .sort((a,b) => b.value - a.value)
-              .slice(0, top_n);
-          
-              yearSlice.forEach((d,i) => d.rank = i);
-            
-             console.log('yearSlice: ', yearSlice)
-          
-             let x = d3.scaleLinear()
-                .domain([0, d3.max(yearSlice, d => d.value)])
-                .range([margin.left, width-margin.right-65]);
-          
-             let y = d3.scaleLinear()
-                .domain([top_n, 0])
-                .range([height-margin.bottom, margin.top]);
-          
-             let xAxis = d3.axisTop()
-                .scale(x)
-                .ticks(width > 500 ? 5:2)
-                .tickSize(-(height-margin.top-margin.bottom))
-                .tickFormat(d => d3.format(',')(d));
-          
-             svg.append('g')
-               .attr('class', 'axis xAxis')
-               .attr('transform', `translate(0, ${margin.top})`)
-               .call(xAxis)
-               .selectAll('.tick line')
-               .classed('origin', d => d == 0);
-          
-             svg.selectAll('rect.bar')
-                .data(yearSlice, d => d.name)
-                .enter()
-                .append('rect')
-                .attr('class', 'bar')
-                .attr('x', x(0)+1)
-                .attr('width', d => x(d.value)-x(0)-1)
-                .attr('y', d => y(d.rank)+5)
-                .attr('height', y(1)-y(0)-barPadding)
-                .style('fill', d => d.colour);
-              
-             svg.selectAll('text.label')
-                .data(yearSlice, d => d.name)
-                .enter()
-                .append('text')
-                .attr('class', 'label')
-                .attr('x', d => x(d.value)-8)
-                .attr('y', d => y(d.rank)+5+((y(1)-y(0))/2)+1)
-                .style('text-anchor', 'end')
-                .html(d => d.name);
-              
-            svg.selectAll('text.valueLabel')
-              .data(yearSlice, d => d.name)
-              .enter()
-              .append('text')
-              .attr('class', 'valueLabel')
-              .attr('x', d => x(d.value)+5)
-              .attr('y', d => y(d.rank)+5+((y(1)-y(0))/2)+1)
-              .text(d => d3.format(',.0f')(d.lastValue));
-        
-            let yearText = svg.append('text')
-              .attr('class', 'yearText')
-              .attr('x', width-margin.right)
-              .attr('y', height-25)
-              .style('text-anchor', 'end')
-              .html(~~year)
-              .call(halo, 10);
-             
-           let ticker = d3.interval(e => {
-        
-              yearSlice = data.filter(d => d.year == year && !isNaN(d.value))
-                .sort((a,b) => b.value - a.value)
-                .slice(0,top_n);
-        
-              yearSlice.forEach((d,i) => d.rank = i);
-             
-              //console.log('IntervalYear: ', yearSlice);
-        
-              x.domain([0, d3.max(yearSlice, d => d.value)]); 
-             
-              svg.select('.xAxis')
-                .transition()
-                .duration(tickDuration)
-                .ease(d3.easeLinear)
-                .call(xAxis);
-            
-               let bars = svg.selectAll('.bar').data(yearSlice, d => d.name);
-            
-               bars
-                .enter()
-                .append('rect')
-                .attr('class', d => `bar ${d.name.replace(/\s/g,'_')}`)
-                .attr('x', x(0)+1)
-                .attr( 'width', d => x(d.value)-x(0)-1)
-                .attr('y', d => y(top_n+1)+5)
-                .attr('height', y(1)-y(0)-barPadding)
-                .style('fill', d => d.colour)
-                .transition()
-                  .duration(tickDuration)
-                  .ease(d3.easeLinear)
-                  .attr('y', d => y(d.rank)+5);
-                  
-               bars
-                .transition()
-                  .duration(tickDuration)
-                  .ease(d3.easeLinear)
-                  .attr('width', d => x(d.value)-x(0)-1)
-                  .attr('y', d => y(d.rank)+5);
-                    
-               bars
-                .exit()
-                .transition()
-                  .duration(tickDuration)
-                  .ease(d3.easeLinear)
-                  .attr('width', d => x(d.value)-x(0)-1)
-                  .attr('y', d => y(top_n+1)+5)
-                  .remove();
-        
-               let labels = svg.selectAll('.label')
-                  .data(yearSlice, d => d.name);
-             
-               labels
-                .enter()
-                .append('text')
-                .attr('class', 'label')
-                .attr('x', d => x(d.value)-8)
-                .attr('y', d => y(top_n+1)+5+((y(1)-y(0))/2))
-                .style('text-anchor', 'end')
-                .html(d => d.name)    
-                .transition()
-                  .duration(tickDuration)
-                  .ease(d3.easeLinear)
-                  .attr('y', d => y(d.rank)+5+((y(1)-y(0))/2)+1);
-                     
-            
-                labels
-                  .transition()
-                  .duration(tickDuration)
-                    .ease(d3.easeLinear)
-                    .attr('x', d => x(d.value)-8)
-                    .attr('y', d => y(d.rank)+5+((y(1)-y(0))/2)+1);
-             
-               labels
-                  .exit()
-                  .transition()
-                    .duration(tickDuration)
-                    .ease(d3.easeLinear)
-                    .attr('x', d => x(d.value)-8)
-                    .attr('y', d => y(top_n+1)+5)
-                    .remove();
-                 
-        
-             
-               let valueLabels = svg.selectAll('.valueLabel').data(yearSlice, d => d.name);
-            
-               valueLabels
-                  .enter()
-                  .append('text')
-                  .attr('class', 'valueLabel')
-                  .attr('x', d => x(d.value)+5)
-                  .attr('y', d => y(top_n+1)+5)
-                  .text(d => d3.format(',.0f')(d.lastValue))
-                  .transition()
-                    .duration(tickDuration)
-                    .ease(d3.easeLinear)
-                    .attr('y', d => y(d.rank)+5+((y(1)-y(0))/2)+1);
-                    
-               valueLabels
-                  .transition()
-                    .duration(tickDuration)
-                    .ease(d3.easeLinear)
-                    .attr('x', d => x(d.value)+5)
-                    .attr('y', d => y(d.rank)+5+((y(1)-y(0))/2)+1)
-                    .tween("text", function(d) {
-                       let i = d3.interpolateRound(d.lastValue, d.value);
-                       return function(t) {
-                         this.textContent = d3.format(',')(i(t));
-                      };
-                    });
-              
-             
-              valueLabels
-                .exit()
-                .transition()
-                  .duration(tickDuration)
-                  .ease(d3.easeLinear)
-                  .attr('x', d => x(d.value)+5)
-                  .attr('y', d => y(top_n+1)+5)
-                  .remove();
-            
-              yearText.html(~~year);
-             
-             if(year == 2018) ticker.stop();
-             year = d3.format('.1f')((+year) + 0.1);
-           },tickDuration);
-        
-         });
-            
-         const halo = function(text, strokeWidth) {
-          text.select(function() { return this.parentNode.insertBefore(this.cloneNode(true), this); })
-            .style('fill', '#ffffff')
-             .style( 'stroke','#ffffff')
-             .style('stroke-width', strokeWidth)
-             .style('stroke-linejoin', 'round')
-             .style('opacity', 1);
-           
-        }   
-          
-        
-          </script>
         </div>
       </div>
     </div>
