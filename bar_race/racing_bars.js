@@ -51,6 +51,8 @@ html`<button>Replay`
 }
 );
 
+
+
   main.variable("duration").define("duration", function(){return(
 250
 )});
@@ -129,7 +131,7 @@ new Map(nameframes.flatMap(([, data]) => d3.pairs(data)))
   main.variable("bars").define("bars", ["n","color","y","x","prev","next"], function(n,color,y,x,prev,next){return(
 function bars(svg) {
   let bar = svg.append("g")
-      .attr("fill-opacity", 0.6)
+      .attr("fill-opacity", 1.6)
     .selectAll("rect");
 
   return ([date, data], transition) => bar = bar
@@ -165,13 +167,14 @@ function labels(svg) {
     .data(data.slice(0, n), d => d.name)
     .join(
       enter => enter.append("text")
+      //Name auf bar
         .attr("transform", d => `translate(${x((prev.get(d) || d).value)},${y((prev.get(d) || d).rank)})`)
         .attr("y", y.bandwidth() / 2)
-        .attr("x", -6)
-        .attr("dy", "-0.25em")
+        .attr("x", 190)
+        .attr("dy", "0.25em")
         .text(d => d.name)
-        .call(text => text.append("tspan")
-          .attr("fill-opacity", 0.7)
+        .call(text => text.append("tspan")  //Ziffer im bar
+          .attr("fill-opacity", 1.7)
           .attr("font-weight", "normal")
           .attr("x", -6)
           .attr("dy", "1.15em")),
@@ -206,7 +209,7 @@ function axis(svg) {
 
   const axis = d3.axisTop(x)
       .ticks(width / 160)
-      .tickSizeOuter(0)
+      .tickSizeOuter("")
       .tickSizeInner(-barSize * (n + y.padding()));
 
   return (_, transition) => {
@@ -253,6 +256,7 @@ d3.utcFormat("%Y")
 }
 );
 
+//BAR-ANPASSUNG
   main.variable("x").define("x", ["d3","margin","width"], function(d3,margin,width){return(
 d3.scaleLinear([0, 1], [margin.left, width - margin.right])
 )});
@@ -265,11 +269,13 @@ d3.scaleBand()
   main.variable(("height")).define("height", ["margin","barSize","n"], function(margin,barSize,n){return(
 margin.top + barSize * n + margin.bottom
 )});
+//Bar-breite
   main.variable(("barSize")).define("barSize", function(){return(
 48
 )});
+//Bar
   main.variable(("margin")).define("margin", function(){return(
-{top: 16, right: 6, bottom: 6, left: 0}
+{top: 16, right: 200, bottom: 6, left: 50}
 )});
 
   main.variable(("d3")).define("d3", ["require"], function(require){return(
