@@ -133,7 +133,7 @@
             var valueExtent = d3.extent(data, function (d) { return +d.NumberOfProjects; })
             var size = d3.scaleSqrt()
               .domain(valueExtent)  // What's in the data
-              .range([2, 5])  // Size in pixel
+              .range([2, 10])  // Size in pixel
 
             // Draw the map
             svg.append("g")
