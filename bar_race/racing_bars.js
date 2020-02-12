@@ -6,7 +6,7 @@ export default function define(runtime, observer) {
   main.variable(observer()).define(["md"], function(md){return(
 
 
-md`# Forschungsförderungsdifferenzen im deutschen Föderalismus  
+md`# Differences in Funding in the states of Germany (Federalism) 
 Number of Projects started each year `
   )});
 

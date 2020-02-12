@@ -1,0 +1,433 @@
+name,year,value,rank,lastValue
+Berlin,1991,19,1,0
+Berlin,1991.2,19,1,0
+Berlin,1991.4,19,1,0
+Berlin,1991.6,19,1,0
+Berlin,1991.8,19,1,0
+
+Berlin,1992,35,1,19
+Berlin,1993,53,1,35
+Berlin,1994,72,1,53
+Berlin,1995,64,1,72
+Berlin,1996,48,1,64
+Berlin,1997,60,1,48
+Berlin,1998,109,1,60
+Berlin,1999,118,1,109
+Berlin,2000,109,1,118
+Berlin,2001,58,1,109
+Berlin,2002,5,1,58
+Berlin,2003,53,1,5
+Berlin,2004,8,1,53
+Berlin,2005,6,1,8
+Berlin,2006,53,1,6
+Berlin,2007,62,1,53
+Berlin,2008,106,1,62
+Berlin,2009,98,1,106
+Berlin,2010,55,1,98
+Berlin,2011,21,1,55
+Berlin,2012,144,1,21
+Berlin,2013,164,1,144
+Berlin,2014,69,1,164
+Berlin,2015,23,1,69
+Berlin,2016,53,1,23
+Berlin,2017,25,1,53
+Berlin,2018,21,1,25
+Hamburg,1994,18,2,0
+Hamburg,1995,19,2,18
+Hamburg,1996,7,2,19
+Hamburg,1997,77,2,7
+Hamburg,1998,88,2,77
+Hamburg,1999,46,2,88
+Hamburg,2000,51,2,46
+Hamburg,2001,24,2,51
+Hamburg,2002,25,2,24
+Hamburg,2003,15,2,25
+Hamburg,2004,0,2,15
+Hamburg,2005,10,2,0
+Hamburg,2006,48,2,10
+Hamburg,2007,45,2,48
+Hamburg,2008,32,2,45
+Hamburg,2009,19,2,32
+Hamburg,2010,0,2,19
+Hamburg,2011,93,2,0
+Hamburg,2012,81,2,93
+Hamburg,2013,31,2,81
+Hamburg,2014,26,2,31
+Hamburg,2015,27,2,26
+Hamburg,2016,60,2,27
+Hamburg,2017,69,2,60
+Hamburg,2018,0,2,69
+Baden-Württemberg,1988,16,3,0
+Baden-Württemberg,1990,49,3,16
+Baden-Württemberg,1991,62,3,49
+Baden-Württemberg,1992,45,3,62
+Baden-Württemberg,1993,56,3,45
+Baden-Württemberg,1994,118,3,56
+Baden-Württemberg,1995,112,3,118
+Baden-Württemberg,1996,126,3,112
+Baden-Württemberg,1997,238,3,126
+Baden-Württemberg,1998,275,3,238
+Baden-Württemberg,1999,278,3,275
+Baden-Württemberg,2000,314,3,278
+Baden-Württemberg,2001,229,3,314
+Baden-Württemberg,2002,111,3,229
+Baden-Württemberg,2003,123,3,111
+Baden-Württemberg,2004,103,3,123
+Baden-Württemberg,2005,140,3,103
+Baden-Württemberg,2006,195,3,140
+Baden-Württemberg,2007,185,3,195
+Baden-Württemberg,2008,129,3,185
+Baden-Württemberg,2009,89,3,129
+Baden-Württemberg,2010,176,3,89
+Baden-Württemberg,2011,178,3,176
+Baden-Württemberg,2012,90,3,178
+Baden-Württemberg,2013,137,3,90
+Baden-Württemberg,2014,117,3,137
+Baden-Württemberg,2015,247,3,117
+Baden-Württemberg,2016,189,3,247
+Baden-Württemberg,2017,269,3,189
+Baden-Württemberg,2018,80,3,269
+Brandenburg,1988,14,4,0
+Brandenburg,1989,15,4,14
+Brandenburg,1990,4,4,15
+Brandenburg,1991,7,4,4
+Brandenburg,1992,6,4,7
+Brandenburg,1993,20,4,6
+Brandenburg,1994,17,4,20
+Brandenburg,1995,12,4,17
+Brandenburg,1996,7,4,12
+Brandenburg,1997,58,4,7
+Brandenburg,1998,60,4,58
+Brandenburg,1999,26,4,60
+Brandenburg,2000,23,4,26
+Brandenburg,2001,16,4,23
+Brandenburg,2002,40,4,16
+Brandenburg,2003,27,4,40
+Brandenburg,2004,57,4,27
+Brandenburg,2005,8,4,57
+Brandenburg,2006,36,4,8
+Brandenburg,2007,64,4,36
+Brandenburg,2008,71,4,64
+Brandenburg,2009,10,4,71
+Brandenburg,2010,38,4,10
+Brandenburg,2011,61,4,38
+Brandenburg,2012,48,4,61
+Brandenburg,2013,40,4,48
+Brandenburg,2014,52,4,40
+Brandenburg,2015,60,4,52
+Brandenburg,2016,39,4,60
+Brandenburg,2017,86,4,39
+Brandenburg,2018,60,4,86
+Freie Hansestadt Bremen,1988,14,5,0
+Freie Hansestadt Bremen,1989,16,5,14
+Freie Hansestadt Bremen,1991,6,5,16
+Freie Hansestadt Bremen,1992,2,5,6
+Freie Hansestadt Bremen,1993,4,5,2
+Freie Hansestadt Bremen,1994,23,5,4
+Freie Hansestadt Bremen,1995,23,5,23
+Freie Hansestadt Bremen,1998,11,5,23
+Freie Hansestadt Bremen,1999,9,5,11
+Freie Hansestadt Bremen,2000,2,5,9
+Freie Hansestadt Bremen,2001,36,5,2
+Freie Hansestadt Bremen,2002,38,5,36
+Freie Hansestadt Bremen,2003,33,5,38
+Freie Hansestadt Bremen,2004,49,5,33
+Freie Hansestadt Bremen,2005,23,5,49
+Freie Hansestadt Bremen,2006,8,5,23
+Freie Hansestadt Bremen,2007,41,5,8
+Freie Hansestadt Bremen,2008,59,5,41
+Freie Hansestadt Bremen,2009,40,5,59
+Freie Hansestadt Bremen,2010,6,5,40
+Freie Hansestadt Bremen,2011,12,5,6
+Freie Hansestadt Bremen,2012,0,5,12
+Freie Hansestadt Bremen,2013,0,5,0
+Freie Hansestadt Bremen,2014,27,5,0
+Freie Hansestadt Bremen,2015,0,5,27
+Freie Hansestadt Bremen,2016,33,5,0
+Freie Hansestadt Bremen,2017,46,5,33
+Freie Hansestadt Bremen,2018,36,5,46
+Freistaat Bayern,1987,3,6,0
+Freistaat Bayern,1989,18,6,3
+Freistaat Bayern,1991,46,6,18
+Freistaat Bayern,1992,57,6,46
+Freistaat Bayern,1993,51,6,57
+Freistaat Bayern,1994,48,6,51
+Freistaat Bayern,1995,108,6,48
+Freistaat Bayern,1996,182,6,108
+Freistaat Bayern,1997,180,6,182
+Freistaat Bayern,1998,214,6,180
+Freistaat Bayern,1999,241,6,214
+Freistaat Bayern,2000,261,6,241
+Freistaat Bayern,2001,318,6,261
+Freistaat Bayern,2002,192,6,318
+Freistaat Bayern,2003,87,6,192
+Freistaat Bayern,2004,67,6,87
+Freistaat Bayern,2005,112,6,67
+Freistaat Bayern,2006,148,6,112
+Freistaat Bayern,2007,127,6,148
+Freistaat Bayern,2008,103,6,127
+Freistaat Bayern,2009,274,6,103
+Freistaat Bayern,2010,163,6,274
+Freistaat Bayern,2011,68,6,163
+Freistaat Bayern,2012,108,6,68
+Freistaat Bayern,2013,148,6,108
+Freistaat Bayern,2014,195,6,148
+Freistaat Bayern,2015,209,6,195
+Freistaat Bayern,2016,105,6,209
+Freistaat Bayern,2017,132,6,105
+Freistaat Bayern,2018,27,6,132
+Freistaat Sachsen,1992,13,1,0
+Freistaat Sachsen,1994,30,1,13
+Freistaat Sachsen,1995,69,1,30
+Freistaat Sachsen,1996,101,1,69
+Freistaat Sachsen,1997,90,1,101
+Freistaat Sachsen,1998,72,1,90
+Freistaat Sachsen,1999,45,1,72
+Freistaat Sachsen,2000,64,1,45
+Freistaat Sachsen,2001,52,1,64
+Freistaat Sachsen,2002,40,1,52
+Freistaat Sachsen,2003,19,1,40
+Freistaat Sachsen,2004,32,1,19
+Freistaat Sachsen,2005,12,1,32
+Freistaat Sachsen,2006,69,1,12
+Freistaat Sachsen,2007,75,1,69
+Freistaat Sachsen,2008,84,1,75
+Freistaat Sachsen,2009,93,1,84
+Freistaat Sachsen,2010,95,1,93
+Freistaat Sachsen,2011,86,1,95
+Freistaat Sachsen,2012,82,1,86
+Freistaat Sachsen,2013,47,1,82
+Freistaat Sachsen,2014,55,1,47
+Freistaat Sachsen,2015,34,1,55
+Freistaat Sachsen,2016,80,1,34
+Freistaat Sachsen,2017,114,1,80
+Freistaat Sachsen,2018,23,1,114
+Freistaat Thüringen,1992,1,1,0
+Freistaat Thüringen,1993,15,1,1
+Freistaat Thüringen,1994,16,1,16
+Freistaat Thüringen,1995,3,1,17
+Freistaat Thüringen,1996,4,1,18
+Freistaat Thüringen,1997,21,1,19
+Freistaat Thüringen,1998,30,1,20
+Freistaat Thüringen,1999,28,1,21
+Freistaat Thüringen,2000,23,1,22
+Freistaat Thüringen,2001,22,1,23
+Freistaat Thüringen,2002,51,1,24
+Freistaat Thüringen,2003,36,1,25
+Freistaat Thüringen,2004,27,1,26
+Freistaat Thüringen,2005,13,1,27
+Freistaat Thüringen,2006,22,1,28
+Freistaat Thüringen,2007,8,1,29
+Freistaat Thüringen,2008,27,1,30
+Freistaat Thüringen,2009,11,1,31
+Freistaat Thüringen,2010,1,1,32
+Freistaat Thüringen,2011,0,1,33
+Freistaat Thüringen,2012,10,1,34
+Freistaat Thüringen,2013,18,1,35
+Freistaat Thüringen,2014,44,1,36
+Freistaat Thüringen,2015,27,1,37
+Freistaat Thüringen,2016,24,1,38
+Freistaat Thüringen,2017,34,1,39
+Freistaat Thüringen,2018,27,1,40
+Hessen,1988,26,1,0
+Hessen,1991,39,1,26
+Hessen,1994,63,1,39
+Hessen,1995,49,1,63
+Hessen,1996,61,1,49
+Hessen,1997,172,1,61
+Hessen,1998,132,1,172
+Hessen,1999,40,1,132
+Hessen,2000,46,1,40
+Hessen,2001,70,1,46
+Hessen,2002,15,1,70
+Hessen,2003,28,1,15
+Hessen,2004,74,1,28
+Hessen,2005,51,1,74
+Hessen,2006,107,1,51
+Hessen,2007,86,1,107
+Hessen,2008,33,1,86
+Hessen,2009,13,1,33
+Hessen,2010,76,1,13
+Hessen,2011,59,1,76
+Hessen,2012,32,1,59
+Hessen,2013,123,1,32
+Hessen,2014,152,1,123
+Hessen,2015,43,1,152
+Hessen,2016,64,1,43
+Hessen,2017,115,1,64
+Hessen,2018,51,1,115
+Mecklenburg-Vorpommern,1993,1,1,0
+Mecklenburg-Vorpommern,1995,2,1,1
+Mecklenburg-Vorpommern,1997,2,1,2
+Mecklenburg-Vorpommern,1998,2,1,2
+Mecklenburg-Vorpommern,1999,2,1,2
+Mecklenburg-Vorpommern,2005,18,1,2
+Mecklenburg-Vorpommern,2006,19,1,18
+Mecklenburg-Vorpommern,2007,8,1,19
+Mecklenburg-Vorpommern,2008,12,1,8
+Mecklenburg-Vorpommern,2009,16,1,12
+Mecklenburg-Vorpommern,2010,16,1,16
+Mecklenburg-Vorpommern,2011,11,1,16
+Mecklenburg-Vorpommern,2012,2,1,11
+Mecklenburg-Vorpommern,2013,9,1,2
+Mecklenburg-Vorpommern,2014,11,1,9
+Mecklenburg-Vorpommern,2015,7,1,11
+Mecklenburg-Vorpommern,2016,2,1,7
+Mecklenburg-Vorpommern,2017,25,1,2
+Niedersachsen,1992,18,1,0
+Niedersachsen,1993,48,1,18
+Niedersachsen,1994,77,1,48
+Niedersachsen,1995,93,1,77
+Niedersachsen,1996,106,1,93
+Niedersachsen,1997,137,1,106
+Niedersachsen,1998,116,1,137
+Niedersachsen,1999,90,1,116
+Niedersachsen,2000,108,1,90
+Niedersachsen,2001,87,1,108
+Niedersachsen,2002,106,1,87
+Niedersachsen,2003,80,1,106
+Niedersachsen,2004,41,1,80
+Niedersachsen,2005,49,1,41
+Niedersachsen,2006,67,1,49
+Niedersachsen,2007,117,1,67
+Niedersachsen,2008,133,1,117
+Niedersachsen,2009,124,1,133
+Niedersachsen,2010,115,1,124
+Niedersachsen,2011,179,1,115
+Niedersachsen,2012,135,1,179
+Niedersachsen,2013,140,1,135
+Niedersachsen,2014,76,1,140
+Niedersachsen,2015,83,1,76
+Niedersachsen,2016,119,1,83
+Niedersachsen,2017,93,1,119
+Niedersachsen,2018,0,1,93
+Nordrhein-Westfalen,1987,30,1,0
+Nordrhein-Westfalen,1988,32,1,30
+Nordrhein-Westfalen,1989,38,1,32
+Nordrhein-Westfalen,1990,44,1,38
+Nordrhein-Westfalen,1991,84,1,44
+Nordrhein-Westfalen,1992,79,1,84
+Nordrhein-Westfalen,1993,63,1,79
+Nordrhein-Westfalen,1994,113,1,63
+Nordrhein-Westfalen,1995,142,1,113
+Nordrhein-Westfalen,1996,212,1,142
+Nordrhein-Westfalen,1997,289,1,212
+Nordrhein-Westfalen,1998,302,1,289
+Nordrhein-Westfalen,1999,309,1,302
+Nordrhein-Westfalen,2000,372,1,309
+Nordrhein-Westfalen,2001,344,1,372
+Nordrhein-Westfalen,2002,318,1,344
+Nordrhein-Westfalen,2003,255,1,318
+Nordrhein-Westfalen,2004,199,1,255
+Nordrhein-Westfalen,2005,155,1,199
+Nordrhein-Westfalen,2006,246,1,155
+Nordrhein-Westfalen,2007,346,1,246
+Nordrhein-Westfalen,2008,219,1,346
+Nordrhein-Westfalen,2009,230,1,219
+Nordrhein-Westfalen,2010,294,1,230
+Nordrhein-Westfalen,2011,296,1,294
+Nordrhein-Westfalen,2012,176,1,296
+Nordrhein-Westfalen,2013,170,1,176
+Nordrhein-Westfalen,2014,182,1,170
+Nordrhein-Westfalen,2015,153,1,182
+Nordrhein-Westfalen,2016,200,1,153
+Nordrhein-Westfalen,2017,298,1,200
+Nordrhein-Westfalen,2018,193,1,298
+Rheinland-Pfalz,1987,14,1,0
+Rheinland-Pfalz,1988,15,1,14
+Rheinland-Pfalz,1990,10,1,15
+Rheinland-Pfalz,1991,10,1,10
+Rheinland-Pfalz,1994,10,1,10
+Rheinland-Pfalz,1995,17,1,10
+Rheinland-Pfalz,1996,25,1,17
+Rheinland-Pfalz,1997,59,1,25
+Rheinland-Pfalz,1998,63,1,59
+Rheinland-Pfalz,1999,70,1,63
+Rheinland-Pfalz,2000,81,1,70
+Rheinland-Pfalz,2001,35,1,81
+Rheinland-Pfalz,2002,53,1,35
+Rheinland-Pfalz,2003,10,1,53
+Rheinland-Pfalz,2004,8,1,10
+Rheinland-Pfalz,2005,21,1,8
+Rheinland-Pfalz,2006,18,1,21
+Rheinland-Pfalz,2007,68,1,18
+Rheinland-Pfalz,2008,60,1,68
+Rheinland-Pfalz,2009,42,1,60
+Rheinland-Pfalz,2010,8,1,42
+Rheinland-Pfalz,2011,59,1,8
+Rheinland-Pfalz,2012,40,1,59
+Rheinland-Pfalz,2013,65,1,40
+Rheinland-Pfalz,2014,29,1,65
+Rheinland-Pfalz,2015,43,1,29
+Rheinland-Pfalz,2016,59,1,43
+Rheinland-Pfalz,2017,79,1,59
+Rheinland-Pfalz,2018,52,1,79
+Saarland,1994,16,1,0
+Saarland,1996,49,1,16
+Saarland,1998,40,1,49
+Saarland,1999,28,1,40
+Saarland,2000,23,1,28
+Saarland,2001,2,1,23
+Saarland,2002,2,1,2
+Saarland,2004,0,1,2
+Saarland,2005,2,1,0
+Saarland,2006,7,1,2
+Saarland,2007,0,1,7
+Saarland,2008,3,1,0
+Saarland,2009,9,1,3
+Saarland,2010,8,1,9
+Saarland,2011,29,1,8
+Saarland,2012,11,1,29
+Saarland,2013,25,1,11
+Saarland,2014,50,1,25
+Saarland,2015,25,1,50
+Saarland,2016,14,1,25
+Saarland,2017,21,1,14
+Saarland,2018,26,1,21
+Sachsen-Anhalt,1995,10,1,0
+Sachsen-Anhalt,1996,11,1,10
+Sachsen-Anhalt,1997,17,1,11
+Sachsen-Anhalt,1998,19,1,17
+Sachsen-Anhalt,1999,4,1,19
+Sachsen-Anhalt,2000,1,1,4
+Sachsen-Anhalt,2001,1,1,1
+Sachsen-Anhalt,2002,0,1,1
+Sachsen-Anhalt,2003,6,1,0
+Sachsen-Anhalt,2005,13,1,6
+Sachsen-Anhalt,2006,0,1,13
+Sachsen-Anhalt,2007,5,1,0
+Sachsen-Anhalt,2008,30,1,5
+Sachsen-Anhalt,2009,31,1,30
+Sachsen-Anhalt,2010,32,1,31
+Sachsen-Anhalt,2011,29,1,32
+Sachsen-Anhalt,2012,2,1,29
+Sachsen-Anhalt,2013,11,1,2
+Sachsen-Anhalt,2014,14,1,11
+Sachsen-Anhalt,2015,12,1,14
+Sachsen-Anhalt,2016,9,1,12
+Sachsen-Anhalt,2017,9,1,9
+Sachsen-Anhalt,2018,0,1,9
+Schleswig-Holstein,1993,18,1,0
+Schleswig-Holstein,1996,34,1,18
+Schleswig-Holstein,1997,15,1,34
+Schleswig-Holstein,1998,22,1,15
+Schleswig-Holstein,1999,24,1,22
+Schleswig-Holstein,2000,7,1,24
+Schleswig-Holstein,2001,34,1,7
+Schleswig-Holstein,2002,37,1,34
+Schleswig-Holstein,2003,23,1,37
+Schleswig-Holstein,2004,10,1,23
+Schleswig-Holstein,2005,16,1,10
+Schleswig-Holstein,2006,0,1,16
+Schleswig-Holstein,2007,20,1,0
+Schleswig-Holstein,2008,45,1,20
+Schleswig-Holstein,2009,30,1,45
+Schleswig-Holstein,2010,28,1,30
+Schleswig-Holstein,2011,39,1,28
+Schleswig-Holstein,2012,20,1,39
+Schleswig-Holstein,2013,0,1,20
+Schleswig-Holstein,2014,21,1,0
+Schleswig-Holstein,2015,16,1,21
+Schleswig-Holstein,2016,63,1,16
+Schleswig-Holstein,2017,67,1,63
+Schleswig-Holstein,2018,1,1,67
