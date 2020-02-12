@@ -92,3 +92,8 @@
   stroke: black;
   stroke-width: 4px;
 }
+
+table.d {
+  table-layout: fixed;
+  width: 100%;
+}

@@ -24,7 +24,6 @@
     crossorigin="anonymous"></script>
 
 </head>
-
 <body>
   <div class="container">
     <div class="row">
@@ -64,7 +63,7 @@
           et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
           takimata sanctus est Lorem ipsum dolor sit amet.
         </p>
-        <table style="width:100%">
+        <table class="d" style="width:100%"style= "table-layout:fix">
           <tr>
             <th>Institutionsname</th>
             <th>Number of Projects</th> 
@@ -73,7 +72,12 @@
             <th>Forschungsgelder</th>
           </tr>
           <tr>
-            <td id="Institut">-----------------</td>
+            <td id="Institut"><pre>
+              -----------------------------------------
+              -----------------------------------------
+              -----------------------------------------
+
+            </pre></td>
             <td id="Anzahl_Projekte">----------------</td>
             <td >--------------------------</td>
             <td id="Bundesland">----------------</td>
@@ -97,8 +101,8 @@
 
           // Map and projection
           var projection = d3.geoMercator()
-            .center([10, 50])                // GPS of location to zoom on
-            .scale(2000)                       // This is like the zoom
+            .center([10, 51])                // GPS of location to zoom on
+            .scale(2500)                       // This is like the zoom
             .translate([width / 2, height / 2])
 
           d3.queue()
@@ -184,7 +188,7 @@
 
       <div class="col-lg-1"></div>
       <div class="col-lg-5">
-        <svg id="my_dataviz" width="475" height="600"></svg>
+        <svg id="my_dataviz" width="500" height="600"></svg>
         <script>
 
           // The svg
@@ -195,8 +199,8 @@
           // Map and projection
           var path = d3.geoPath();
           var projection_2 = d3.geoMercator()
-            .scale(2000)
-            .center([9.5, 50])
+            .scale(2500)
+            .center([9.2, 51])
             .translate([width / 2, height / 2]);
 
           // Data and color scale
