@@ -64,14 +64,20 @@
           et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
           takimata sanctus est Lorem ipsum dolor sit amet.
         </p>
-        <table style="width:50%">
+        <table style="width:100%">
           <tr>
             <th>Institutionsname</th>
             <th>Number of Projects</th> 
+            <th>------------------</th> 
+            <th>-------------------</th>
+            <th>Forschungsgelder</th>
           </tr>
           <tr>
             <td id="Institut">-----------------</td>
             <td id="Anzahl_Projekte">----------------</td>
+            <td >--------------------------</td>
+            <td id="Bundesland">----------------</td>
+            <td id="Money">-----------------</td>
           </tr>
         </table>
       </div>
@@ -116,10 +122,6 @@
             .style("border-radius", "5px")
             .style("padding", "5px")
 
-
-
-
-
           function ready(error, dataGeo, data) {
 
             // Create a color scale
@@ -162,10 +164,8 @@
               .attr("fill-opacity", .4)
               .on("mouseover", function (d) {
                 document.getElementById("Institut").innerHTML = d.name;
-                document.getElementById("Anzahl_Projekte").innerHTML = d.NumberOfProjects;
+                document.getElementById("Anzahl_Projekte").innerHTML = Math.round(d.NumberOfProjects);
               ;})
-
-
 
             // Add title and explanation
             svg
@@ -230,14 +230,17 @@
           // Load external data and boot
           d3.queue()
             .defer(d3.json, "../Map_Test/bundeslaender.geojson")
-            .defer(d3.csv, "../Map_Test/Gelder_Bundesland.csv", function (d) { data.set(d.id, +d.pop); })
+            .defer(d3.csv, "../Map_Test/Gelder_Bundesland.csv", function (d) {data.set(d.id, d.pop); })
             .await(ready);
-
+          
+          var q = d3.queue()
+            .defer(d3.csv, "../Map_Test/Gelder_Bundesland.csv")
+            .await(ready);
 
 
           function ready(error, topo) {
 
-            let mouseOver = function (d) {
+            let mouseOver = function (d,q) {
               d3.selectAll(".name")
                 .transition()
                 .duration(200)
@@ -247,6 +250,55 @@
                 .duration(200)
                 .style("opacity", 1)
                 .style("stroke", "black")
+                if (d.total == 1355){
+                  document.getElementById("Bundesland").innerHTML = "Schleswig-Holstein";
+                }
+                if (d.total == 	765){
+                  document.getElementById("Bundesland").innerHTML = "Mecklenburg-Vorpommern";
+                }
+                if (d.total == 	1148){
+                  document.getElementById("Bundesland").innerHTML = "Brandenburg";
+                }
+                if (d.total == 4573){
+                  document.getElementById("Bundesland").innerHTML = "Berlin";
+                }
+                if (d.total == 	8983){
+                  document.getElementById("Bundesland").innerHTML = "Niedersachsen";
+                }
+                if (d.total == 898){
+                  document.getElementById("Bundesland").innerHTML = "Bremen";
+                }
+                if (d.total == 13418){
+                  document.getElementById("Bundesland").innerHTML = "NRW";
+                }
+                if (d.total == 3353){
+                  document.getElementById("Bundesland").innerHTML = "Rheinland-Pfalz";
+                }
+                if (d.total == 	2168){
+                  document.getElementById("Bundesland").innerHTML = "Saarland";
+                }
+                if (d.total == 	18040){
+                  document.getElementById("Bundesland").innerHTML = "Bayern";
+                }
+                if (d.total == 24698){
+                  document.getElementById("Bundesland").innerHTML = "Baden-Württenberg";
+                }
+                if (d.total == 1256){
+                  document.getElementById("Bundesland").innerHTML = "Thüringen";
+                }
+                if (d.total == 		3234){
+                  document.getElementById("Bundesland").innerHTML = "Sachsen";
+                }
+                if (d.total == 	863){
+                  document.getElementById("Bundesland").innerHTML = "Sachsen-Anhalt";
+                }
+                if (d.total == 32325){
+                  document.getElementById("Bundesland").innerHTML = "Hessen";  
+                }
+                if (d.total == 2478){
+                  document.getElementById("Bundesland").innerHTML = "Hamburg";  
+                }                         
+                document.getElementById("Money").innerHTML = Math.round(d.total * 1000000) + " €";
             }
 
             let mouseLeave = function (d) {
@@ -282,7 +334,6 @@
               .on("mouseover", mouseOver)
               .on("mouseleave", mouseLeave)
 
-
             //Text unten rechts
             svg_2.append("text")
               .attr("text-anchor", "end")
@@ -302,9 +353,6 @@
               .attr("width", 90)
               .html("In millions of Euro")
               .style("font-size", 14)
-
-
-
           }
         </script>
       </div>
