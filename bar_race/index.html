@@ -97,8 +97,8 @@
               
               // Map and projection
               var projection = d3.geoMercator()
-                  .center([9, 50])                // GPS of location to zoom on
-                  .scale(4000)                       // This is like the zoom
+                  .center([10, 50])                // GPS of location to zoom on
+                  .scale(1500)                       // This is like the zoom
                   .translate([ width/2, height/2 ])
 
                     d3.queue()
@@ -161,7 +161,7 @@
                 .attr("x", width - 10)
                 .attr("y", height - 30)
                 .attr("width", 90)
-                .html("DATA")
+                .html("Forschungseinrichtungen")
                 .style("font-size", 14)
 
 
@@ -206,7 +206,7 @@
                 .attr('x', xLabel)
                 .attr('y', function(d){ return height - size(d) } )
                 .text( function(d){ return d } )
-                .style("font-size", 10)
+                .style("font-size", 15)
                 .attr('alignment-baseline', 'middle')
             }
           </script>
@@ -219,13 +219,13 @@
           <script>
 
             // The svg
-            var svg = d3.select("#my_dataviz"),
+            var svg_2 = d3.select("#my_dataviz"),
               width = +svg.attr("width"),
               height = +svg.attr("height");
             
             // Map and projection
             var path = d3.geoPath();
-            var projection = d3.geoMercator()
+            var projection_2 = d3.geoMercator()
               .scale(1500)
               .center([9,50])
               .translate([width / 2, height / 2]);
@@ -277,7 +277,7 @@
                     .style("stroke", "transparent")
                 }
                     // Draw the map
-                    svg.append("g")
+                    svg_2.append("g")
                       .selectAll("path")
                       .data(topo.features)
                       .enter()
@@ -285,7 +285,7 @@
                       .append("path")
                         // draw each country
                         .attr("d", d3.geoPath()
-                          .projection(projection)
+                          .projection(projection_2)
                         )
                         // set the color of each country
                         .attr("fill", function (d) {
