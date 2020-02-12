@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <head>
   <meta charset="utf-8" />
   <title>Bar Chart Race, Explained</title>
@@ -9,32 +10,19 @@
   <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
   <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
   <script src="https://d3-legend.susielu.com/d3-legend.min.js"></script>
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-  />
-  <link
-    rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-    crossorigin="anonymous"
-  />
-  <script
-    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"
-  ></script>
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"
-  ></script>
-  <script
-    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"
-  ></script>
-  
+    crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -42,11 +30,7 @@
     <div class="row">
       <div class="col-lg-3"></div>
       <div class="col-lg-2 headlink">
-        <a
-          href="../bar_race/index.html"
-          class="col-xs-2 purple headlink"
-          style="text-decoration-line: underline"
-        >
+        <a href="../bar_race/index.html" class="col-xs-2 purple headlink" style="text-decoration-line: underline">
           Graphs
         </a>
       </div>
@@ -63,279 +47,309 @@
       <div class="col-lg-3"></div>
     </div>
 
-      <div class="row">
-        <div class="col-lg-1"></div>
-        <div class="col-lg-10 textbox">
-          <h3>
-            Maps:
-          </h3>
-          <p>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-            sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-            rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-            ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-            sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-            dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-            et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-            takimata sanctus est Lorem ipsum dolor sit amet.
-          </p>
-        </div>
+    <div class="row">
+      <div class="col-lg-1"></div>
+      <div class="col-lg-10 textbox">
+        <h3>
+          Maps:
+        </h3>
+        <p>
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+          sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+          rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+          ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+          sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+          et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+          takimata sanctus est Lorem ipsum dolor sit amet.
+        </p>
+        <table style="width:50%">
+          <tr>
+            <th>Institutionsname</th>
+            <th>Number of Projects</th> 
+          </tr>
+          <tr>
+            <td id="Institut">-----------------</td>
+            <td id="Anzahl_Projekte">----------------</td>
+          </tr>
+        </table>
       </div>
-      <div class="row">
-        <div class="col-lg-1"></div>
-        <div class="col-lg-5">
-          <!-- Create an element where the map will take place -->
-          <svg id="map_dots" width="475" height="600"></svg>
+    </div>
+    <div class="row">
+      <div class="col-lg-1"></div>
+      <div class="col-lg-5">
+        <!-- Create an element where the map will take place -->
+        <svg id="map_dots" width="475" height="600"></svg>
 
-          <script>
+        <script>
 
-              // The svg
-              var svg = d3.select("#map_dots"),
-                  width = +svg.attr("width"),
-                  height = +svg.attr("height");
-              
-              // Map and projection
-              var projection = d3.geoMercator()
-                  .center([10, 50])                // GPS of location to zoom on
-                  .scale(2000)                       // This is like the zoom
-                  .translate([ width/2, height/2 ])
+          // The svg
+          var svg = d3.select("#map_dots"),
+            width = +svg.attr("width"),
+            height = +svg.attr("height");
 
-                    d3.queue()
-                      .defer(d3.json, "./files/bundeslaender.geojson")  // World shape
-                      .defer(d3.csv, "./files/ffddf_data.csv") // Position of circles
-                      .await(ready);
+          // Map and projection
+          var projection = d3.geoMercator()
+            .center([10, 50])                // GPS of location to zoom on
+            .scale(2000)                       // This is like the zoom
+            .translate([width / 2, height / 2])
+
+          d3.queue()
+            .defer(d3.json, "./files/bundeslaender.geojson")  // World shape
+            .defer(d3.csv, "./files/ffddf_data.csv") // Position of circles
+            .await(ready);
+
+          d3.csv("./files/ffddf_data.csv", function (data) {
+            d3.select("#output").html(
+            );
+          });
+
+
+          var Tooltip = d3.select("#map_dots")
+            .append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 1)
+            .style("background-color", "white")
+            .style("border", "solid")
+            .style("border-width", "2px")
+            .style("border-radius", "5px")
+            .style("padding", "5px")
 
 
 
 
-    
-            function ready(error, dataGeo, data) {
+
+          function ready(error, dataGeo, data) {
 
             // Create a color scale
-            var allContinent = d3.map(data, function(d){return(d.name)}).keys()
+            var allContinent = d3.map(data, function (d) { return (d.name) }).keys()
             var color = d3.scaleOrdinal()
               .domain(allContinent)
               .range(d3.schemePaired);
 
             // Add a scale for bubble size  
-            var valueExtent = d3.extent(data, function(d) { return +d.NumberOfProjects; })
+            var valueExtent = d3.extent(data, function (d) { return +d.NumberOfProjects; })
             var size = d3.scaleSqrt()
               .domain(valueExtent)  // What's in the data
-              .range([ 5, 5])  // Size in pixel
+              .range([2, 5])  // Size in pixel
 
             // Draw the map
             svg.append("g")
-                .selectAll("path")
-                .data(dataGeo.features)
-                .enter()
-                .append("path")
-                  .attr("fill", "#320894")
-                  .attr("d", d3.geoPath()
-                      .projection(projection)
-                  )
-                .style("stroke", "none")
-                .style("opacity", .8)
+              .selectAll("path")
+              .data(dataGeo.features)
+              .enter()
+              .append("path")
+              .attr("fill", "#320894")
+              .attr("d", d3.geoPath()
+                .projection(projection)
+              )
+              .style("stroke", "none")
+              .style("opacity", .8)
 
             // Add circles:
             svg
               .selectAll("myCircles")
-              .data(data.sort(function(a,b) { return +b.n - +a.n }).filter(function(d,i){ return i<1000 }))
+              .data(data.sort(function (a, b) { return +b.n - +a.n }).filter(function (d, i) { return i < 1000 }))
               .enter()
               .append("circle")
-                .attr("cx", function(d){ return projection([+d.lon, +d.lat])[0] })
-                .attr("cy", function(d){ return projection([+d.lon, +d.lat])[1] })
-                .attr("r", function(d){ return size(+d.NumberOfProjects) })
-                .style("fill", function(d){ return color(d.name) })
-                .attr("stroke", function(d){ if(d.NumberOfProjects>2000){return "black"}else{return "none"}  })
-                .attr("stroke-width", 1)
-                .attr("fill-opacity", .4)
+              .attr("cx", function (d) { return projection([+d.lon, +d.lat])[0] })
+              .attr("cy", function (d) { return projection([+d.lon, +d.lat])[1] })
+              .attr("r", function (d) { return size(+d.NumberOfProjects) })
+              .style("fill", function (d) { return color() })
+              .attr("stroke", function (d) { if (d.NumberOfProjects > 2000) { return "black" } else { return "none" } })
+              .attr("stroke-width", 1)
+              .attr("fill-opacity", .4)
+              .on("mouseover", function (d) {
+                document.getElementById("Institut").innerHTML = d.name;
+                document.getElementById("Anzahl_Projekte").innerHTML = d.NumberOfProjects;
+              ;})
 
 
 
             // Add title and explanation
             svg
               .append("text")
-                .attr("text-anchor", "end")
-                .style("fill", "black")
-                .attr("x", width - 10)
-                .attr("y", height - 30)
-                .attr("width", 90)
-                .html("Forschungseinrichtungen")
-                .style("font-size", 14)
+              .attr("text-anchor", "end")
+              .style("fill", "black")
+              .attr("x", width - 10)
+              .attr("y", height - 30)
+              .attr("width", 90)
+              .html("Forschungseinrichtungen")
+              .style("font-size", 14)
 
+          }
+        </script>
+      </div>
+
+      <div class="col-lg-1"></div>
+      <div class="col-lg-5">
+        <svg id="my_dataviz" width="475" height="600"></svg>
+        <script>
+
+          // The svg
+          var svg_2 = d3.select("#my_dataviz"),
+            width = +svg.attr("width"),
+            height = +svg.attr("height");
+
+          // Map and projection
+          var path = d3.geoPath();
+          var projection_2 = d3.geoMercator()
+            .scale(2000)
+            .center([9.5, 50])
+            .translate([width / 2, height / 2]);
+
+          // Data and color scale
+          var data = d3.map();
+          var colorScale = d3.scaleThreshold()
+            .domain([1000, 4000, 5000, 10000, 15000, 20000, 25000, 30000])
+            .range(d3.schemeBlues[7]);
+
+          // Legend for colorScale:
+          var legend = d3.legendColor()
+            .title("Hello")
+            .labelFormat(d3.format(""))
+            .labels(function ({
+              i,
+              genLength,
+              generatedLabels,
+              labelDelimiter
+            }) {
+              if (i === 0) {
+                const values = generatedLabels[i].split(` ${labelDelimiter} `)
+                return `Less than ${values[1]}`
+              } else if (i === genLength - 1) {
+                const values = generatedLabels[i].split(` ${labelDelimiter} `)
+                return `${values[0]} or more`
+              }
+              return generatedLabels[i]
+            }) //TODO???
+            .scale(colorScale)
+
+
+          // Load external data and boot
+          d3.queue()
+            .defer(d3.json, "../Map_Test/bundeslaender.geojson")
+            .defer(d3.csv, "../Map_Test/Gelder_Bundesland.csv", function (d) { data.set(d.id, +d.pop); })
+            .await(ready);
+
+
+
+          function ready(error, topo) {
+
+            let mouseOver = function (d) {
+              d3.selectAll(".name")
+                .transition()
+                .duration(200)
+                .style("opacity", .5)
+              d3.select(this)
+                .transition()
+                .duration(200)
+                .style("opacity", 1)
+                .style("stroke", "black")
             }
-          </script>
-        </div>
-        
-        <div class="col-lg-1"></div>
-        <div class="col-lg-5">
-          <svg id="my_dataviz" width="475" height="600"></svg>
-          <script>
 
-            // The svg
-            var svg_2 = d3.select("#my_dataviz"),
-              width = +svg.attr("width"),
-              height = +svg.attr("height");
-            
-            // Map and projection
-            var path = d3.geoPath();
-            var projection_2 = d3.geoMercator()
-              .scale(2000)
-              .center([9.5,50])
-              .translate([width / 2, height / 2]);
-            
-            // Data and color scale
-            var data = d3.map();
-            var colorScale = d3.scaleThreshold()
-              .domain([1000,4000,5000,10000,15000,20000,25000,30000])
-              .range(d3.schemeBlues[7]);
-            
-            // Legend for colorScale:
-            var legend = d3.legendColor()
-              .title("Hello")
-              .labelFormat(d3.format(""))
-              .labels(function({
-  i,
-  genLength,
-  generatedLabels,
-  labelDelimiter
-}) {
-  if (i === 0) {
-    const values = generatedLabels[i].split(` ${labelDelimiter} `)
-    return `Less than ${values[1]}`
-  } else if (i === genLength - 1) {
-    const values = generatedLabels[i].split(` ${labelDelimiter} `)
-    return `${values[0]} or more`
-  }
-  return generatedLabels[i]
-}) //TODO???
-              .scale(colorScale)
+            let mouseLeave = function (d) {
+              d3.selectAll(".name")
+                .transition()
+                .duration(200)
+                .style("opacity", .8)
+              d3.select(this)
+                .transition()
+                .duration(200)
+                .style("stroke", "transparent")
+            }
+
+            // Draw the map
+            svg_2.append("g")
+              .selectAll("path")
+              .data(topo.features)
+              .enter()
+              .call(legend)
+              .append("path")
+              // draw each country
+              .attr("d", d3.geoPath()
+                .projection(projection_2)
+              )
+              // set the color of each country
+              .attr("fill", function (d) {
+                d.total = data.get(d.id) || 0;
+                return colorScale(d.total);
+              })
+              .style("stroke", "transparent")
+              .attr("class", function (d) { return "Country" })
+              .style("opacity", .8)
+              .on("mouseover", mouseOver)
+              .on("mouseleave", mouseLeave)
 
 
-            // Load external data and boot
-            d3.queue()
-              .defer(d3.json, "../Map_Test/bundeslaender.geojson")
-              .defer(d3.csv, "../Map_Test/Gelder_Bundesland.csv", function(d) { data.set(d.id, +d.pop); })
-              .await(ready);
-            
+            //Text unten rechts
+            svg_2.append("text")
+              .attr("text-anchor", "end")
+              .style("fill", "black")
+              .attr("x", width - 20)
+              .attr("y", height - 30)
+              .attr("width", 90)
+              .html("Forschungsgelder nach Bundesland")
+              .style("font-size", 14)
 
-            
-              function ready(error, topo) {
-
-                let mouseOver = function(d) {
-                  d3.selectAll(".name")
-                    .transition()
-                    .duration(200)
-                    .style("opacity", .5)
-                  d3.select(this)
-                    .transition()
-                    .duration(200)
-                    .style("opacity", 1)
-                    .style("stroke", "black")
-                }
-
-                let mouseLeave = function(d) {
-                  d3.selectAll(".name")
-                    .transition()
-                    .duration(200)
-                    .style("opacity", .8)
-                  d3.select(this)
-                    .transition()
-                    .duration(200)
-                    .style("stroke", "transparent")
-                }
-
-                    // Draw the map
-                    svg_2.append("g")
-                      .selectAll("path")
-                      .data(topo.features)
-                      .enter()
-                      .call(legend)
-                      .append("path")
-                        // draw each country
-                        .attr("d", d3.geoPath()
-                          .projection(projection_2)
-                        )
-                        // set the color of each country
-                        .attr("fill", function (d) {
-                          d.total = data.get(d.id) || 0;
-                          return colorScale(d.total);
-                        })
-                    .style("stroke", "transparent")
-                    .attr("class", function(d){ return "Country" } )
-                    .style("opacity", .8)
-                    .on("mouseover", mouseOver )
-                    .on("mouseleave", mouseLeave )
-
-
-                    //Text unten rechts
-                    svg_2.append("text")
-                      .attr("text-anchor", "end")
-                      .style("fill", "black")
-                      .attr("x", width - 20)
-                      .attr("y", height - 30)
-                      .attr("width", 90)
-                      .html("Forschungsgelder nach Bundesland")
-                      .style("font-size", 14)
-
-                    //Legenden-Beschreibung
-                    svg_2.append("text")
-                      .attr("text-anchor", "end")
-                      .style("fill", "black")
-                      .attr("x", width - 360)
-                      .attr("y", height - 585)
-                      .attr("width", 90)
-                      .html("In millions of Euro")
-                      .style("font-size", 14)
+            //Legenden-Beschreibung
+            svg_2.append("text")
+              .attr("text-anchor", "end")
+              .style("fill", "black")
+              .attr("x", width - 360)
+              .attr("y", height - 585)
+              .attr("width", 90)
+              .html("In millions of Euro")
+              .style("font-size", 14)
 
 
 
-                    }
-          </script>
-        </div>
+          }
+        </script>
       </div>
-  
-      <div class="row">
-        <div class="col-lg-1"></div>
-        <div class="col-lg-10 textbox">
-          <h3>
-            Racing-Bars:
-          </h3>
-          <p>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-            eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-            voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-            clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
-            amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-            sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-            rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-            ipsum dolor sit amet.
-          </p>
-        </div>
-      </div>
-      <div class="row" style="padding-top: 80px;">
-        <div class="col-lg-1"></div>
-        <div class="col-lg-11">
-          <h2 style="margin-left: 20px;">
-            Forschungsförderungsdifferenzen im deutschen Föderalismus  
-          </h2>
-          <h4 style="margin-left: 20px;">
-            Number of Projects started each year
-          </h4>
-          <script type="module">
-            import define from "./racing_bars.js";
-            import { Runtime, Library, Inspector } from "./runtime.js";
-    
-            const runtime = new Runtime();
-            const main = runtime.module(define, Inspector.into(document.body));
-          </script>
-        </div>
-      </div>
-
-          
     </div>
+
+    <div class="row">
+      <div class="col-lg-1"></div>
+      <div class="col-lg-10 textbox">
+        <h3>
+          Racing-Bars:
+        </h3>
+        <p>
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+          eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+          voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+          clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
+          amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+          sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+          rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+          ipsum dolor sit amet.
+        </p>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 80px;">
+      <div class="col-lg-1"></div>
+      <div class="col-lg-11">
+        <h2 style="margin-left: 20px;">
+          Forschungsförderungsdifferenzen im deutschen Föderalismus
+        </h2>
+        <h4 style="margin-left: 20px;">
+          Number of Projects started each year
+        </h4>
+        <script type="module">
+          import define from "./racing_bars.js";
+          import { Runtime, Library, Inspector } from "./runtime.js";
+
+          const runtime = new Runtime();
+          const main = runtime.module(define, Inspector.into(document.body));
+        </script>
+      </div>
+    </div>
+
+
   </div>
-  
+  </div>
+
 </body>
