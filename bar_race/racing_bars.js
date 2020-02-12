@@ -10,13 +10,15 @@ md`## Bundesland`
 d3.csvParse(await FileAttachment("d3_data.csv").text(), d3.autoType)
 )});
   main.variable(observer());
-  main.variable(observer("viewof replay")).define("viewof replay", ["html"], function(html){return(
-html`<button>Replay`
-)});
+  main.variable(observer("viewof replay")).define("viewof replay", ["html"], function (html) {
+    return (
+      html`<button>Restart`
+    )
+  });
   main.variable("replay").define("replay", ["Generators", "viewof replay"], (G, _) => G.input(_));
-  main.variable(observer("chart")).define("chart", ["replay","d3","width","height","bars","axis","labels","ticker","keyframes","duration","x","invalidation"], async function*(replay,d3,width,height,bars,axis,labels,ticker,keyframes,duration,x,invalidation)
-{
-  replay;
+  main.variable(observer("chart")).define("chart", ["replay", "d3", "width", "height", "bars", "axis", "labels", "ticker", "keyframes", "duration", "x", "invalidation"], async function* (replay, d3, width, height, bars, axis, labels, ticker, keyframes, duration, x, invalidation) {
+    replay;
+
 
   const svg = d3.create("svg")
       .attr("viewBox", [0, 0, width, height]);
@@ -85,9 +87,10 @@ function rank(value) {
   main.variable().define(["rank","datevalues"], function(rank,datevalues){return(
 rank(name => datevalues[0][1].get(name))
 )});
+
 //speed of bars
   main.variable("k").define("k", function(){return(
-25
+1
 )});
   main.variable("keyframes").define("keyframes", ["d3","datevalues","k","rank"], function(d3,datevalues,k,rank)
 {
