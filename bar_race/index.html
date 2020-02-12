@@ -62,16 +62,31 @@
       </div>
       <div class="col-lg-3"></div>
     </div>
-
+    <div class="row">
+      <div class="col-lg-4"></div>
+      <div class="col-lg-4" style="text-align: center;">
+        <h5>
+          Forschungsförderungsdifferenzen im deutschen Föderalismus
+        </h5>
+      </div>
+      <div class="col-lg-4"></div>
+      
+    </div>
       <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-10 textbox">
           <h3>
-            Maps:
+            Visualisation about project location and federal state fundin (EUR)
           </h3>
           <p>
-            Maps mit dots:
-            Maps unterteilt in bundeslaender
+            The left map shows the projects grouped by the institutes.
+            That results in a pointcloud where every dot marks an institute with at least one project.
+            This pointcloud is easily readable and gives a gives a first impression about how funded projects are distributed.
+            (Additionaly we decided a encode the numbers of project each institute has by the size of the dots. Therefore bigger dots means a higher number of projects. For visibility the numbers of projects to dot size ratio is not linear.)
+          </p>
+
+          <p>
+            The right map represents the amount of money which was spend into funding research projects.
           </p>
         </div>
       </div>
@@ -296,7 +311,9 @@
             Racing-Bars:
           </h3>
           <p>
-            Racing bars because time and missing data
+            The next very important step for us was to see the development from the different federal states of germany through the years.
+            To achieve that build a dataset that had all the started projects per year grouped by the federal states where they are located.
+            We choose the technic of row-deletion for our <a href="https://towardsdatascience.com/missing-data-cfd9dbfd11b7" style="color: black;"><b>missing data</b></a> because we categorized the data as MCAR.
           </p>
         </div>
       </div>
@@ -304,7 +321,7 @@
         <div class="col-lg-1"></div>
         <div class="col-lg-11">
           <h2 style="margin-left: 20px;">
-            Forschungsförderungsdifferenzen im deutschen Föderalismus  
+            Started projects in a historical timeline
           </h2>
           <h4 style="margin-left: 20px;">
             Number of Projects started each year
