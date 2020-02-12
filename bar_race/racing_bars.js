@@ -14,7 +14,7 @@ export default function define(runtime, observer) {
 d3.csvParse(await FileAttachment("d3_data.csv").text(), d3.autoType)
 )});
   main.variable(observer());
-  main.variable(observer("viewof replay")).define("viewof replay", ["html"], function(html){return(
+  main.variable("viewof replay").define("viewof replay", ["html"], function(html){return(
 html`<button>Replay`
 )});
   main.variable("replay").define("replay", ["Generators", "viewof replay"], (G, _) => G.input(_));
@@ -275,7 +275,7 @@ margin.top + barSize * n + margin.bottom
 )});
 //Bar
   main.variable(("margin")).define("margin", function(){return(
-{top: 16, right: 200, bottom: 6, left: 50}
+    {top: 50, right: 500, bottom: 50, left: 500}
 )});
 
   main.variable(("d3")).define("d3", ["require"], function(require){return(
