@@ -4,17 +4,15 @@ export default function define(runtime, observer) {
   const fileAttachments = new Map([["d3_data.csv",new URL("./files/forschungsmittel_der_laender",import.meta.url)]]);
   main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
   main.variable(observer()).define(["md"], function(md){return(
-
-
-md`# Forschungsförderungsdifferenzen im deutschen Föderalismus  
-Number of Projects started each year `
+  md`## &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Forschungsförderungsdifferenzen im deutschen Föderalismus  
+### &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Number of Projects started each year `
   )});
 
   main.variable("data").define("data", ["d3","FileAttachment"], async function(d3,FileAttachment){return(
 d3.csvParse(await FileAttachment("d3_data.csv").text(), d3.autoType)
 )});
   main.variable(observer());
-  main.variable(observer("viewof replay")).define("viewof replay", ["html"], function(html){return(
+  main.variable("viewof replay").define("viewof replay", ["html"], function(html){return(
 html`<button>Replay`
 )});
   main.variable("replay").define("replay", ["Generators", "viewof replay"], (G, _) => G.input(_));
@@ -275,7 +273,7 @@ margin.top + barSize * n + margin.bottom
 )});
 //Bar
   main.variable(("margin")).define("margin", function(){return(
-{top: 16, right: 200, bottom: 6, left: 50}
+{top: 50, right: 500, bottom: 50, left: 500}
 )});
 
   main.variable(("d3")).define("d3", ["require"], function(require){return(
