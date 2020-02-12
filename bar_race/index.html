@@ -130,12 +130,12 @@
                 .data(dataGeo.features)
                 .enter()
                 .append("path")
-                  .attr("fill", "#b8b8b8")
+                  .attr("fill", "#320894")
                   .attr("d", d3.geoPath()
                       .projection(projection)
                   )
                 .style("stroke", "none")
-                .style("opacity", .3)
+                .style("opacity", .8)
 
             // Add circles:
             svg
@@ -164,50 +164,6 @@
                 .html("Forschungseinrichtungen")
                 .style("font-size", 14)
 
-
-            // --------------- //
-            // ADD LEGEND //
-            // --------------- //
-
-            // Add legend: circles
-            var valuesToShow = [10,100,1000]
-            var xCircle = 40
-            var xLabel = 90
-            svg
-              .selectAll("legend")
-              .data(valuesToShow)
-              .enter()
-              .append("circle")
-                .attr("cx", xCircle)
-                .attr("cy", function(d){ return height - size(d) } )
-                .attr("r", function(d){ return size(d) })
-                .style("fill", "none")
-                .attr("stroke", "black")
-
-            // Add legend: segments
-            svg
-              .selectAll("legend")
-              .data(valuesToShow)
-              .enter()
-              .append("line")
-                .attr('x1', function(d){ return xCircle + size(d) } )
-                .attr('x2', xLabel)
-                .attr('y1', function(d){ return height - size(d) } )
-                .attr('y2', function(d){ return height - size(d) } )
-                .attr('stroke', 'black')
-                .style('stroke-dasharray', ('2,2'))
-
-            // Add legend: labels
-            svg
-              .selectAll("legend")
-              .data(valuesToShow)
-              .enter()
-              .append("text")
-                .attr('x', xLabel)
-                .attr('y', function(d){ return height - size(d) } )
-                .text( function(d){ return d } )
-                .style("font-size", 15)
-                .attr('alignment-baseline', 'middle')
             }
           </script>
         </div>
