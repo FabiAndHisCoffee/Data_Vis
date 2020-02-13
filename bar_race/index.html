@@ -92,7 +92,7 @@
 
           // The svg
           var svg = d3.select("#map_dots")
-            width = +svg.attr("width"),
+          width = +svg.attr("width"),
             height = +svg.attr("height");
 
           // Map and projection
@@ -183,6 +183,49 @@
               .html("Forschungseinrichtungen")
               .style("font-size", 14)
 
+            // --------------- //
+            // ADD LEGEND //
+            // --------------- //
+
+            // Add legend: circles
+            var valuesToShow = [10,100,500]
+            var xCircle = 40
+            var xLabel = 90
+            svg
+              .selectAll("legend")
+              .data(valuesToShow)
+              .enter()
+              .append("circle")
+              .attr("cx", xCircle)
+              .attr("cy", function (d) { return height - size(d) })
+              .attr("r", function (d) { return size(d) })
+              .style("fill", "none")
+              .attr("stroke", "black")
+
+            // Add legend: segments
+            svg
+              .selectAll("legend")
+              .data(valuesToShow)
+              .enter()
+              .append("line")
+              .attr('x1', function (d) { return xCircle + size(d) })
+              .attr('x2', xLabel)
+              .attr('y1', function (d) { return height - size(d) })
+              .attr('y2', function (d) { return height - size(d) *10})
+              .attr('stroke', 'black')
+              .style('stroke-dasharray', ('2,2'))
+
+            // Add legend: labels
+            svg
+              .selectAll("legend")
+              .data(valuesToShow)
+              .enter()
+              .append("text")
+              .attr('x', xLabel)
+              .attr('y', function (d) { return height - size(d) * 10 })
+              .text(function (d) { return d })
+              .style("font-size", 10)
+              .attr('alignment-baseline', 'middle')
           }
 
         </script>
