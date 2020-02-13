@@ -76,17 +76,25 @@
         <div class="col-lg-1"></div>
         <div class="col-lg-10 textbox">
           <h3>
-            Visualisation about project location and federal state fundin (EUR)
+            Visualisation about project location and federal state funding (EUR)
           </h3>
           <p>
+            The basic map from D3 does not have special information about the different federal states of germany. 
+            Therefore the first step was to add the needed information inside the map. 
+            To achieve that we used <a href="https://github.com/isellsoap/deutschlandGeoJSON" style="color: black;"><b>geojson data</b></a> which gives a detailed partition.
+          </p>
+          <p>  
             The left map shows the projects grouped by the institutes.
             That results in a pointcloud where every dot marks an institute with at least one project.
             This pointcloud is easily readable and gives a gives a first impression about how funded projects are distributed.
-            (Additionaly we decided a encode the numbers of project each institute has by the size of the dots. Therefore bigger dots means a higher number of projects. For visibility the numbers of projects to dot size ratio is not linear.)
+            Additionaly we decided a encode the numbers of project each institute has by the size of the dots. 
+            Therefore bigger dots represents a higher number of projects. 
+            For visibility the numbers of projects to dot size ratio is not linear.
           </p>
 
           <p>
-            The right map represents the amount of money which was spend into funding research projects.
+            The right map represents the amount of money which was spend into funding research projects. 
+            Keep in mind that about two theird of the overall money from the DFG comes straight from the states themself.
           </p>
         </div>
       </div>
