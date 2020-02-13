@@ -14,7 +14,7 @@ export default function define(runtime, observer) {
 d3.csvParse(await FileAttachment("d3_data.csv").text(), d3.autoType)
 )});
   main.variable(observer());
-  main.variable("viewof replay").define("viewof replay", ["html"], function(html){return(
+  main.variable(observer("viewof replay")).define("viewof replay", ["html"], function(html){return(
 html`<button>Replay`
 )});
   main.variable("replay").define("replay", ["Generators", "viewof replay"], (G, _) => G.input(_));
