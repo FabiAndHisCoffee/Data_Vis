@@ -12,6 +12,9 @@
   --syntax_key: #6636b4;
   --mono_fonts: 82%/1.5 Menlo, Consolas, monospace;
 }
+
+
+
 .observablehq--collapsed,
 .observablehq--expanded,
 .observablehq--function,
@@ -83,4 +86,16 @@
 .observablehq--error .observablehq--inspect {
   word-break: break-all;
   white-space: pre-wrap;
+}
+
+.circle:hover{
+  stroke: black;
+  stroke-width: 4px;
+}
+
+table.d {
+  table-layout: fixed;
+  height: 100px;
+  width: 100%;
+  text-align: right;
 }
