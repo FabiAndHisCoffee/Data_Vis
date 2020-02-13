@@ -24,6 +24,7 @@
     crossorigin="anonymous"></script>
 
 </head>
+
 <body>
   <div class="container">
     <div class="row">
@@ -63,18 +64,18 @@
           et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
           takimata sanctus est Lorem ipsum dolor sit amet.
         </p>
-        <table class="d" style="width:100%"style= "table-layout:fix">
+        <table class="d" style="width:100%" style="table-layout:fix">
           <tr>
             <th>Institutionsname</th>
-            <th>Number of Projects</th> 
-            <th>------------------</th> 
+            <th>Number of Projects</th>
+            <th>------------------</th>
             <th>Bundesland</th>
             <th>Forschungsgelder</th>
           </tr>
           <tr>
             <td id="Institut"></td>
             <td id="Anzahl_Projekte">----------------</td>
-            <td >--------------------------</td>
+            <td>--------------------------</td>
             <td id="Bundesland">----------------</td>
             <td id="Money">-----------------</td>
           </tr>
@@ -90,7 +91,7 @@
         <script>
 
           // The svg
-          var svg = d3.select("#map_dots"),
+          var svg = d3.select("#map_dots")
             width = +svg.attr("width"),
             height = +svg.attr("height");
 
@@ -120,6 +121,11 @@
             .style("border-width", "2px")
             .style("border-radius", "5px")
             .style("padding", "5px")
+
+          const zoom = d3.zoom()
+            .scaleExtent([1, 8])
+            .on('zoom', zoomed);
+
 
           function ready(error, dataGeo, data) {
 
@@ -164,8 +170,8 @@
               .on("mouseover", function (d) {
                 document.getElementById("Institut").innerHTML = d.name;
                 document.getElementById("Anzahl_Projekte").innerHTML = Math.round(d.NumberOfProjects);
-              ;})
-
+                ;
+              })
             // Add title and explanation
             svg
               .append("text")
@@ -178,18 +184,20 @@
               .style("font-size", 14)
 
           }
+
         </script>
       </div>
 
+      <!--Second Map------------------------------------------------------------------------------------------------->
       <div class="col-lg-1"></div>
       <div class="col-lg-5">
         <svg id="my_dataviz" width="500" height="600"></svg>
         <script>
-
           // The svg
-          var svg_2 = d3.select("#my_dataviz"),
-            width = +svg.attr("width"),
+          var svg_2 = d3.select("#my_dataviz")
+          width = +svg.attr("width"),
             height = +svg.attr("height");
+
 
           // Map and projection
           var path = d3.geoPath();
@@ -229,17 +237,18 @@
           // Load external data and boot
           d3.queue()
             .defer(d3.json, "../Map_Test/bundeslaender.geojson")
-            .defer(d3.csv, "../Map_Test/Gelder_Bundesland.csv", function (d) {data.set(d.id, d.pop); })
+            .defer(d3.csv, "../Map_Test/Gelder_Bundesland.csv", function (d) { data.set(d.id, d.pop); })
             .await(ready);
-          
+
           var q = d3.queue()
             .defer(d3.csv, "../Map_Test/Gelder_Bundesland.csv")
             .await(ready);
 
 
+
           function ready(error, topo) {
 
-            let mouseOver = function (d,q) {
+            let mouseOver = function (d, q) {
               d3.selectAll(".name")
                 .transition()
                 .duration(200)
@@ -249,55 +258,55 @@
                 .duration(200)
                 .style("opacity", 1)
                 .style("stroke", "black")
-                if (d.total == 1355){
-                  document.getElementById("Bundesland").innerHTML = "Schleswig-Holstein";
-                }
-                if (d.total == 	765){
-                  document.getElementById("Bundesland").innerHTML = "Mecklenburg-Vorpommern";
-                }
-                if (d.total == 	1148){
-                  document.getElementById("Bundesland").innerHTML = "Brandenburg";
-                }
-                if (d.total == 4573){
-                  document.getElementById("Bundesland").innerHTML = "Berlin";
-                }
-                if (d.total == 	8983){
-                  document.getElementById("Bundesland").innerHTML = "Niedersachsen";
-                }
-                if (d.total == 898){
-                  document.getElementById("Bundesland").innerHTML = "Bremen";
-                }
-                if (d.total == 13418){
-                  document.getElementById("Bundesland").innerHTML = "NRW";
-                }
-                if (d.total == 3353){
-                  document.getElementById("Bundesland").innerHTML = "Rheinland-Pfalz";
-                }
-                if (d.total == 	2168){
-                  document.getElementById("Bundesland").innerHTML = "Saarland";
-                }
-                if (d.total == 	18040){
-                  document.getElementById("Bundesland").innerHTML = "Bayern";
-                }
-                if (d.total == 24698){
-                  document.getElementById("Bundesland").innerHTML = "Baden-Württenberg";
-                }
-                if (d.total == 1256){
-                  document.getElementById("Bundesland").innerHTML = "Thüringen";
-                }
-                if (d.total == 		3234){
-                  document.getElementById("Bundesland").innerHTML = "Sachsen";
-                }
-                if (d.total == 	863){
-                  document.getElementById("Bundesland").innerHTML = "Sachsen-Anhalt";
-                }
-                if (d.total == 32325){
-                  document.getElementById("Bundesland").innerHTML = "Hessen";  
-                }
-                if (d.total == 2478){
-                  document.getElementById("Bundesland").innerHTML = "Hamburg";  
-                }                         
-                document.getElementById("Money").innerHTML = Math.round(d.total * 1000000) + " €";
+              if (d.total == 1355) {
+                document.getElementById("Bundesland").innerHTML = "Schleswig-Holstein";
+              }
+              if (d.total == 765) {
+                document.getElementById("Bundesland").innerHTML = "Mecklenburg-Vorpommern";
+              }
+              if (d.total == 1148) {
+                document.getElementById("Bundesland").innerHTML = "Brandenburg";
+              }
+              if (d.total == 4573) {
+                document.getElementById("Bundesland").innerHTML = "Berlin";
+              }
+              if (d.total == 8983) {
+                document.getElementById("Bundesland").innerHTML = "Niedersachsen";
+              }
+              if (d.total == 898) {
+                document.getElementById("Bundesland").innerHTML = "Bremen";
+              }
+              if (d.total == 13418) {
+                document.getElementById("Bundesland").innerHTML = "NRW";
+              }
+              if (d.total == 3353) {
+                document.getElementById("Bundesland").innerHTML = "Rheinland-Pfalz";
+              }
+              if (d.total == 2168) {
+                document.getElementById("Bundesland").innerHTML = "Saarland";
+              }
+              if (d.total == 18040) {
+                document.getElementById("Bundesland").innerHTML = "Bayern";
+              }
+              if (d.total == 24698) {
+                document.getElementById("Bundesland").innerHTML = "Baden-Württenberg";
+              }
+              if (d.total == 1256) {
+                document.getElementById("Bundesland").innerHTML = "Thüringen";
+              }
+              if (d.total == 3234) {
+                document.getElementById("Bundesland").innerHTML = "Sachsen";
+              }
+              if (d.total == 863) {
+                document.getElementById("Bundesland").innerHTML = "Sachsen-Anhalt";
+              }
+              if (d.total == 32325) {
+                document.getElementById("Bundesland").innerHTML = "Hessen";
+              }
+              if (d.total == 2478) {
+                document.getElementById("Bundesland").innerHTML = "Hamburg";
+              }
+              document.getElementById("Money").innerHTML = Math.round(d.total * 1000000) + " €";
             }
 
             let mouseLeave = function (d) {
@@ -357,6 +366,7 @@
       </div>
     </div>
 
+    <!-- Racing bar charts-------------------------------------------------------------------------->
     <div class="row">
       <div class="col-lg-1"></div>
       <div class="col-lg-10 textbox">
