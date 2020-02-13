@@ -69,15 +69,15 @@
           <p>  
             The left map shows the projects grouped by the institutes.
             That results in a pointcloud where every dot marks an institute with at least one project.
-            This pointcloud is easily readable and gives a gives a first impression about how funded projects are distributed.
-            Additionaly we decided a encode the numbers of project each institute has by the size of the dots. 
-            Therefore bigger dots represents a higher number of projects. 
-            For visibility the numbers of projects to dot size ratio is not linear.
+            This pointcloud is easily readable and gives a first impression about how funded projects are distributed.
+            Additionaly we decided a encode the number of project each institute has, by the size of the dots. 
+            Therefore bigger dots represent a higher number of projects. 
+            For better visibility the numbers of projects to dot size ratio is not linear.
           </p>
 
           <p>
             The right map represents the amount of money which was spend into funding research projects. 
-            Keep in mind that about two theird of the overall money from the DFG comes straight from the states themself.
+            Keep in mind that about two third of the overall money from the DFG comes straight from the states themself.
           </p>
           <table class="d" style="width:100%"style= "table-layout:fix">
             <tr>
@@ -192,7 +192,49 @@
                 .attr("width", 90)
                 .html("Research Institute")
                 .style("font-size", 14)
+                        // --------------- //
+            // ADD LEGEND //
+            // --------------- //
 
+            // Add legend: circles
+            var valuesToShow = [10,100,500]
+            var xCircle = 40
+            var xLabel = 90
+            svg
+              .selectAll("legend")
+              .data(valuesToShow)
+              .enter()
+              .append("circle")
+              .attr("cx", xCircle)
+              .attr("cy", function (d) { return height - size(d) })
+              .attr("r", function (d) { return size(d) })
+              .style("fill", "none")
+              .attr("stroke", "black")
+
+            // Add legend: segments
+            svg
+              .selectAll("legend")
+              .data(valuesToShow)
+              .enter()
+              .append("line")
+              .attr('x1', function (d) { return xCircle + size(d) })
+              .attr('x2', xLabel)
+              .attr('y1', function (d) { return height - size(d) })
+              .attr('y2', function (d) { return height - size(d) *10})
+              .attr('stroke', 'black')
+              .style('stroke-dasharray', ('2,2'))
+
+            // Add legend: labels
+            svg
+              .selectAll("legend")
+              .data(valuesToShow)
+              .enter()
+              .append("text")
+              .attr('x', xLabel)
+              .attr('y', function (d) { return height - size(d) * 10 })
+              .text(function (d) { return d })
+              .style("font-size", 10)
+              .attr('alignment-baseline', 'middle')
             }
           </script>
         </div>
@@ -383,7 +425,9 @@
           </h4>
           <p>
             The next very important step for us was to see the development from the different federal states of germany through the years.
-            To achieve that build a dataset that had all the started projects per year grouped by the federal states where they are located.
+            To achieve that build a dataset that had all the started projects per year grouped by the federal states where they are located.  
+            We then subtracted the number of projects ending each year and summend up the results for each.
+            Our goal and result was the number of running projects per state in each year.
             We choose the technic of row-deletion for our <a href="https://towardsdatascience.com/missing-data-cfd9dbfd11b7" style="color: black;"><b>missing data</b></a> because we categorized the data as MCAR.
           </p>
           <script type="module">
