@@ -87,14 +87,14 @@
             The left map shows the projects grouped by the institutes.
             That results in a pointcloud where every dot marks an institute with at least one project.
             This pointcloud is easily readable and gives a gives a first impression about how funded projects are distributed.
-            Additionaly we decided a encode the numbers of project each institute has by the size of the dots. 
-            Therefore bigger dots represents a higher number of projects. 
-            For visibility the numbers of projects to dot size ratio is not linear.
+            Additionaly we decided to encode the number of projects each institute has, by the size of the dots. 
+            Therefore bigger dots represent a higher number of projects. 
+            For better visibility the number of projects to dot size ratio is not linear.
           </p>
 
           <p>
             The right map represents the amount of money which was spend into funding research projects. 
-            Keep in mind that about two theird of the overall money from the DFG comes straight from the states themself.
+            Keep in mind that about two third of the overall money from the DFG comes straight from the states themself. (see wikipedia page of DFG)
           </p>
         </div>
       </div>
@@ -320,7 +320,9 @@
           </h3>
           <p>
             The next very important step for us was to see the development from the different federal states of germany through the years.
-            To achieve that build a dataset that had all the started projects per year grouped by the federal states where they are located.
+            To achieve that, we build a dataset that had all the started projects per year grouped by the federal states where they are located.  
+            We then subtracted all ending projects each year from the started ones and added up the results, so that we get the chart which shows
+            the number of running projects.  
             We choose the technic of row-deletion for our <a href="https://towardsdatascience.com/missing-data-cfd9dbfd11b7" style="color: black;"><b>missing data</b></a> because we categorized the data as MCAR.
           </p>
         </div>
