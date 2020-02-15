@@ -24,7 +24,6 @@
     crossorigin="anonymous"></script>
 
 </head>
-
 <body>
   <div class="container">
     <div class="row">
@@ -46,144 +45,154 @@
       </div>
       <div class="col-lg-3"></div>
     </div>
-
     <div class="row">
-      <div class="col-lg-1"></div>
-      <div class="col-lg-10 textbox">
-        <h3>
-          Maps:
-        </h3>
-        <p>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-          sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-          rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-          ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-          sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-          et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-          takimata sanctus est Lorem ipsum dolor sit amet.
-        </p>
-        <table class="d" style="width:100%" style="table-layout:fix">
-          <tr>
-            <th>Institutionsname</th>
-            <th>Number of Projects</th>
-            <th>------------------</th>
-            <th>Bundesland</th>
-            <th>Forschungsgelder</th>
-          </tr>
-          <tr>
-            <td id="Institut"></td>
-            <td id="Anzahl_Projekte">----------------</td>
-            <td>--------------------------</td>
-            <td id="Bundesland">----------------</td>
-            <td id="Money">-----------------</td>
-          </tr>
-        </table>
+      <div class="col-lg-4"></div>
+      <div class="col-lg-4" style="text-align: center;">
+        <h5>
+          Forschungsförderungsdifferenzen im deutschen Föderalismus
+        </h5>
       </div>
+      <div class="col-lg-4"></div>
+      
     </div>
-    <div class="row">
-      <div class="col-lg-1"></div>
-      <div class="col-lg-5">
-        <!-- Create an element where the map will take place -->
-        <svg id="map_dots" width="475" height="600"></svg>
+      <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10 textbox">
+          <h3>
+            Visualisation about project location and federal state funding (EUR)
+          </h3>
+          <p>
+            The basic map from D3 does not have special information about the different federal states of germany. 
+            Therefore the first step was to add the needed information inside the map. 
+            To achieve that we used <a href="https://github.com/isellsoap/deutschlandGeoJSON" style="color: black;"><b>geojson data</b></a> which gives a detailed partition.
+          </p>
+          <p>  
+            The left map shows the projects grouped by the institutes.
+            That results in a pointcloud where every dot marks an institute with at least one project.
+            This pointcloud is easily readable and gives a first impression about how funded projects are distributed.
+            Additionaly we decided a encode the number of project each institute has, by the size of the dots. 
+            Therefore bigger dots represent a higher number of projects. 
+            For better visibility the numbers of projects to dot size ratio is not linear.
+          </p>
 
-        <script>
+          <p>
+            The right map represents the amount of money which was spend into funding research projects. 
+            Keep in mind that about two third of the overall money from the DFG comes straight from the states themself.
+          </p>
+          <table class="d" style="width:100%"style= "table-layout:fix">
+            <tr>
+              <th>Institutionsname</th>
+              <th>Number of Projects</th> 
+              <th></th> 
+              <th>State</th>
+              <th>Researchfund</th>
+            </tr>
+            <tr>
+              <td id="Institut"></td>
+              <td id="Anzahl_Projekte"></td>
+              <td ></td>
+              <td id="Bundesland"></td>
+              <td id="Money"></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-5">
+          <!-- Create an element where the map will take place -->
+          <svg id="map_dots" width="475" height="600"></svg>
 
-          // The svg
-          var svg = d3.select("#map_dots")
-          width = +svg.attr("width"),
-            height = +svg.attr("height");
+          <script>
 
-          // Map and projection
-          var projection = d3.geoMercator()
-            .center([10, 51])                // GPS of location to zoom on
-            .scale(2500)                       // This is like the zoom
-            .translate([width / 2, height / 2])
+            // The svg
+            var svg = d3.select("#map_dots"),
+              width = +svg.attr("width"),
+              height = +svg.attr("height");
 
-          d3.queue()
-            .defer(d3.json, "./files/bundeslaender.geojson")  // World shape
-            .defer(d3.csv, "./files/ffddf_data.csv") // Position of circles
-            .await(ready);
+            // Map and projection
+            var projection = d3.geoMercator()
+              .center([10, 51])                // GPS of location to zoom on
+              .scale(2500)                       // This is like the zoom
+              .translate([width / 2, height / 2])
 
-          d3.csv("./files/ffddf_data.csv", function (data) {
-            d3.select("#output").html(
-            );
-          });
+            d3.queue()
+              .defer(d3.json, "./files/bundeslaender.geojson")  // World shape
+              .defer(d3.csv, "./files/ffddf_data.csv") // Position of circles
+              .await(ready);
 
-
-          var Tooltip = d3.select("#map_dots")
-            .append("div")
-            .attr("class", "tooltip")
-            .style("opacity", 1)
-            .style("background-color", "white")
-            .style("border", "solid")
-            .style("border-width", "2px")
-            .style("border-radius", "5px")
-            .style("padding", "5px")
-
-          const zoom = d3.zoom()
-            .scaleExtent([1, 8])
-            .on('zoom', zoomed);
+            d3.csv("./files/ffddf_data.csv", function (data) {
+              d3.select("#output").html(
+              );
+            });
 
 
-          function ready(error, dataGeo, data) {
+            var Tooltip = d3.select("#map_dots")
+              .append("div")
+              .attr("class", "tooltip")
+              .style("opacity", 1)
+              .style("background-color", "white")
+              .style("border", "solid")
+              .style("border-width", "2px")
+              .style("border-radius", "5px")
+              .style("padding", "5px")
 
-            // Create a color scale
-            var allContinent = d3.map(data, function (d) { return (d.name) }).keys()
-            var color = d3.scaleOrdinal()
-              .domain(allContinent)
-              .range(d3.schemePaired);
+            function ready(error, dataGeo, data) {
 
-            // Add a scale for bubble size  
-            var valueExtent = d3.extent(data, function (d) { return +d.NumberOfProjects; })
-            var size = d3.scaleSqrt()
-              .domain(valueExtent)  // What's in the data
-              .range([2, 10])  // Size in pixel
+              // Create a color scale
+              var allContinent = d3.map(data, function (d) { return (d.name) }).keys()
+              var color = d3.scaleOrdinal()
+                .domain(allContinent)
+                .range(d3.schemePaired);
 
-            // Draw the map
-            svg.append("g")
-              .selectAll("path")
-              .data(dataGeo.features)
-              .enter()
-              .append("path")
-              .attr("fill", "#320894")
-              .attr("d", d3.geoPath()
-                .projection(projection)
-              )
-              .style("stroke", "none")
-              .style("opacity", .8)
+              // Add a scale for bubble size  
+              var valueExtent = d3.extent(data, function (d) { return +d.NumberOfProjects; })
+              var size = d3.scaleSqrt()
+                .domain(valueExtent)  // What's in the data
+                .range([2, 10])  // Size in pixel
 
-            // Add circles:
-            svg
-              .selectAll("myCircles")
-              .data(data.sort(function (a, b) { return +b.n - +a.n }).filter(function (d, i) { return i < 1000 }))
-              .enter()
-              .append("circle")
-              .attr("cx", function (d) { return projection([+d.lon, +d.lat])[0] })
-              .attr("cy", function (d) { return projection([+d.lon, +d.lat])[1] })
-              .attr("r", function (d) { return size(+d.NumberOfProjects) })
-              .style("fill", function (d) { return color() })
-              .attr("stroke", function (d) { if (d.NumberOfProjects > 2000) { return "black" } else { return "none" } })
-              .attr("stroke-width", 1)
-              .attr("fill-opacity", .4)
-              .on("mouseover", function (d) {
-                document.getElementById("Institut").innerHTML = d.name;
-                document.getElementById("Anzahl_Projekte").innerHTML = Math.round(d.NumberOfProjects);
-                ;
-              })
-            // Add title and explanation
-            svg
-              .append("text")
-              .attr("text-anchor", "end")
-              .style("fill", "black")
-              .attr("x", width - 10)
-              .attr("y", height - 30)
-              .attr("width", 90)
-              .html("Forschungseinrichtungen")
-              .style("font-size", 14)
+              // Draw the map
+              svg.append("g")
+                .selectAll("path")
+                .data(dataGeo.features)
+                .enter()
+                .append("path")
+                .attr("fill", "#320894")
+                .attr("d", d3.geoPath()
+                  .projection(projection)
+                )
+                .style("stroke", "none")
+                .style("opacity", .8)
 
-            // --------------- //
+              // Add circles:
+              svg
+                .selectAll("myCircles")
+                .data(data.sort(function (a, b) { return +b.n - +a.n }).filter(function (d, i) { return i < 1000 }))
+                .enter()
+                .append("circle")
+                .attr("cx", function (d) { return projection([+d.lon, +d.lat])[0] })
+                .attr("cy", function (d) { return projection([+d.lon, +d.lat])[1] })
+                .attr("r", function (d) { return size(+d.NumberOfProjects) })
+                .style("fill", function (d) { return color() })
+                .attr("stroke", function (d) { if (d.NumberOfProjects > 2000) { return "black" } else { return "none" } })
+                .attr("stroke-width", 1)
+                .attr("fill-opacity", .4)
+                .on("mouseover", function (d) {
+                  document.getElementById("Institut").innerHTML = d.name;
+                  document.getElementById("Anzahl_Projekte").innerHTML = Math.round(d.NumberOfProjects);
+                ;})
+
+              // Add title and explanation
+              svg
+                .append("text")
+                .attr("text-anchor", "end")
+                .style("fill", "black")
+                .attr("x", width - 10)
+                .attr("y", height - 30)
+                .attr("width", 90)
+                .html("Research Institute")
+                .style("font-size", 14)
+                        // --------------- //
             // ADD LEGEND //
             // --------------- //
 
@@ -226,225 +235,209 @@
               .text(function (d) { return d })
               .style("font-size", 10)
               .attr('alignment-baseline', 'middle')
-          }
-
-        </script>
-      </div>
-
-      <!--Second Map------------------------------------------------------------------------------------------------->
-      <div class="col-lg-1"></div>
-      <div class="col-lg-5">
-        <svg id="my_dataviz" width="500" height="600"></svg>
-        <script>
-          // The svg
-          var svg_2 = d3.select("#my_dataviz")
-          width = +svg.attr("width"),
-            height = +svg.attr("height");
-
-
-          // Map and projection
-          var path = d3.geoPath();
-          var projection_2 = d3.geoMercator()
-            .scale(2500)
-            .center([9.2, 51])
-            .translate([width / 2, height / 2]);
-
-          // Data and color scale
-          var data = d3.map();
-          var colorScale = d3.scaleThreshold()
-            .domain([1000, 4000, 5000, 10000, 15000, 20000, 25000, 30000])
-            .range(d3.schemeBlues[7]);
-
-          // Legend for colorScale:
-          var legend = d3.legendColor()
-            .title("Hello")
-            .labelFormat(d3.format(""))
-            .labels(function ({
-              i,
-              genLength,
-              generatedLabels,
-              labelDelimiter
-            }) {
-              if (i === 0) {
-                const values = generatedLabels[i].split(` ${labelDelimiter} `)
-                return `Less than ${values[1]}`
-              } else if (i === genLength - 1) {
-                const values = generatedLabels[i].split(` ${labelDelimiter} `)
-                return `${values[0]} or more`
-              }
-              return generatedLabels[i]
-            }) //TODO???
-            .scale(colorScale)
-
-
-          // Load external data and boot
-          d3.queue()
-            .defer(d3.json, "../Map_Test/bundeslaender.geojson")
-            .defer(d3.csv, "../Map_Test/Gelder_Bundesland.csv", function (d) { data.set(d.id, d.pop); })
-            .await(ready);
-
-          var q = d3.queue()
-            .defer(d3.csv, "../Map_Test/Gelder_Bundesland.csv")
-            .await(ready);
-
-
-
-          function ready(error, topo) {
-
-            let mouseOver = function (d, q) {
-              d3.selectAll(".name")
-                .transition()
-                .duration(200)
-                .style("opacity", .5)
-              d3.select(this)
-                .transition()
-                .duration(200)
-                .style("opacity", 1)
-                .style("stroke", "black")
-              if (d.total == 1355) {
-                document.getElementById("Bundesland").innerHTML = "Schleswig-Holstein";
-              }
-              if (d.total == 765) {
-                document.getElementById("Bundesland").innerHTML = "Mecklenburg-Vorpommern";
-              }
-              if (d.total == 1148) {
-                document.getElementById("Bundesland").innerHTML = "Brandenburg";
-              }
-              if (d.total == 4573) {
-                document.getElementById("Bundesland").innerHTML = "Berlin";
-              }
-              if (d.total == 8983) {
-                document.getElementById("Bundesland").innerHTML = "Niedersachsen";
-              }
-              if (d.total == 898) {
-                document.getElementById("Bundesland").innerHTML = "Bremen";
-              }
-              if (d.total == 13418) {
-                document.getElementById("Bundesland").innerHTML = "NRW";
-              }
-              if (d.total == 3353) {
-                document.getElementById("Bundesland").innerHTML = "Rheinland-Pfalz";
-              }
-              if (d.total == 2168) {
-                document.getElementById("Bundesland").innerHTML = "Saarland";
-              }
-              if (d.total == 18040) {
-                document.getElementById("Bundesland").innerHTML = "Bayern";
-              }
-              if (d.total == 24698) {
-                document.getElementById("Bundesland").innerHTML = "Baden-Württenberg";
-              }
-              if (d.total == 1256) {
-                document.getElementById("Bundesland").innerHTML = "Thüringen";
-              }
-              if (d.total == 3234) {
-                document.getElementById("Bundesland").innerHTML = "Sachsen";
-              }
-              if (d.total == 863) {
-                document.getElementById("Bundesland").innerHTML = "Sachsen-Anhalt";
-              }
-              if (d.total == 32325) {
-                document.getElementById("Bundesland").innerHTML = "Hessen";
-              }
-              if (d.total == 2478) {
-                document.getElementById("Bundesland").innerHTML = "Hamburg";
-              }
-              document.getElementById("Money").innerHTML = Math.round(d.total * 1000000) + " €";
             }
+          </script>
+        </div>
 
-            let mouseLeave = function (d) {
-              d3.selectAll(".name")
-                .transition()
-                .duration(200)
-                .style("opacity", .8)
-              d3.select(this)
-                .transition()
-                .duration(200)
+        <div class="col-lg-1"></div>
+        <div class="col-lg-5">
+          <svg id="my_dataviz" width="500" height="600"></svg>
+          <script>
+
+            // The svg
+            var svg_2 = d3.select("#my_dataviz"),
+              width = +svg.attr("width"),
+              height = +svg.attr("height");
+
+            // Map and projection
+            var path = d3.geoPath();
+            var projection_2 = d3.geoMercator()
+              .scale(2500)
+              .center([9.2, 51])
+              .translate([width / 2, height / 2]);
+
+            // Data and color scale
+            var data = d3.map();
+            var colorScale = d3.scaleThreshold()
+              .domain([1000, 4000, 5000, 10000, 15000, 20000, 25000, 30000])
+              .range(d3.schemeBlues[7]);
+
+            // Legend for colorScale:
+            var legend = d3.legendColor()
+              .title("Hello")
+              .labelFormat(d3.format(""))
+              .labels(function ({
+                i,
+                genLength,
+                generatedLabels,
+                labelDelimiter
+              }) {
+                if (i === 0) {
+                  const values = generatedLabels[i].split(` ${labelDelimiter} `)
+                  return `Less than ${values[1]}`
+                } else if (i === genLength - 1) {
+                  const values = generatedLabels[i].split(` ${labelDelimiter} `)
+                  return `${values[0]} or more`
+                }
+                return generatedLabels[i]
+              }) //TODO???
+              .scale(colorScale)
+
+
+            // Load external data and boot
+            d3.queue()
+              .defer(d3.json, "../Map_Test/bundeslaender.geojson")
+              .defer(d3.csv, "../Map_Test/Gelder_Bundesland.csv", function (d) {data.set(d.id, d.pop); })
+              .await(ready);
+            
+            var q = d3.queue()
+              .defer(d3.csv, "../Map_Test/Gelder_Bundesland.csv")
+              .await(ready);
+
+
+            function ready(error, topo) {
+
+              let mouseOver = function (d,q) {
+                d3.selectAll(".name")
+                  .transition()
+                  .duration(200)
+                  .style("opacity", .5)
+                d3.select(this)
+                  .transition()
+                  .duration(200)
+                  .style("opacity", 1)
+                  .style("stroke", "black")
+                  if (d.total == 1355){
+                    document.getElementById("Bundesland").innerHTML = "Schleswig-Holstein";
+                  }
+                  if (d.total == 	765){
+                    document.getElementById("Bundesland").innerHTML = "Mecklenburg-Vorpommern";
+                  }
+                  if (d.total == 	1148){
+                    document.getElementById("Bundesland").innerHTML = "Brandenburg";
+                  }
+                  if (d.total == 4573){
+                    document.getElementById("Bundesland").innerHTML = "Berlin";
+                  }
+                  if (d.total == 	8983){
+                    document.getElementById("Bundesland").innerHTML = "Niedersachsen";
+                  }
+                  if (d.total == 898){
+                    document.getElementById("Bundesland").innerHTML = "Bremen";
+                  }
+                  if (d.total == 13418){
+                    document.getElementById("Bundesland").innerHTML = "NRW";
+                  }
+                  if (d.total == 3353){
+                    document.getElementById("Bundesland").innerHTML = "Rheinland-Pfalz";
+                  }
+                  if (d.total == 	2168){
+                    document.getElementById("Bundesland").innerHTML = "Saarland";
+                  }
+                  if (d.total == 	18040){
+                    document.getElementById("Bundesland").innerHTML = "Bayern";
+                  }
+                  if (d.total == 24698){
+                    document.getElementById("Bundesland").innerHTML = "Baden-Württenberg";
+                  }
+                  if (d.total == 1256){
+                    document.getElementById("Bundesland").innerHTML = "Thüringen";
+                  }
+                  if (d.total == 		3234){
+                    document.getElementById("Bundesland").innerHTML = "Sachsen";
+                  }
+                  if (d.total == 	863){
+                    document.getElementById("Bundesland").innerHTML = "Sachsen-Anhalt";
+                  }
+                  if (d.total == 32325){
+                    document.getElementById("Bundesland").innerHTML = "Hessen";  
+                  }
+                  if (d.total == 2478){
+                    document.getElementById("Bundesland").innerHTML = "Hamburg";  
+                  }                         
+                  document.getElementById("Money").innerHTML = Math.round(d.total * 1000000) + " €";
+              }
+
+                let mouseLeave = function (d) {
+                d3.selectAll(".name")
+                  .transition()
+                  .duration(200)
+                  .style("opacity", .8)
+                d3.select(this)
+                  .transition()
+                  .duration(200)
+                  .style("stroke", "transparent")
+              }
+
+              // Draw the map
+              svg_2.append("g")
+                .selectAll("path")
+                .data(topo.features)
+                .enter()
+                .call(legend)
+                .append("path")
+                // draw each country
+                .attr("d", d3.geoPath()
+                  .projection(projection_2)
+                )
+                // set the color of each country
+                .attr("fill", function (d) {
+                  d.total = data.get(d.id) || 0;
+                  return colorScale(d.total);
+                })
                 .style("stroke", "transparent")
+                .attr("class", function (d) { return "Country" })
+                .style("opacity", .8)
+                .on("mouseover", mouseOver)
+                .on("mouseleave", mouseLeave)
+
+              //Text unten rechts
+              svg_2.append("text")
+                .attr("text-anchor", "end")
+                .style("fill", "black")
+                .attr("x", width - 20)
+                .attr("y", height - 30)
+                .attr("width", 90)
+                .html("Researchfund regarding the state")
+                .style("font-size", 14)
+
+              //Legenden-Beschreibung
+              svg_2.append("text")
+                .attr("text-anchor", "end")
+                .style("fill", "black")
+                .attr("x", width - 360)
+                .attr("y", height - 585)
+                .attr("width", 90)
+                .html("In millions of Euro")
+                .style("font-size", 14)
             }
-
-            // Draw the map
-            svg_2.append("g")
-              .selectAll("path")
-              .data(topo.features)
-              .enter()
-              .call(legend)
-              .append("path")
-              // draw each country
-              .attr("d", d3.geoPath()
-                .projection(projection_2)
-              )
-              // set the color of each country
-              .attr("fill", function (d) {
-                d.total = data.get(d.id) || 0;
-                return colorScale(d.total);
-              })
-              .style("stroke", "transparent")
-              .attr("class", function (d) { return "Country" })
-              .style("opacity", .8)
-              .on("mouseover", mouseOver)
-              .on("mouseleave", mouseLeave)
-
-            //Text unten rechts
-            svg_2.append("text")
-              .attr("text-anchor", "end")
-              .style("fill", "black")
-              .attr("x", width - 20)
-              .attr("y", height - 30)
-              .attr("width", 90)
-              .html("Forschungsgelder nach Bundesland")
-              .style("font-size", 14)
-
-            //Legenden-Beschreibung
-            svg_2.append("text")
-              .attr("text-anchor", "end")
-              .style("fill", "black")
-              .attr("x", width - 360)
-              .attr("y", height - 585)
-              .attr("width", 90)
-              .html("In millions of Euro")
-              .style("font-size", 14)
-          }
-        </script>
+          </script>
+        </div>
       </div>
-    </div>
-
-    <!-- Racing bar charts-------------------------------------------------------------------------->
-    <div class="row">
-      <div class="col-lg-1"></div>
-      <div class="col-lg-10 textbox">
-        <h3>
-          Racing-Bars:
-        </h3>
-        <p>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-          eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-          voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-          clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
-          amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-          sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-          rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-          ipsum dolor sit amet.
-        </p>
-      </div>
-    </div>
-    <div class="row" style="padding-top: 80px;">
-      <div class="col-lg-1"></div>
-      <div class="col-lg-11">
-        <h2 style="margin-left: 20px;">
-          Forschungsförderungsdifferenzen im deutschen Föderalismus
-        </h2>
-        <h4 style="margin-left: 20px;">
-          Number of Projects started each year
-        </h4>
-        <script type="module">
-          import define from "./racing_bars.js";
-          import { Runtime, Library, Inspector } from "./runtime.js";
-
-          const runtime = new Runtime();
-          const main = runtime.module(define, Inspector.into(document.body));
-        </script>
+      <div class="row" style="padding-top: 80px;">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+          <h2 style="margin-left: 20px;">
+            Started projects in a historical timeline
+          </h2>
+          <h4 style="margin-left: 20px;">
+            Number of Projects started each year
+          </h4>
+          <p>
+            The next very important step for us was to see the development from the different federal states of germany through the years.
+            To achieve that build a dataset that had all the started projects per year grouped by the federal states where they are located.  
+            We then subtracted the number of projects ending each year and summend up the results for each.
+            Our goal and result was the number of running projects per state in each year.
+            We choose the technic of row-deletion for our <a href="https://towardsdatascience.com/missing-data-cfd9dbfd11b7" style="color: black;"><b>missing data</b></a> because we categorized the data as MCAR.
+          </p>
+          <script type="module">
+            import define from "./racing_bars.js";
+            import { Runtime, Library, Inspector } from "./runtime.js";
+    
+            const runtime = new Runtime();
+            const main = runtime.module(define, Inspector.into(document.body));
+          </script>
+        </div>
       </div>
     </div>
 
