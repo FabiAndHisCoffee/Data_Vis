@@ -1,5 +1,579 @@
 // @observablehq/runtime v4.6.3 Copyright 2019 Observable, Inc.
-
+function e(e, t, n) {
+  n = n || {};
+  var r = e.ownerDocument,
+    i = r.defaultView.CustomEvent;
+  "function" == typeof i
+    ? (i = new i(t, { detail: n }))
+    : ((i = r.createEvent("Event")).initEvent(t, !1, !1), (i.detail = n)),
+    e.dispatchEvent(i);
+}
+function t(e) {
+  return (
+    Array.isArray(e) ||
+    e instanceof Int8Array ||
+    e instanceof Int16Array ||
+    e instanceof Int32Array ||
+    e instanceof Uint8Array ||
+    e instanceof Uint8ClampedArray ||
+    e instanceof Uint16Array ||
+    e instanceof Uint32Array ||
+    e instanceof Float32Array ||
+    e instanceof Float64Array
+  );
+}
+function n(e) {
+  return e === (0 | e) + "";
+}
+function r(e) {
+  const t = document.createElement("span");
+  return (
+    (t.className = "observablehq--cellname"), (t.textContent = `${e} = `), t
+  );
+}
+const i = Symbol.prototype.toString;
+function o(e) {
+  return i.call(e);
+}
+const {
+    getOwnPropertySymbols: s,
+    prototype: { hasOwnProperty: a }
+  } = Object,
+  { toStringTag: l } = Symbol,
+  u = {},
+  c = s;
+function d(e, t) {
+  return a.call(e, t);
+}
+function h(e) {
+  return e[l] || (e.constructor && e.constructor.name) || "Object";
+}
+function p(e, t) {
+  try {
+    const n = e[t];
+    return n && n.constructor, n;
+  } catch (e) {
+    return u;
+  }
+}
+const f = [
+  { symbol: "@@__IMMUTABLE_INDEXED__@@", name: "Indexed", modifier: !0 },
+  { symbol: "@@__IMMUTABLE_KEYED__@@", name: "Keyed", modifier: !0 },
+  { symbol: "@@__IMMUTABLE_LIST__@@", name: "List", arrayish: !0 },
+  { symbol: "@@__IMMUTABLE_MAP__@@", name: "Map" },
+  {
+    symbol: "@@__IMMUTABLE_ORDERED__@@",
+    name: "Ordered",
+    modifier: !0,
+    prefix: !0
+  },
+  { symbol: "@@__IMMUTABLE_RECORD__@@", name: "Record" },
+  { symbol: "@@__IMMUTABLE_SET__@@", name: "Set", arrayish: !0, setish: !0 },
+  { symbol: "@@__IMMUTABLE_STACK__@@", name: "Stack", arrayish: !0 }
+];
+function m(e) {
+  try {
+    let t = f.filter(({ symbol: t }) => !0 === e[t]);
+    if (!t.length) return;
+    const n = t.find(e => !e.modifier),
+      r = "Map" === n.name && t.find(e => e.modifier && e.prefix),
+      i = t.some(e => e.arrayish),
+      o = t.some(e => e.setish);
+    return {
+      name: `${r ? r.name : ""}${n.name}`,
+      symbols: t,
+      arrayish: i && !o,
+      setish: o
+    };
+  } catch (e) {
+    return null;
+  }
+}
+const { getPrototypeOf: g, getOwnPropertyDescriptors: b } = Object,
+  v = g({});
+function _(n, i, o, s) {
+  let a,
+    l,
+    u,
+    c,
+    d = t(n);
+  n instanceof Map
+    ? ((a = `Map(${n.size})`), (l = w))
+    : n instanceof Set
+    ? ((a = `Set(${n.size})`), (l = y))
+    : d
+    ? ((a = `${n.constructor.name}(${n.length})`), (l = k))
+    : (c = m(n))
+    ? ((a = `Immutable.${c.name}${"Record" === c.name ? "" : `(${n.size})`}`),
+      (d = c.arrayish),
+      (l = c.arrayish ? E : c.setish ? x : $))
+    : s
+    ? ((a = h(n)), (l = C))
+    : ((a = h(n)), (l = S));
+  const p = document.createElement("span");
+  (p.className = "observablehq--expanded"), o && p.appendChild(r(o));
+  const f = p.appendChild(document.createElement("a"));
+  (f.innerHTML =
+    "<svg width=8 height=8 class='observablehq--caret'>\n    <path d='M4 7L0 1h8z' fill='currentColor' />\n  </svg>"),
+    f.appendChild(document.createTextNode(`${a}${d ? " [" : " {"}`)),
+    f.addEventListener("mouseup", function(e) {
+      e.stopPropagation(), ae(p, M(n, null, o, s));
+    }),
+    (l = l(n));
+  for (let e = 0; !(u = l.next()).done && e < 20; ++e) p.appendChild(u.value);
+  if (!u.done) {
+    const t = p.appendChild(document.createElement("a"));
+    (t.className = "observablehq--field"),
+      (t.style.display = "block"),
+      t.appendChild(document.createTextNode("  … more")),
+      t.addEventListener("mouseup", function(t) {
+        t.stopPropagation(),
+          p.insertBefore(u.value, p.lastChild.previousSibling);
+        for (let e = 0; !(u = l.next()).done && e < 19; ++e)
+          p.insertBefore(u.value, p.lastChild.previousSibling);
+        u.done && p.removeChild(p.lastChild.previousSibling), e(p, "load");
+      });
+  }
+  return p.appendChild(document.createTextNode(d ? "]" : "}")), p;
+}
+function* w(e) {
+  for (const [t, n] of e) yield q(t, n);
+  yield* S(e);
+}
+function* y(e) {
+  for (const t of e) yield P(t);
+  yield* S(e);
+}
+function* x(e) {
+  for (const t of e) yield P(t);
+}
+function* k(e) {
+  for (let t = 0, n = e.length; t < n; ++t)
+    t in e && (yield L(t, p(e, t), "observablehq--index"));
+  for (const t in e)
+    !n(t) && d(e, t) && (yield L(t, p(e, t), "observablehq--key"));
+  for (const t of c(e)) yield L(o(t), p(e, t), "observablehq--symbol");
+}
+function* E(e) {
+  let t = 0;
+  for (const n = e.size; t < n; ++t) yield L(t, e.get(t), !0);
+}
+function* C(e) {
+  for (const t in b(e)) yield L(t, p(e, t), "observablehq--key");
+  for (const t of c(e)) yield L(o(t), p(e, t), "observablehq--symbol");
+  const t = g(e);
+  t && t !== v && (yield N(t));
+}
+function* S(e) {
+  for (const t in e) d(e, t) && (yield L(t, p(e, t), "observablehq--key"));
+  for (const t of c(e)) yield L(o(t), p(e, t), "observablehq--symbol");
+  const t = g(e);
+  t && t !== v && (yield N(t));
+}
+function* $(e) {
+  for (const [t, n] of e) yield L(t, n, "observablehq--key");
+}
+function N(e) {
+  const t = document.createElement("div"),
+    n = t.appendChild(document.createElement("span"));
+  return (
+    (t.className = "observablehq--field"),
+    (n.className = "observablehq--prototype-key"),
+    (n.textContent = "  <prototype>"),
+    t.appendChild(document.createTextNode(": ")),
+    t.appendChild(se(e, void 0, void 0, void 0, !0)),
+    t
+  );
+}
+function L(e, t, n) {
+  const r = document.createElement("div"),
+    i = r.appendChild(document.createElement("span"));
+  return (
+    (r.className = "observablehq--field"),
+    (i.className = n),
+    (i.textContent = `  ${e}`),
+    r.appendChild(document.createTextNode(": ")),
+    r.appendChild(se(t)),
+    r
+  );
+}
+function q(e, t) {
+  const n = document.createElement("div");
+  return (
+    (n.className = "observablehq--field"),
+    n.appendChild(document.createTextNode("  ")),
+    n.appendChild(se(e)),
+    n.appendChild(document.createTextNode(" => ")),
+    n.appendChild(se(t)),
+    n
+  );
+}
+function P(e) {
+  const t = document.createElement("div");
+  return (
+    (t.className = "observablehq--field"),
+    t.appendChild(document.createTextNode("  ")),
+    t.appendChild(se(e)),
+    t
+  );
+}
+function A(e) {
+  const t = window.getSelection();
+  return (
+    "Range" === t.type &&
+    (t.containsNode(e, !0) ||
+      t.anchorNode.isSelfOrDescendant(e) ||
+      t.focusNode.isSelfOrDescendant(e))
+  );
+}
+function M(e, n, i, o) {
+  let s,
+    a,
+    l,
+    u,
+    c = t(e);
+  if (
+    (e instanceof Map
+      ? ((s = `Map(${e.size})`), (a = j))
+      : e instanceof Set
+      ? ((s = `Set(${e.size})`), (a = O))
+      : c
+      ? ((s = `${e.constructor.name}(${e.length})`), (a = R))
+      : (u = m(e))
+      ? ((s = `Immutable.${u.name}${"Record" === u.name ? "" : `(${e.size})`}`),
+        (c = u.arrayish),
+        (a = u.arrayish ? U : u.setish ? T : D))
+      : ((s = h(e)), (a = I)),
+    n)
+  ) {
+    const t = document.createElement("span");
+    return (
+      (t.className = "observablehq--shallow"),
+      i && t.appendChild(r(i)),
+      t.appendChild(document.createTextNode(s)),
+      t.addEventListener("mouseup", function(n) {
+        A(t) || (n.stopPropagation(), ae(t, M(e)));
+      }),
+      t
+    );
+  }
+  const d = document.createElement("span");
+  (d.className = "observablehq--collapsed"), i && d.appendChild(r(i));
+  const p = d.appendChild(document.createElement("a"));
+  (p.innerHTML =
+    "<svg width=8 height=8 class='observablehq--caret'>\n    <path d='M7 4L1 8V0z' fill='currentColor' />\n  </svg>"),
+    p.appendChild(document.createTextNode(`${s}${c ? " [" : " {"}`)),
+    d.addEventListener(
+      "mouseup",
+      function(t) {
+        A(d) || (t.stopPropagation(), ae(d, _(e, 0, i, o)));
+      },
+      !0
+    ),
+    (a = a(e));
+  for (let e = 0; !(l = a.next()).done && e < 20; ++e)
+    e > 0 && d.appendChild(document.createTextNode(", ")),
+      d.appendChild(l.value);
+  return (
+    l.done || d.appendChild(document.createTextNode(", …")),
+    d.appendChild(document.createTextNode(c ? "]" : "}")),
+    d
+  );
+}
+function* j(e) {
+  for (const [t, n] of e) yield B(t, n);
+  yield* I(e);
+}
+function* O(e) {
+  for (const t of e) yield se(t, !0);
+  yield* I(e);
+}
+function* T(e) {
+  for (const t of e) yield se(t, !0);
+}
+function* U(e) {
+  let t = -1,
+    n = 0;
+  for (const r = e.size; n < r; ++n)
+    n > t + 1 && (yield z(n - t - 1)), yield se(e.get(n), !0), (t = n);
+  n > t + 1 && (yield z(n - t - 1));
+}
+function* R(e) {
+  let t = -1,
+    r = 0;
+  for (const n = e.length; r < n; ++r)
+    r in e &&
+      (r > t + 1 && (yield z(r - t - 1)), yield se(p(e, r), !0), (t = r));
+  r > t + 1 && (yield z(r - t - 1));
+  for (const t in e)
+    !n(t) && d(e, t) && (yield F(t, p(e, t), "observablehq--key"));
+  for (const t of c(e)) yield F(o(t), p(e, t), "observablehq--symbol");
+}
+function* I(e) {
+  for (const t in e) d(e, t) && (yield F(t, p(e, t), "observablehq--key"));
+  for (const t of c(e)) yield F(o(t), p(e, t), "observablehq--symbol");
+}
+function* D(e) {
+  for (const [t, n] of e) yield F(t, n, "observablehq--key");
+}
+function z(e) {
+  const t = document.createElement("span");
+  return (
+    (t.className = "observablehq--empty"),
+    (t.textContent = 1 === e ? "empty" : `empty × ${e}`),
+    t
+  );
+}
+function F(e, t, n) {
+  const r = document.createDocumentFragment(),
+    i = r.appendChild(document.createElement("span"));
+  return (
+    (i.className = n),
+    (i.textContent = e),
+    r.appendChild(document.createTextNode(": ")),
+    r.appendChild(se(t, !0)),
+    r
+  );
+}
+function B(e, t) {
+  const n = document.createDocumentFragment();
+  return (
+    n.appendChild(se(e, !0)),
+    n.appendChild(document.createTextNode(" => ")),
+    n.appendChild(se(t, !0)),
+    n
+  );
+}
+function H(e, t) {
+  var n = e + "",
+    r = n.length;
+  return r < t ? new Array(t - r + 1).join(0) + n : n;
+}
+function W(e) {
+  return e < 0 ? "-" + H(-e, 6) : e > 9999 ? "+" + H(e, 6) : H(e, 4);
+}
+var V = Error.prototype.toString;
+var G = RegExp.prototype.toString;
+const K = 20;
+function Y(e) {
+  return e.replace(/[\\`\x00-\x09\x0b-\x19]|\${/g, J);
+}
+function J(e) {
+  var t = e.charCodeAt(0);
+  switch (t) {
+    case 8:
+      return "\\b";
+    case 9:
+      return "\\t";
+    case 11:
+      return "\\v";
+    case 12:
+      return "\\f";
+    case 13:
+      return "\\r";
+  }
+  return t < 16
+    ? "\\x0" + t.toString(16)
+    : t < 32
+    ? "\\x" + t.toString(16)
+    : "\\" + e;
+}
+function X(e, t) {
+  for (var n = 0; t.exec(e); ) ++n;
+  return n;
+}
+var Q = Function.prototype.toString,
+  Z = { prefix: "async ƒ" },
+  ee = { prefix: "async ƒ*" },
+  te = { prefix: "class" },
+  ne = { prefix: "ƒ" },
+  re = { prefix: "ƒ*" };
+function ie(e, t, n) {
+  var i = document.createElement("span");
+  (i.className = "observablehq--function"), n && i.appendChild(r(n));
+  var o = i.appendChild(document.createElement("span"));
+  return (
+    (o.className = "observablehq--keyword"),
+    (o.textContent = e.prefix),
+    i.appendChild(document.createTextNode(t)),
+    i
+  );
+}
+const {
+  prototype: { toString: oe }
+} = Object;
+function se(e, t, n, i, s) {
+  let a = typeof e;
+  switch (a) {
+    case "boolean":
+    case "undefined":
+      e += "";
+      break;
+    case "number":
+      e = 0 === e && 1 / e < 0 ? "-0" : e + "";
+      break;
+    case "bigint":
+      e += "n";
+      break;
+    case "symbol":
+      e = o(e);
+      break;
+    case "function":
+      return (function(e, t) {
+        var n,
+          r,
+          i = Q.call(e);
+        switch (e.constructor && e.constructor.name) {
+          case "AsyncFunction":
+            n = Z;
+            break;
+          case "AsyncGeneratorFunction":
+            n = ee;
+            break;
+          case "GeneratorFunction":
+            n = re;
+            break;
+          default:
+            n = /^class\b/.test(i) ? te : ne;
+        }
+        return n === te
+          ? ie(n, "", t)
+          : (r = /^(?:async\s*)?(\w+)\s*=>/.exec(i))
+          ? ie(n, "(" + r[1] + ")", t)
+          : (r = /^(?:async\s*)?\(\s*(\w+(?:\s*,\s*\w+)*)?\s*\)/.exec(i))
+          ? ie(n, r[1] ? "(" + r[1].replace(/\s*,\s*/g, ", ") + ")" : "()", t)
+          : (r = /^(?:async\s*)?function(?:\s*\*)?(?:\s*\w+)?\s*\(\s*(\w+(?:\s*,\s*\w+)*)?\s*\)/.exec(
+              i
+            ))
+          ? ie(n, r[1] ? "(" + r[1].replace(/\s*,\s*/g, ", ") + ")" : "()", t)
+          : ie(n, "(…)", t);
+      })(e, i);
+    case "string":
+      return (function(e, t, n, i) {
+        if (!1 === t) {
+          if (X(e, /["\n]/g) <= X(e, /`|\${/g)) {
+            const t = document.createElement("span");
+            i && t.appendChild(r(i));
+            const n = t.appendChild(document.createElement("span"));
+            return (
+              (n.className = "observablehq--string"),
+              (n.textContent = JSON.stringify(e)),
+              t
+            );
+          }
+          const o = e.split("\n");
+          if (o.length > K && !n) {
+            const n = document.createElement("div");
+            i && n.appendChild(r(i));
+            const s = n.appendChild(document.createElement("span"));
+            (s.className = "observablehq--string"),
+              (s.textContent = "`" + Y(o.slice(0, K).join("\n")));
+            const a = n.appendChild(document.createElement("span")),
+              l = o.length - K;
+            return (
+              (a.textContent = `Show ${l} truncated line${l > 1 ? "s" : ""}`),
+              (a.className = "observablehq--string-expand"),
+              a.addEventListener("mouseup", function(r) {
+                r.stopPropagation(), ae(n, se(e, t, !0, i));
+              }),
+              n
+            );
+          }
+          const s = document.createElement("span");
+          i && s.appendChild(r(i));
+          const a = s.appendChild(document.createElement("span"));
+          return (
+            (a.className = `observablehq--string${
+              n ? " observablehq--expanded" : ""
+            }`),
+            (a.textContent = "`" + Y(e) + "`"),
+            s
+          );
+        }
+        const o = document.createElement("span");
+        i && o.appendChild(r(i));
+        const s = o.appendChild(document.createElement("span"));
+        return (
+          (s.className = "observablehq--string"),
+          (s.textContent = JSON.stringify(
+            e.length > 100 ? `${e.slice(0, 50)}…${e.slice(-49)}` : e
+          )),
+          o
+        );
+      })(e, t, n, i);
+    default:
+      if (null === e) {
+        (a = null), (e = "null");
+        break;
+      }
+      if (e instanceof Date) {
+        (a = "date"),
+          (l = e),
+          (e = isNaN(l)
+            ? "Invalid Date"
+            : (function(e) {
+                return (
+                  0 === e.getUTCMilliseconds() &&
+                  0 === e.getUTCSeconds() &&
+                  0 === e.getUTCMinutes() &&
+                  0 === e.getUTCHours()
+                );
+              })(l)
+            ? W(l.getUTCFullYear()) +
+              "-" +
+              H(l.getUTCMonth() + 1, 2) +
+              "-" +
+              H(l.getUTCDate(), 2)
+            : W(l.getFullYear()) +
+              "-" +
+              H(l.getMonth() + 1, 2) +
+              "-" +
+              H(l.getDate(), 2) +
+              "T" +
+              H(l.getHours(), 2) +
+              ":" +
+              H(l.getMinutes(), 2) +
+              (l.getMilliseconds()
+                ? ":" + H(l.getSeconds(), 2) + "." + H(l.getMilliseconds(), 3)
+                : l.getSeconds()
+                ? ":" + H(l.getSeconds(), 2)
+                : ""));
+        break;
+      }
+      if (e === u) {
+        (a = "forbidden"), (e = "[forbidden]");
+        break;
+      }
+      switch (oe.call(e)) {
+        case "[object RegExp]":
+          (a = "regexp"),
+            (e = (function(e) {
+              return G.call(e);
+            })(e));
+          break;
+        case "[object Error]":
+        case "[object DOMException]":
+          (a = "error"),
+            (e = (function(e) {
+              return e.stack || V.call(e);
+            })(e));
+          break;
+        default:
+          return (n ? _ : M)(e, t, i, s);
+      }
+  }
+  var l;
+  const c = document.createElement("span");
+  i && c.appendChild(r(i));
+  const d = c.appendChild(document.createElement("span"));
+  return (d.className = `observablehq--${a}`), (d.textContent = e), c;
+}
+function ae(t, n) {
+  t.classList.contains("observablehq--inspect") &&
+    n.classList.add("observablehq--inspect"),
+    t.parentNode.replaceChild(n, t),
+    e(n, "load");
+}
 const le = /\s+\(\d+:\d+\)$/m;
 class ue {
   constructor(e) {
@@ -127,7 +701,41 @@ var ge = {
     var n = document.createElement("canvas");
     return (n.width = e), (n.height = t), n;
   },
-
+  context2d: function(e, t, n) {
+    null == n && (n = devicePixelRatio);
+    var r = document.createElement("canvas");
+    (r.width = e * n), (r.height = t * n), (r.style.width = e + "px");
+    var i = r.getContext("2d");
+    return i.scale(n, n), i;
+  },
+  download: function(e, t = "untitled", n = "Save") {
+    const r = document.createElement("a"),
+      i = r.appendChild(document.createElement("button"));
+    async function o() {
+      await new Promise(requestAnimationFrame),
+        URL.revokeObjectURL(r.href),
+        r.removeAttribute("href"),
+        (i.textContent = n),
+        (i.disabled = !1);
+    }
+    return (
+      (i.textContent = n),
+      (r.download = t),
+      (r.onclick = async t => {
+        if (((i.disabled = !0), r.href)) return o();
+        i.textContent = "Saving…";
+        try {
+          const t = await ("function" == typeof e ? e() : e);
+          (i.textContent = "Download"), (r.href = URL.createObjectURL(t));
+        } catch (e) {
+          i.textContent = n;
+        }
+        if (t.eventPhase) return o();
+        i.disabled = !1;
+      }),
+      r
+    );
+  },
   element: function(e, t) {
     var n,
       r = (e += ""),
@@ -266,7 +874,6 @@ function ye(e) {
       return e.value;
   }
 }
-//Button?
 var xe = {
   disposable: _e,
   filter: function*(e, t) {
@@ -1844,7 +2451,32 @@ function Wt(e) {
     e._invalidate = t;
   });
 }
-
+function Vt(e, t) {
+  let n,
+    r,
+    i =
+      "function" == typeof IntersectionObserver &&
+      t._observer &&
+      t._observer._node,
+    o = !i,
+    s = Et,
+    a = Et;
+  return (
+    i &&
+      ((r = new IntersectionObserver(
+        ([e]) => (o = e.isIntersecting) && ((n = null), s())
+      )).observe(i),
+      e.then(() => (r.disconnect(), (r = null), a()))),
+    function(e) {
+      return o
+        ? Promise.resolve(e)
+        : r
+        ? (n || (n = new Promise((e, t) => ((s = e), (a = t)))),
+          n.then(() => e))
+        : Promise.reject();
+    }
+  );
+}
 function Gt(e) {
   e._invalidate(), (e._invalidate = Et), e._pending();
   var t = e._value,
@@ -1910,7 +2542,25 @@ function Gt(e) {
     }
   );
 }
-
+function Kt(e, t, n) {
+  var r = e._module._runtime;
+  return (
+    (e._value = t),
+    (e._promise = n),
+    e._outputs.forEach(r._updates.add, r._updates),
+    r._compute()
+  );
+}
+function Yt(e, t) {
+  e._invalidate(),
+    (e._invalidate = Et),
+    e._pending(),
+    ++e._version,
+    (e._indegree = NaN),
+    (e._promise = Promise.reject(t)).catch(Et),
+    (e._value = void 0),
+    e._rejected(t);
+}
 Object.defineProperties(Dt, {
   load: {
     value: function(e, t, n) {
