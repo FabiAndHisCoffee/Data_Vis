@@ -36,6 +36,10 @@ type "python -m http.server" + some number (for example python -m http.server 12
 
 Source: https://stackoverflow.com/questions/38497334/how-to-run-html-file-on-localhost  
 
+# Website (if you do not want to host our site)
+We also hosted our Visualization to this site: [enote.space](http://enote.space/bar_race/index.html)    
+
+
 # Manual
 -see the screencast in folder ---to be inserted---
 
