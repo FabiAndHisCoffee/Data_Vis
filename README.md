@@ -9,7 +9,7 @@ In this Visualization we compare the number of projects fudned by the DFG betwee
 
 # Table of contents of external content
 [I Data manipulation](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Data-(sources-and-modifications))  
-[II Short Overview of Design Process](http://enote.space/project_team/summary.html)
+[II Short Overview of Design Process](http://enote.space/project_team/summary.html)  
 [III Design Process](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Design-process)
 
 # Description
