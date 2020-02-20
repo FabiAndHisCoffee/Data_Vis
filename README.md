@@ -4,13 +4,14 @@ Last updated: 20.02.2020
 By Fabian Rüb and Kevin Kreutz
 
 # Short Overview
-In this Visualization we compare the number of projects fudned by the DFG between the 16 german states and some additional data to examine the reasons behind the differences.  
+In this Visualization we compare the number of projects funded by the DFG between the 16 german states and some additional data to examine the reasons behind the differences.  
 <br/>
 
 # Table of contents of external content
 [I Data manipulation](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Data-(sources-and-modifications))  
 [II Short Overview of Design Process](http://enote.space/project_team/summary.html)  
 [III Design Process](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Design-process)
+[IV Manual (Screencast)](https://box.fu-berlin.de/s/xskZToAPcTDdC3Q)
 
 # Description
 There are 16 different states in Germany. Each has its local government and, therefore, interests.  
@@ -25,8 +26,6 @@ The Deutsche Forschungsgemeinschaft (DFG) had a budget of 3.4 Billion Euros in 2
 Source:
 https://www.dfg.de/dfg_profil/jahresbericht/
 
-
-
 # Installation (Hosting it locally)
 1. Clone this rep in your console (install git beforehand) or download it directly (green button)
 Console: "git clone https://github.com/FabiAndHisCoffee/Data_Vis.git"
@@ -38,15 +37,11 @@ type "python -m http.server" + some number (for example python -m http.server 12
 Source: https://stackoverflow.com/questions/38497334/how-to-run-html-file-on-localhost  
 
 # Website (if you do not want to host our site)
-We also hosted our Visualization to this site: [enote.space](http://enote.space/bar_race/index.html)    
-
-
-# Manual
--see the screencast in folder ---to be inserted---
+We also hosted our Visualization to this site: [enote.space](http://enote.space/bar_race/index.html)
 
 # Contributors
--Fabian Rüb (FabiAndHisCoffee)  
--Kevin Kreutz (Parkcross)
+Fabian Rüb (FabiAndHisCoffee)  
+Kevin Kreutz (Parkcross)
 
 # Data copyright
 Data derived from original data provided by https://gepris.dfg.de (c) Deutsche Forschungsgemeinschaft
