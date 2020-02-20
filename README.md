@@ -10,7 +10,7 @@ In this Visualization we compare the number of projects funded by the DFG betwee
 # Table of contents of external content
 [I Data manipulation](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Data-(sources-and-modifications))  
 [II Short Overview of Design Process](http://enote.space/project_team/summary.html)  
-[III Design Process](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Design-process)
+[III Design Process](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Design-process)  
 [IV Manual (Screencast)](https://box.fu-berlin.de/s/xskZToAPcTDdC3Q)
 
 # Description
