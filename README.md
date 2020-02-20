@@ -1,6 +1,6 @@
-# Forschungsförderungsdifferenzen im deutschen Föderalismus (working title)
+# Forschungsförderungsdifferenzen im deutschen Föderalismus
 This is our final project for the Data Visualization course at Freie Universität.  
-Last updated: 20.02.2020
+Last updated: 21.02.2020
 By Fabian Rüb and Kevin Kreutz
 
 # Short Overview
