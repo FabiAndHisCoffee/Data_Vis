@@ -12,7 +12,8 @@ In this Visualization we compare the number of projects funded by the DFG betwee
 [II Design Process and Munzner model](http://enote.space/project_team/summary.html)  
 [III Additional Information on Design Process](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Additonal-Information-on-Design-process)  
 [IV Sources for Visualization](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Sources-for-Visualization)  
-[V Manual (Screencast)](https://box.fu-berlin.de/s/xskZToAPcTDdC3Q)
+[V Manual (Screencast)](https://box.fu-berlin.de/s/xskZToAPcTDdC3Q)  
+[VI Validation](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Validation)
 
 # Description
 There are 16 different states in Germany. Each has its local government and, therefore, interests.  
@@ -36,7 +37,7 @@ type "python -m http.server" + some number (for example python -m http.server 12
 4. Enjoy
 
 Source: https://stackoverflow.com/questions/38497334/how-to-run-html-file-on-localhost  
-
+The Installation-manual from observable-hq, can be found here (but is jsut an additonal resource): [obersable-hq](https://github.com/FabiAndHisCoffee/Data_Vis/tree/master/bar_race)
 # Website (if you do not want to host our site)
 We also hosted our Visualization to this site: [enote.space](http://enote.space/bar_race/index.html)
 
