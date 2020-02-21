@@ -9,8 +9,8 @@ In this Visualization we compare the number of projects funded by the DFG betwee
 
 # Table of contents of external content
 [I Data manipulation](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Data-(sources-and-modifications))  
-[II Design Process and Munzner model](http://enote.space/project_team/summary.html)  
-[III Additional Information on Design Process](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Additonal-Information-on-Design-process)  
+[II Short overview of design process and munzner model](http://enote.space/project_team/summary.html)  
+[III Munzner model](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Munzner-model-explaination)  
 [IV Sources for Visualization](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Sources-for-Visualization)  
 [V Manual (Screencast)](https://box.fu-berlin.de/s/xskZToAPcTDdC3Q)  
 [VI Validation](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Validation)
