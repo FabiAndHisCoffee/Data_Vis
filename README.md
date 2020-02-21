@@ -8,12 +8,12 @@ In this Visualization we compare the number of projects funded by the DFG betwee
 <br/>
 
 # Table of contents of external content
-[I Data manipulation](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Data-(sources-and-modifications))  
-[II Short overview of design process and munzner model](http://enote.space/project_team/summary.html)  
-[III Munzner model](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Munzner-model-explaination)  
-[IV Sources for Visualization](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Sources-for-Visualization)  
-[V Manual (Screencast)](https://box.fu-berlin.de/s/xskZToAPcTDdC3Q)  
-[VI Validation](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Validation)
+[I.   Data manipulation](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Data-(sources-and-modifications))  
+[II.  Short overview of design process and munzner model](http://enote.space/project_team/summary.html)  
+[III. Munzner model](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Munzner-model-explaination)  
+[IV.  Sources for Visualization](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Sources-for-Visualization)  
+[V.   Manual (Screencast)](https://box.fu-berlin.de/s/xskZToAPcTDdC3Q)  
+[VI.  Validation](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Validation)
 
 # Description
 There are 16 different states in Germany. Each has its local government and, therefore, interests.  
