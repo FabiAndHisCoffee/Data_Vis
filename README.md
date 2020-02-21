@@ -1,34 +1,51 @@
-# Forschungsförderungsdifferenzen im deutschen Föderalismus (working title)
+# The final and defaul branch is: [Final Version](https://github.com/FabiAndHisCoffee/Data_Vis/tree/final)
 
-# Overview
-Our goal was to visualize the differences in funding for science projects between the 16 german states.
-<br/>
-The final and defaul branch is: [Final Version](https://github.com/FabiAndHisCoffee/Data_Vis/tree/final)  
+# Forschungsförderungsdifferenzen im deutschen Föderalismus  
 This is our final project for the Data Visualization course at Freie Universität.  
-Handed in on 13. February 2020
+Last updated: 21.02.2020
+By Fabian Rüb and Kevin Kreutz
 
-# Table of contents
+# Short Overview
+In this Visualization we compare the number of projects funded by the DFG between the 16 german states and some additional data to examine the reasons behind the differences.  
+<br/>
 
+# Table of contents of external content
+[I.   Data manipulation](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Data-(sources-and-modifications))  
+[II.  Short overview of design process and munzner model](http://enote.space/project_team/summary.html)  
+[III. Munzner model](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Munzner-model-explaination)  
+[IV.  Sources for Visualization](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Sources-for-Visualization)  
+[V.   Manual (Screencast)](https://box.fu-berlin.de/s/xskZToAPcTDdC3Q)  
+[VI.  Validation](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Validation)
 
 # Description
-There are 16 different states in germany. Each has its own local goverment and therefore intrests.  
-Universities and research facility in germany depend on funding from goverment and also external funding.  
-With this visualization we want to examine which states funded the most projects (through the DFG) and how the quantity of proejct funded changed over time.  
---insert some information on funding fro states for the DFG--
+There are 16 different states in Germany. Each has its local government and, therefore, interests.  
+Universities and research facilities in Germany depend on funding from the government and also external funding.  
+With this visualization, we want to examine which states funded the most projects (through the DFG) and how the quantity of project funded changed over time.  
 
-# Installation
--Clone this rep  
--Go to the folder on your pc  
--click on index.html  
--???  
-=> Profit  
+About the DFG:   
+The Deutsche Forschungsgemeinschaft (DFG) had a budget of 3.4 Billion Euros in 2018. 
+2/3 come from the federal government.
+1/3 come from the states.
 
-# Manual
--see the screencast in folder ---to be inserted---
+Source:
+https://www.dfg.de/dfg_profil/jahresbericht/
+
+# Installation (Hosting it locally)
+1. Clone this rep in your console (install git beforehand) or download it directly (green button)
+Console: "git clone https://github.com/FabiAndHisCoffee/Data_Vis.git"
+2. Go to the folder *./Data_Vis/bar_race and open a console:   
+type "python -m http.server" + some number (for example python -m http.server 1234)
+3. open "http://localhost:" + the typed number ( http://localhost:8000 if no number given)
+4. Enjoy
+
+Source: https://stackoverflow.com/questions/38497334/how-to-run-html-file-on-localhost  
+The Installation-manual from observable-hq, can be found here (but is jsut an additonal resource): [obersable-hq](https://github.com/FabiAndHisCoffee/Data_Vis/tree/master/bar_race)
+# Website (if you do not want to host our site)
+We also hosted our Visualization to this site: [enote.space](http://enote.space/bar_race/index.html)
 
 # Contributors
--Fabian Rüb (FabiAndHisCoffee)  
--Kevin Kreutz (Parkcross)
+Fabian Rüb (FabiAndHisCoffee)  
+Kevin Kreutz (Parkcross)
 
 # Data copyright
 Data derived from original data provided by https://gepris.dfg.de (c) Deutsche Forschungsgemeinschaft
