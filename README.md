@@ -9,10 +9,10 @@ By Fabian Rüb and Kevin Kreutz
 In this Visualization we compare the number of projects funded by the DFG between the 16 german states and some additional data to examine the reasons behind the differences.  
 <br/>
 
-# Table of contents for external and Wiki content
-[I.----Data manipulation](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Data-(sources-and-modifications))  
-[II.---Short overview of design process and munzner model](http://enote.space/project_team/summary.html)  
-[III.--Munzner model](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Munzner-model-explaination)  
+# Table of contents for external and Wiki content  
+[I.---Short overview of design process and munzner model](http://enote.space/project_team/summary.html)  
+[II.--Munzner model](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Munzner-model-explaination)  
+[III.----Data manipulation](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Data-(sources-and-modifications))  
 [IV.--Sources for Visualization](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Sources-for-Visualization)  
 [V.---Manual (Screencast)](https://box.fu-berlin.de/s/xskZToAPcTDdC3Q)  
 [VI.--Validation](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Validation)
