@@ -18,9 +18,9 @@ In this Visualization we compare the number of projects funded by the DFG betwee
 [VI.--Validation](https://github.com/FabiAndHisCoffee/Data_Vis/wiki/Validation)
 
 # Description
-There are 16 different states in Germany. Each has its local government and, therefore, interests.  
+There are 16 different states in Germany. Each has its local government and, therefore interests.  
 Universities and research facilities in Germany depend on funding from the government and also external funding.  
-With this visualization, we want to examine which states funded the most projects (through the DFG) and how the quantity of project funded changed over time.  
+With this visualization, we want to examine which states funded the most projects (through the DFG) and how the quantity of projects funded changed over time.  
 
 About the DFG:   
 The Deutsche Forschungsgemeinschaft (DFG) had a budget of 3.4 Billion Euros in 2018. 
