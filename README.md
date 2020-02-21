@@ -3,7 +3,7 @@
 # Overview
 Our goal was to visualize the differences in funding for science projects between the 16 german states.
 <br/>
-
+The final and defaul branch is: [Final Version](https://github.com/FabiAndHisCoffee/Data_Vis/tree/final)
 This is our final project for the Data Visualization course at Freie Universität.  
 Handed in on 13. February 2020
 
